@@ -22,7 +22,7 @@ The DFX subsystem provides the following capabilities:
 ## Directory Structure<a name="section62815498425"></a>
 
 ```
-base/hiviewdfx/hiviewdfx_cangjie_api
+base/hiviewdfx/hiviewdfx_cangjie_wrapper
 ├── ohos             # Cangjie DFX code
 ├── kit              # Cangjie kit code
 ├── figures          # architecture pictures
@@ -32,6 +32,6 @@ base/hiviewdfx/hiviewdfx_cangjie_api
 
 **DFX subsystem**
 
-hiviewdfx_cangjie_api
+hiviewdfx_cangjie_wrapper
 
 [hiviewdfx\_hiappevent](https://gitee.com/openharmony/hiviewdfx_hiappevent/blob/master/README.md)

@@ -22,7 +22,7 @@
 ## 目录<a name="section62815498425"></a>
 
 ```
-base/hiviewdfx/hiviewdfx_cangjie_api
+base/hiviewdfx/hiviewdfx_cangjie_wrapper
 ├── ohos             # 仓颉DFX子系统接口实现
 ├── kit              # 仓颉kit化代码
 ├── figures          # 存放readme中的架构图
@@ -32,6 +32,6 @@ base/hiviewdfx/hiviewdfx_cangjie_api
 
 **DFX子系统**
 
-hiviewdfx_cangjie_api
+hiviewdfx_cangjie_wrapper
 
 [hiviewdfx\_hiappevent](https://gitee.com/openharmony/hiviewdfx_hiappevent/blob/master/README.md)

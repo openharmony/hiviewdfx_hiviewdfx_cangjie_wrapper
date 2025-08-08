@@ -1,16 +1,16 @@
 {
-    "name": "@ohos/hiviewdfx_cangjie_api",
+    "name": "@ohos/hiviewdfx_cangjie_wrapper",
     "description": "Native log interface provided for cangjie system",
     "version": "6.0",
     "license": "Apache-2.0",
     "publishAs": "code-segment",
     "segment": {
-        "destPath": "base/hiviewdfx/hiviewdfx_cangjie_api"
+        "destPath": "base/hiviewdfx/hiviewdfx_cangjie_wrapper"
     },
     "dirs": {},
     "scripts": {},
     "component": {
-        "name": "hiviewdfx_cangjie_api",
+        "name": "hiviewdfx_cangjie_wrapper",
         "subsystem": "hiviewdfx",
         "syscap": [
             "SystemCapability.HiviewDFX.HiLog",
@@ -25,22 +25,22 @@
         "ram": "100000KB",
         "deps": {
             "components": [
-                "cangjie_api"
+                "cangjie_ark_interop"
             ]
         },
         "build": {
             "sub_component": [
-                "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hilog:ohos.hilog",
-                "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hiappevent:ohos.hiappevent",
-                "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hi_tracemeter:ohos.hi_tracemeter",
-                "//base/hiviewdfx/hiviewdfx_cangjie_api/kit/PerformanceAnalysisKit:kit.PerformanceAnalysisKit"
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hilog:ohos.hilog",
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiappevent:ohos.hiappevent",
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_tracemeter:ohos.hi_tracemeter",
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/kit/PerformanceAnalysisKit:kit.PerformanceAnalysisKit"
             ],
             "inner_kits": [
                 {
-                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hilog:ohos.hilog"
+                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hilog:ohos.hilog"
                 },
                 {
-                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hi_tracemeter:ohos.hi_tracemeter"
+                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_tracemeter:ohos.hi_tracemeter"
                 }
             ],
             "test": [

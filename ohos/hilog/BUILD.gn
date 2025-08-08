@@ -23,12 +23,12 @@ ohos_cj_library("ohos.hilog") {
   external_deps = [ "hilog:libhilog" ]
 
   cj_external_deps = [
-    "cangjie_api:ohos.labels",
+    "cangjie_ark_interop:ohos.labels",
   ]
 
   enable_strip = false
 
   subsystem_name = "hiviewdfx"
-  part_name = "hiviewdfx_cangjie_api"
+  part_name = "hiviewdfx_cangjie_wrapper"
   lib_name = "hilog"
 }

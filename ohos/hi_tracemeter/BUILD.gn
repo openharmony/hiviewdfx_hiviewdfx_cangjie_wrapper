@@ -20,9 +20,9 @@ ohos_cj_library("ohos.hi_tracemeter") {
   external_deps = [ "hitrace:cj_hitracemeter_ffi" ]
 
   cj_external_deps = [
-    "arkui_cangjie_api:ohos.base",
-    "cangjie_api:ohos.ffi",
-    "cangjie_api:ohos.labels",
+    "arkui_cangjie_wrapper:ohos.base",
+    "cangjie_ark_interop:ohos.ffi",
+    "cangjie_ark_interop:ohos.labels",
   ]
 
   cj_deps = [
@@ -30,6 +30,6 @@ ohos_cj_library("ohos.hi_tracemeter") {
   ]
 
   subsystem_name = "hiviewdfx"
-  part_name = "hiviewdfx_cangjie_api"
+  part_name = "hiviewdfx_cangjie_wrapper"
   lib_name = "hi_tracemeter"
 }

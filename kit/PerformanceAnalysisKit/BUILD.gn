@@ -25,6 +25,6 @@ ohos_cj_library("kit.PerformanceAnalysisKit") {
 
   kit = true
   subsystem_name = "hiviewdfx"
-  part_name = "hiviewdfx_cangjie_api"
+  part_name = "hiviewdfx_cangjie_wrapper"
   lib_name = "PerformanceAnalysisKit"
 }
