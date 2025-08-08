@@ -1,0 +1,50 @@
+{
+    "name": "@ohos/hiviewdfx_cangjie_api",
+    "description": "Native log interface provided for cangjie system",
+    "version": "6.0",
+    "license": "Apache-2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "base/hiviewdfx/hiviewdfx_cangjie_api"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "hiviewdfx_cangjie_api",
+        "subsystem": "hiviewdfx",
+        "syscap": [
+            "SystemCapability.HiviewDFX.HiLog",
+            "SystemCapability.HiviewDFX.HiTrace",
+            "SystemCapability.HiviewDFX.HiAppEvent"
+        ],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "30000KB",
+        "ram": "100000KB",
+        "deps": {
+            "components": [
+                "cangjie_api"
+            ]
+        },
+        "build": {
+            "sub_component": [
+                "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hilog:ohos.hilog",
+                "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hiappevent:ohos.hiappevent",
+                "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hi_tracemeter:ohos.hi_tracemeter",
+                "//base/hiviewdfx/hiviewdfx_cangjie_api/kit/PerformanceAnalysisKit:kit.PerformanceAnalysisKit"
+            ],
+            "inner_kits": [
+                {
+                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hilog:ohos.hilog"
+                },
+                {
+                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_api/ohos/hi_tracemeter:ohos.hi_tracemeter"
+                }
+            ],
+            "test": [
+            ]
+        }
+    }
+}
