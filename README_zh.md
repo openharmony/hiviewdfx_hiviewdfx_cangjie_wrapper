@@ -1,4 +1,4 @@
-# DFX子系统<a name="ZH-CN_TOPIC_0000001162014185"></a>
+# DFX仓颉<a name="ZH-CN_TOPIC_0000001162014185"></a>
 
 ## 简介<a name="section1347419114210"></a>
 
@@ -14,23 +14,23 @@
 
 ## 系统架构<a name="section342962219551"></a>
 
-**图 1**  子系统架构图<a name="fig18347131919423"></a>  
+**图 1**  DFX仓颉架构图<a name="fig18347131919423"></a>  
 
 
-![](figures/zh-cn_image_0000001162062837.png)
+![](figures/hiviewdfx_cangjie_wrapper_architecture.png)
 
 ## 目录<a name="section62815498425"></a>
 
 ```
 base/hiviewdfx/hiviewdfx_cangjie_wrapper
-├── ohos             # 仓颉DFX子系统接口实现
+├── ohos             # 仓颉DFX接口实现
 ├── kit              # 仓颉kit化代码
 ├── figures          # 存放readme中的架构图
 ```
 
 ## 相关仓<a name="section767551120815"></a>
 
-**DFX子系统**
+**DFX仓颉**
 
 hiviewdfx_cangjie_wrapper
 
