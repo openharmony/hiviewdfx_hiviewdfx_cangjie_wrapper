@@ -1,8 +1,8 @@
-# DFX仓颉<a name="ZH-CN_TOPIC_0000001162014185"></a>
+# DFX仓颉接口<a name="ZH-CN_TOPIC_0000001162014185"></a>
 
 ## 简介<a name="section1347419114210"></a>
 
-在OpenHarmony中，DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)是为了提升质量属性软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。
+DFX仓颉接口是在 OpenHarmony 上基于DFX子系统能力之上封装的仓颉API。在OpenHarmony中，DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)是为了提升质量属性软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。
 
 提供以下功能：
 
@@ -32,6 +32,8 @@ base/hiviewdfx/hiviewdfx_cangjie_wrapper
 
 **DFX仓颉**
 
-hiviewdfx_cangjie_wrapper
+[hiviewdfx\_hiview](https://gitee.com/openharmony/hiviewdfx_hiview/blob/master/README_zh.md)
 
-[hiviewdfx\_hiappevent](https://gitee.com/openharmony/hiviewdfx_hiappevent/blob/master/README.md)
+[hiviewdfx\_hilog](https://gitee.com/openharmony/hiviewdfx_hilog/blob/master/README_zh.md)
+
+[hiviewdfx\_hiappevent](https://gitee.com/openharmony/hiviewdfx_hiappevent/blob/master/README_zh.md)
