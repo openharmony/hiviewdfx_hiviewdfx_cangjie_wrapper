@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-package ohos.hiappevent
+package ohos.hiviewdfx.hi_app_event
 
-import ohos.ffi.*
+import ohos.business_exception.*
+
 import std.collection.*
-import ohos.base.*
 
 let ERROR_CODE_MAP: HashMap<Int32, String> = HashMap<Int32, String>(
     (11100001, "Function is disabled."),

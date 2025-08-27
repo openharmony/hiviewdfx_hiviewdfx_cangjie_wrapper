@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
-package ohos.hiappevent
+package ohos.hiviewdfx.hi_app_event
 
 import ohos.ffi.*
 import ohos.labels.*
+import ohos.business_exception.BusinessException
+
 import std.collection.*
-import ohos.base.*
 
 foreign func FfiOHOSHiAppEventConstructor(cWatcherName: CString): Int64
 
@@ -26,6 +27,11 @@ foreign func FfiOHOSHiAppEventSetSize(id: Int64, size: Int32): Int32
 
 foreign func FfiOHOSHiAppEventTakeNext(id: Int64): ReTakeNext
 
+/**
+* Defines a subscription data holder for processing event information.
+*
+* @relation class AppEventPackageHolder
+*/
 @!APILevel[
     21,
     stagemodelonly: true,
@@ -41,58 +47,57 @@ public class AppEventPackageHolder <: RemoteDataLite {
     }
 
     /**
-     * Constructor for AppEventPackageHolder.
+     * Constructs an AppEventPackageHolder instance. You can call addWatcher to add an event watcher, and then 
+     * associate the AppEventPackageHolder instance with the watcher added in the application based on the watcher name.
      *
-     * @param { string } watcherName Name of the watcher to read.
-     * @syscap SystemCapability.HiviewDFX.HiAppEvent
-     * @brief  constructor(watcherName: string)
+     * @relation constructor(watcherName: string)
      */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static func constructor(watcherName: String): AppEventPackageHolder {
+    public init(watcherName: String) {
         var id: Int64
         unsafe {
             let cWatcherName = LibC.mallocCString(watcherName)
             id = FfiOHOSHiAppEventConstructor(cWatcherName)
             LibC.free(cWatcherName)
             if (id < 0) {
-                throw Exception("Failed to create AppEventPackageHolder.")
+                throw IllegalMemoryException("Failed to create AppEventPackageHolder.")
             }
         }
-        return AppEventPackageHolder(id)
+        AppEventPackageHolder(id)
     }
 
     /**
-     * Set the threshold size per read.
+     * Sets the threshold for the data size of the event package obtained each time.
      *
-     * @param { number } size Threshold size.
-     * @throws { BusinessError } 401 - Parameter error.
-     * @throws { BusinessError } 11104001 - Invalid size value.
-     * @syscap SystemCapability.HiviewDFX.HiAppEvent
-     * @brief  setSize(size: number): void
+     * @throws { BusinessException } 401 - Parameter error.
+     * @throws { BusinessException } 11104001 - Invalid size value.
+     * @relation setSize(size: number): void
      */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public func setSize(size!: Int32 = 512 * 1024): Unit {
+    public func setSize(size: Int32): Unit {
         let ret = unsafe { FfiOHOSHiAppEventSetSize(getID(), size) }
         match {
-            case ret != SUCCESS_CODE => throw Exception(ret.toString())
+            case ret != SUCCESS_CODE => throw BusinessException(ret, getErrorInfo(ret))
             case _ => return
         }
     }
 
     /**
-     * Read the event data monitored by the watcher.
+     * Obtains the subscription event.
+     * The system obtains the subscription event data based on the data size threshold specified by setSize or the 
+     * number of data records specified by setRow. By default, one subscription event data record is obtained. When all 
+     * subscription event data is obtained, null is returned.
+     * When setRow and setSize are called at the same time, only setRow takes effect.
      *
-     * @returns { AppEventPackage } The read event package.
-     * @syscap SystemCapability.HiviewDFX.HiAppEvent
-     * @brief  takeNext(): AppEventPackage
+     * @relation takeNext(): AppEventPackage
      */
     @!APILevel[
         21,

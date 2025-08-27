@@ -13,11 +13,8 @@
  * limitations under the License.
  */
 
-package ohos.hi_tracemeter
+package ohos.hi_trace_meter
 
-import ohos.ffi.*
-import ohos.hilog.*
-import ohos.base.*
 import ohos.labels.*
 
 foreign {
@@ -26,12 +23,30 @@ foreign {
     func FfiOHOSHiTraceFinishAsyncTrace(name: CString, taskId: Int32): Unit
 }
 
+/**
+ * Provides interfaces to trace a task for performance measure, the logs can be capture by the
+ * bytrace cmdline available on the device.
+ *
+ * This interfaces trace the start, end, and value changes of key processes that last for at least 3 ms.
+ *
+ * @relation declare namespace hiTraceMeter
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.HiviewDFX.HiTrace"
 ]
 public class HiTraceMeter {
+    /**
+     * Records a trace marking it as the start of a task, can with the expected completion time between
+     * startTrace and finishTrace.
+     *
+     * This method is invoked at the start of a transaction to indicate that a task has started, whose name
+     * is specified by name, and the taskId is used to distinguish the tasks. It must be followed by
+     * finishTrace, the name and taskId need to be the same.
+     *
+     * @relation function startTrace(name: string, taskId: number): void
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -45,6 +60,14 @@ public class HiTraceMeter {
         }
     }
 
+    /**
+     * Records a trace and marks it as the end of a task.
+     *
+     * This method is invoked at the end of a transaction to indicate that a task has ended, whose name
+     * is specified by name. This method must be invoked after startTrace.
+     *
+     * @relation function finishTrace(name: string, taskId: number): void
+     */
     @!APILevel[
         21,
         stagemodelonly: true,

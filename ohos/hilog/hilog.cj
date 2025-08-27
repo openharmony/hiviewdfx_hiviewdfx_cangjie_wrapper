@@ -21,6 +21,8 @@ foreign func HiLogIsLoggable(domain: UInt32, tag: CString, level: UInt32): Bool
 
 foreign func HiLogPrint(ty: UInt32, level: UInt32, domain: UInt32, tag: CString, format: CString, content: CString): Unit
 
+foreign func IsPrivateSwitchOn(): Bool
+
 /**
  * Log level define
  *
@@ -157,11 +159,12 @@ public class Hilog {
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
-    public static func debug(domain: UInt32, tag: String, format: String): Unit {
+    public static func debug(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
+        let logContent = ParseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
-                cFormat = LibC.mallocCString(format).asResource()
+                cFormat = LibC.mallocCString(logContent).asResource()
             ) {
                 HiLogPrint(DEFAULT_LOG_TYPE, LogLevel.Debug.getValue(), domain, cTag.value, STANDARD_FORMAT,
                     cFormat.value)
@@ -179,11 +182,12 @@ public class Hilog {
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
-    public static func info(domain: UInt32, tag: String, format: String): Unit {
+    public static func info(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
+        let logContent = ParseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
-                cFormat = LibC.mallocCString(format).asResource()
+                cFormat = LibC.mallocCString(logContent).asResource()
             ) {
                 HiLogPrint(
                     DEFAULT_LOG_TYPE,
@@ -207,11 +211,12 @@ public class Hilog {
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
-    public static func warn(domain: UInt32, tag: String, format: String): Unit {
+    public static func warn(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
+        let logContent = ParseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
-                cFormat = LibC.mallocCString(format).asResource()
+                cFormat = LibC.mallocCString(logContent).asResource()
             ) {
                 HiLogPrint(
                     DEFAULT_LOG_TYPE,
@@ -235,11 +240,12 @@ public class Hilog {
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
-    public static func error(domain: UInt32, tag: String, format: String): Unit {
+    public static func error(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
+        let logContent = ParseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
-                cFormat = LibC.mallocCString(format).asResource()
+                cFormat = LibC.mallocCString(logContent).asResource()
             ) {
                 HiLogPrint(DEFAULT_LOG_TYPE, LogLevel.Error.getValue(), domain, cTag.value, STANDARD_FORMAT,
                     cFormat.value)
@@ -257,15 +263,81 @@ public class Hilog {
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
-    public static func fatal(domain: UInt32, tag: String, format: String): Unit {
+    public static func fatal(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
+        let logContent = ParseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
-                cFormat = LibC.mallocCString(format).asResource()
+                cFormat = LibC.mallocCString(logContent).asResource()
             ) {
                 HiLogPrint(DEFAULT_LOG_TYPE, LogLevel.Fatal.getValue(), domain, cTag.value, STANDARD_FORMAT,
                     cFormat.value)
             }
         }
     }
+}
+
+const PUBLIC_LEN:Int64 = 6
+const PRIVATE_LEN:Int64 = 7
+const PROPERTY_POS:Int64 = 2
+
+struct LogContentInfo {
+    var count: Int64
+    var isPriv: Bool
+
+    init(count!: Int64 = 0, isPriv!: Bool = true) {
+        this.count = count
+        this.isPriv = isPriv
+    }
+}
+
+func ParseLogContent(formatStr: String, args: Array<String>): String {
+    var logContent: String = ""
+    if (args.isEmpty()) {
+        return formatStr
+    }
+
+    let size = args.size
+    let len = formatStr.size
+
+    var info: LogContentInfo = LogContentInfo()
+    var pos: Int64 = 0
+    while (pos < len) {
+        var showPriv = true
+
+        if (String.fromUtf8([formatStr[pos]]) != "%") {
+            logContent += String.fromUtf8([formatStr[pos]])
+            pos += 1
+            continue
+        }
+
+        if (info.count >= size) {
+            break
+        }
+
+        if ((pos + PUBLIC_LEN + PROPERTY_POS) < formatStr.size &&
+            formatStr[(pos + PROPERTY_POS)..(pos + PROPERTY_POS + PUBLIC_LEN)] == "public") {
+            pos += (PUBLIC_LEN + PROPERTY_POS)
+            showPriv = false
+        } else if ((pos + PRIVATE_LEN + PROPERTY_POS) < formatStr.size &&
+            formatStr[(pos + PROPERTY_POS)..(pos + PROPERTY_POS + PRIVATE_LEN)] == "private") {
+            pos += (PRIVATE_LEN + PROPERTY_POS)
+        }
+
+        info.isPriv = showPriv && unsafe { IsPrivateSwitchOn() }
+
+        if (info.isPriv) {
+            logContent += "<private>"
+        } else {
+            logContent += args[info.count]
+        }
+        info.count += 1
+        pos += 1
+    }
+
+    if (pos < len) {
+        logContent += formatStr[pos..]
+    }
+
+    return logContent
 }

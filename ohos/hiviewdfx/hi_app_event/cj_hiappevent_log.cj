@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-package ohos.hiappevent
+package ohos.hiviewdfx.hi_app_event
 
-import ohos.ffi.*
 import ohos.hilog.*
-// 0xD002D07 is Log Domain, which is used to filter logs
 
 const LOG_CORE: UInt32 = 3
+// 0xD002D07 is Log Domain, which is used to filter logs
 const LOG_TAG_DOMAIN_ID_HIAPPEVENT: UInt32 = 0xD002D07
 let HI_APP_EVENT_LOG = HilogChannel(LOG_CORE, LOG_TAG_DOMAIN_ID_HIAPPEVENT, "CJ-HiAppEvent")
