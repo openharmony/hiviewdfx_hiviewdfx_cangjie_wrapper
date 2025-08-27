@@ -14,17 +14,15 @@
 import("//build/ohos.gni")
 import("//build/cangjie/cjc.gni")
 
-ohos_cj_library("kit.PerformanceAnalysisKit") {
+ohos_cangjie_shared_library("kit.PerformanceAnalysisKit") {
   sources = [ "index.cj" ]
 
   cj_deps = [
-    "../../ohos/hi_tracemeter:ohos.hi_tracemeter",
-    "../../ohos/hiappevent:ohos.hiappevent",
+    "../../ohos/hi_trace_meter:ohos.hi_trace_meter",
+    "../../ohos/hiviewdfx/hi_app_event:ohos.hiviewdfx.hi_app_event",
     "../../ohos/hilog:ohos.hilog",
   ]
 
-  kit = true
   subsystem_name = "hiviewdfx"
   part_name = "hiviewdfx_cangjie_wrapper"
-  lib_name = "PerformanceAnalysisKit"
 }

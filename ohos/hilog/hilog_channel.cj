@@ -17,15 +17,7 @@ package ohos.hilog
 
 import ohos.labels.APILevel
 
-/**
- * Provides class to generate logs.
- */
-@!APILevel[
-    21,
-    stagemodelonly: true,
-    syscap: "SystemCapability.HiviewDFX.HiLog"
-]
-public class HilogChannel {
+protected class HilogChannel {
     static let TYPE_APP: UInt32 = 0
     static let TYPE_INIT: UInt32 = 1
     static let TYPE_CORE: UInt32 = 3
@@ -40,15 +32,7 @@ public class HilogChannel {
     private let domain_: UInt32
     private let tag_: CString
 
-    /**
-     * HilogChannel constructor
-     */
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.HiviewDFX.HiLog"
-    ]
-    public init(ty: UInt32, domain: UInt32, tag: String) {
+    protected init(ty: UInt32, domain: UInt32, tag: String) {
         type_ = ty
         domain_ = domain
         unsafe { tag_ = LibC.mallocCString(tag) }
@@ -58,75 +42,27 @@ public class HilogChannel {
         unsafe { LibC.free(tag_) }
     }
 
-    /**
-     * Checks whether logs of the specified tag, and level can be printed.
-     */ 
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.HiviewDFX.HiLog"
-    ]
-    public func isLoggable(level: UInt32): Bool {
+    protected func isLoggable(level: UInt32): Bool {
         unsafe { HiLogIsLoggable(domain_, tag_, level) }
     }
 
-    /**
-     * Outputs debug-level logs.
-     */ 
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.HiviewDFX.HiLog"
-    ]
-    public func debug<T>(message: T): Unit where T <: ToString {
+    protected func debug<T>(message: T): Unit where T <: ToString {
         dolog(message.toString(), LEVEL_DEBUG)
     }
 
-    /**
-     * Outputs info-level logs.
-     */ 
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.HiviewDFX.HiLog"
-    ]
-    public func info<T>(message: T): Unit where T <: ToString {
+    protected func info<T>(message: T): Unit where T <: ToString {
         dolog(message.toString(), LEVEL_INFO)
     }
 
-    /**
-     * Outputs warning-level logs.
-     */ 
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.HiviewDFX.HiLog"
-    ]
-    public func warn<T>(message: T): Unit where T <: ToString {
+    protected func warn<T>(message: T): Unit where T <: ToString {
         dolog(message.toString(), LEVEL_WARN)
     }
 
-    /**
-     * Outputs error-level logs.
-     */ 
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.HiviewDFX.HiLog"
-    ]
-    public func error<T>(message: T): Unit where T <: ToString {
+    protected func error<T>(message: T): Unit where T <: ToString {
         dolog(message.toString(), LEVEL_ERROR)
     }
 
-    /**
-     * Outputs fatal-level logs.
-     */ 
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.HiviewDFX.HiLog"
-    ]
-    public func fatal<T>(message: T): Unit where T <: ToString {
+    protected func fatal<T>(message: T): Unit where T <: ToString {
         dolog(message.toString(), LEVEL_FATAL)
     }
 

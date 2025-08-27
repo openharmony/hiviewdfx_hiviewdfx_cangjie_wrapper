@@ -14,16 +14,9 @@
 import("//build/ohos.gni")
 import("//build/cangjie/cjc.gni")
 
-ohos_cangjie_shared_library("ohos.hilog") {
+ohos_cangjie_shared_library("ohos.hiviewdfx") {
   sources = [
-    "hilog.cj",
-    "hilog_channel.cj",
-  ]
-
-  external_deps = [ "hilog:libhilog" ]
-
-  cj_external_deps = [
-    "cangjie_ark_interop:ohos.labels",
+    "hiviewdfx.cj",
   ]
 
   subsystem_name = "hiviewdfx"

@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-package ohos.hiappevent
+package ohos.hiviewdfx.hi_app_event
 
 import ohos.ffi.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
 import ohos.labels.*
-import std.collection.HashMap
 
 foreign func FfiOHOSHiAppEventConfigure(config: CConfigOption): Int32
 
@@ -42,12 +41,27 @@ foreign func FfiOHOSHiAppEventAddWatcher(Watcher: RetWatcher): RetDataI64
 
 foreign func FfiOHOSHiAppEventRemoveWatcher(watcher: RetWatcher): Int32
 
+/**
+ * Provides the event logging function for applications to log the fault, statistical, security,
+ * and user behavior events reported during running. Based on event information,
+ * you will be able to analyze the running status of applications.
+ *
+ * @relation declare namespace hiAppEvent
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class HiAppEvent {
+    /**
+     * Writes events of the AppEventInfo type.The event 
+     * object written by calling this API is a custom object. To avoid conflicts with system events, you are not advised 
+     * to write it to system events (system event name constants defined in Event). The events written by this API can be 
+     * subscribed to through (addWatcher).
+     *
+     * @relation function write(info: AppEventInfo): Promise<void>
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -64,6 +78,11 @@ public class HiAppEvent {
         return
     }
 
+    /**
+     * Configures the application event logging function, such as setting the logging switch and directory storage quota.
+     *
+     * @relation function configure(config: ConfigOption): void
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -80,6 +99,14 @@ public class HiAppEvent {
         return
     }
 
+    /**
+     * Adds a data processor to migrate event data to the cloud. You can preset the implementation of the processor on 
+     * the device and set its properties based on its constraints.
+     * <br>The configuration information of Processor must be provided by the data processor. Yet, as no data processor 
+     * is preset in the device for interaction for the moment, migrating events to the cloud is unavailable.
+     *
+     * @relation function addProcessor(processor: Processor): number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -96,6 +123,10 @@ public class HiAppEvent {
         return Int64(res.code)
     }
 
+    /**
+     * Removes the data processor of a reported event.
+     * @relation function removeProcessor(id: number): void
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -110,6 +141,11 @@ public class HiAppEvent {
         return
     }
 
+    /**
+     * Sets a user ID, which is used for association when a Processor is configured.
+     *
+     * @relation function setUserId(name: string, value: string): void
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -131,6 +167,11 @@ public class HiAppEvent {
         return
     }
 
+    /**
+     * Obtains the value set through setUserId.
+     *
+     * @relation function getUserId(name: string): string
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -152,6 +193,11 @@ public class HiAppEvent {
         }
     }
 
+    /**
+     * Sets a user property, which is used for association when a Processor is configured.
+     *
+     * @relation function setUserProperty(name: string, value: string): void
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -173,6 +219,11 @@ public class HiAppEvent {
         }
     }
 
+    /**
+     * Obtains the value set through setUserProperty.
+     *
+     * @relation function getUserProperty(name: string): string
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -194,6 +245,11 @@ public class HiAppEvent {
         }
     }
 
+    /**
+     * Clears local logging data of the application.
+     *
+     * @relation function clearData(): void
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -214,9 +270,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 11102003 - Invalid row value.
      * @throws { BusinessException } 11102004 - Invalid size value.
      * @throws { BusinessException } 11102005 - Invalid timeout value.
-     * @static
-     * @syscap SystemCapability.HiviewDFX.HiAppEvent
-     * @brief addWatcher(watcher: Watcher): AppEventPackageHolder
+     * @relation function addWatcher(watcher: Watcher): AppEventPackageHolder
      */
     @!APILevel[
         21,
@@ -244,9 +298,7 @@ public class HiAppEvent {
      * @param { Watcher } watcher Watcher object for monitoring events.
      * @throws { BusinessException } 401 - Parameter error.
      * @throws { BusinessException } 11102001 - Invalid watcher name.
-     * @static
-     * @syscap SystemCapability.HiviewDFX.HiAppEvent
-     * @brief removeWatcher(watcher: Watcher): void
+     * @relation function removeWatcher(watcher: Watcher): void
      */
     @!APILevel[
         21,

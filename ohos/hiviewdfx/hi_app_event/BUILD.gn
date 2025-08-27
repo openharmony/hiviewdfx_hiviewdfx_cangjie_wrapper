@@ -14,7 +14,7 @@
 import("//build/ohos.gni")
 import("//build/cangjie/cjc.gni")
 
-ohos_cj_library("ohos.hiappevent") {
+ohos_cangjie_shared_library("ohos.hiviewdfx.hi_app_event") {
   sources = [
     "app_event_package_holder.cj",
     "cj_event.cj",
@@ -25,18 +25,17 @@ ohos_cj_library("ohos.hiappevent") {
   ]
 
   cj_external_deps = [
-    "arkui_cangjie_wrapper:ohos.base",
+    "cangjie_ark_interop:ohos.business_exception",
     "cangjie_ark_interop:ohos.ffi",
     "cangjie_ark_interop:ohos.labels",
   ]
 
   cj_deps = [
-    "../hilog:ohos.hilog",
+    "../../hilog:ohos.hilog",
   ]
 
   external_deps = [ "hiappevent:cj_hiappevent_ffi" ]
 
   subsystem_name = "hiviewdfx"
   part_name = "hiviewdfx_cangjie_wrapper"
-  lib_name = "ohos.hiappevent"
 }

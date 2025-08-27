@@ -31,8 +31,9 @@
         "build": {
             "sub_component": [
                 "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hilog:ohos.hilog",
-                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiappevent:ohos.hiappevent",
-                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_tracemeter:ohos.hi_tracemeter",
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiviewdfx:ohos.hiviewdfx",
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiviewdfx/hi_app_event:ohos.hiviewdfx.hi_app_event",
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_trace_meter:ohos.hi_trace_meter",
                 "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/kit/PerformanceAnalysisKit:kit.PerformanceAnalysisKit"
             ],
             "inner_kits": [
@@ -40,7 +41,7 @@
                     "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hilog:ohos.hilog"
                 },
                 {
-                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_tracemeter:ohos.hi_tracemeter"
+                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_trace_meter:ohos.hi_trace_meter"
                 }
             ],
             "test": [
