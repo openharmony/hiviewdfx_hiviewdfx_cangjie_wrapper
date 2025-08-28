@@ -66,7 +66,7 @@ public enum LogLevel {
         stagemodelonly: true,
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
-    Warn
+    Warning
     /**
      * ERROR Log level define
      *
@@ -95,7 +95,7 @@ public enum LogLevel {
         match (this) {
             case Debug => 3
             case Info => 4
-            case Warn => 5
+            case Warning => 5
             case Error => 6
             case Fatal => 7
             case _ => throw IllegalArgumentException("The type is not supported yet.")
@@ -220,7 +220,7 @@ public class Hilog {
             ) {
                 HiLogPrint(
                     DEFAULT_LOG_TYPE,
-                    LogLevel.Warn.getValue(),
+                    LogLevel.Warning.getValue(),
                     domain,
                     cTag.value,
                     STANDARD_FORMAT,
