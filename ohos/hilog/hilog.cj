@@ -160,7 +160,7 @@ public class Hilog {
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func debug(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        let logContent = ParseLogContent(format, args)
+        let logContent = parseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
@@ -183,7 +183,7 @@ public class Hilog {
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func info(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        let logContent = ParseLogContent(format, args)
+        let logContent = parseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
@@ -212,7 +212,7 @@ public class Hilog {
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func warn(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        let logContent = ParseLogContent(format, args)
+        let logContent = parseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
@@ -241,7 +241,7 @@ public class Hilog {
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func error(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        let logContent = ParseLogContent(format, args)
+        let logContent = parseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
@@ -264,7 +264,7 @@ public class Hilog {
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func fatal(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        let logContent = ParseLogContent(format, args)
+        let logContent = parseLogContent(format, args)
         unsafe {
             try (
                 cTag = LibC.mallocCString(tag).asResource(),
@@ -291,7 +291,7 @@ struct LogContentInfo {
     }
 }
 
-func ParseLogContent(formatStr: String, args: Array<String>): String {
+func parseLogContent(formatStr: String, args: Array<String>): String {
     var logContent: String = ""
     if (args.isEmpty()) {
         return formatStr
