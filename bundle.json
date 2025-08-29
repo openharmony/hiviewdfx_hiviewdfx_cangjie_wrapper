@@ -1,8 +1,8 @@
 {
     "name": "@ohos/hiviewdfx_cangjie_wrapper",
-    "description": "Native log interface provided for cangjie system",
+    "description": "Provide application event, log, and tracking analysis tools to help improve application quality.",
     "version": "6.0",
-    "license": "Apache-2.0",
+    "license": "Apache License 2.0",
     "publishAs": "code-segment",
     "segment": {
         "destPath": "base/hiviewdfx/hiviewdfx_cangjie_wrapper"
