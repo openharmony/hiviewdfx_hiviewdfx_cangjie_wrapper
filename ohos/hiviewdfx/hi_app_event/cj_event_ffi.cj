@@ -198,8 +198,8 @@ struct CProcessor {
     var appId: CString
     var onStartReport: Bool
     var onBackgroundReport: Bool
-    var periodReport: Int32
-    var batchReport: Int32
+    var periodReport: Int64
+    var batchReport: Int64
     var userIds: CArrString
     var userProperties: CArrString
     var eventConfigs: CArrAppEventReportConfig
@@ -211,8 +211,8 @@ struct CProcessor {
         appId = CString(CPointer())
         onStartReport = processor.onStartReport
         onBackgroundReport = processor.onBackgroundReport
-        periodReport = processor.periodReport
-        batchReport = processor.batchReport
+        periodReport = Int64(processor.periodReport)
+        batchReport = Int64(processor.batchReport)
         userIds = CArrString(CPointer<CString>(), 0)
         userProperties = CArrString(CPointer<CString>(), 0)
         eventConfigs = CArrAppEventReportConfig(CPointer<CAppEventReportConfig>(), 0)
