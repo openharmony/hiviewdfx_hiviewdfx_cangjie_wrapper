@@ -26,10 +26,11 @@ base/hiviewdfx/hiviewdfx_cangjie_wrapper
 ├── figures                    # 存放readme中的架构图
 ├── kit                        # DFX仓颉kit化代码
 │   └── PerformanceAnalysisKit
-└── ohos                       # DFX仓颉接口代码
-    ├── hi_trace_meter         # HiTraceMeter仓颉接口代码目录
-    ├── hilog                  # HiLog仓颉接口代码目录
-    └── hiviewdfx              # HiAppEvent仓颉接口代码目录
+├── ohos                       # DFX仓颉接口代码
+│   ├── hi_trace_meter         # HiTraceMeter仓颉接口代码目录
+│   ├── hilog                  # HiLog仓颉接口代码目录
+│   └── hiviewdfx              # HiAppEvent仓颉接口代码目录
+└── test                       # 测试用例代码
 ```
 
 ## 使用说明

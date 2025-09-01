@@ -26,10 +26,11 @@ base/hiviewdfx/hiviewdfx_cangjie_wrapper
 ├── figures                    # architecture pictures
 ├── kit                        # Cangjie kit code
 │   └── PerformanceAnalysisKit
-└── ohos                       # Cangjie DFX code
-    ├── hi_trace_meter         # Cangjie HiTraceMeter code
-    ├── hilog                  # Cangjie HiLog code
-    └── hiviewdfx              # Cangjie HiAppEvent code
+├── ohos                       # Cangjie DFX code
+│   ├── hi_trace_meter         # Cangjie HiTraceMeter code
+│   ├── hilog                  # Cangjie HiLog code
+│   └── hiviewdfx              # Cangjie HiAppEvent code
+└── test                       # Test cases
 ```
 
 ## Usage
