@@ -58,16 +58,15 @@ public class AppEventPackageHolder <: RemoteDataLite {
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(watcherName: String) {
-        var id: Int64
-        unsafe {
+        super(unsafe {
             let cWatcherName = LibC.mallocCString(watcherName)
-            id = FfiOHOSHiAppEventConstructor(cWatcherName)
+            let id = FfiOHOSHiAppEventConstructor(cWatcherName)
             LibC.free(cWatcherName)
             if (id < 0) {
                 throw IllegalMemoryException("Failed to create AppEventPackageHolder.")
             }
-        }
-        AppEventPackageHolder(id)
+            id
+        })
     }
 
     /**
