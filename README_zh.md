@@ -61,7 +61,3 @@ DFX仓颉相关API请参见[ohos.hiviewdfx.hi_app_event（应用事件打点）]
 [hiviewdfx\_hiappevent](https://gitee.com/openharmony/hiviewdfx_hiappevent/blob/master/README_zh.md)
 
 [hiviewdfx\_hitrace](https://gitee.com/openharmony/hiviewdfx_hitrace)
-
-[arkcompiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop)
-
-[arkui_arkui_cangjie_wrapper](https://gitcode.com/openharmony-sig/arkui_arkui_cangjie_wrapper)
