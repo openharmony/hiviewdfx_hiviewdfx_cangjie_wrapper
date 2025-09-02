@@ -62,7 +62,3 @@ Developers are welcome to contribute code, documentation, etc. For specific cont
 
 [hiviewdfx\_hitrace](https://gitee.com/openharmony/hiviewdfx_hitrace)
 
-[arkcompiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop)
-
-[arkui_arkui_cangjie_wrapper](https://gitcode.com/openharmony-sig/arkui_arkui_cangjie_wrapper)
-
