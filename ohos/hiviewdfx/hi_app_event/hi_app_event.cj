@@ -49,8 +49,7 @@ foreign func FfiOHOSHiAppEventRemoveWatcher(watcher: RetWatcher): Int32
  * @relation declare namespace hiAppEvent
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class HiAppEvent {
@@ -63,8 +62,7 @@ public class HiAppEvent {
      * @relation function write(info: AppEventInfo): Promise<void>
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func write(info: AppEventInfo): Unit {
@@ -84,8 +82,7 @@ public class HiAppEvent {
      * @relation function configure(config: ConfigOption): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func configure(config: ConfigOption): Unit {
@@ -108,8 +105,7 @@ public class HiAppEvent {
      * @relation function addProcessor(processor: Processor): number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func addProcessor(processor: Processor): Int64 {
@@ -128,8 +124,7 @@ public class HiAppEvent {
      * @relation function removeProcessor(id: number): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func removeProcessor(id: Int64): Unit {
@@ -147,8 +142,7 @@ public class HiAppEvent {
      * @relation function setUserId(name: string, value: string): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func setUserId(name: String, value: String): Unit {
@@ -173,8 +167,7 @@ public class HiAppEvent {
      * @relation function getUserId(name: string): string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func getUserId(name: String): String {
@@ -199,8 +192,7 @@ public class HiAppEvent {
      * @relation function setUserProperty(name: string, value: string): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func setUserProperty(name: String, value: String): Unit {
@@ -225,8 +217,7 @@ public class HiAppEvent {
      * @relation function getUserProperty(name: string): string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func getUserProperty(name: String): String {
@@ -251,8 +242,7 @@ public class HiAppEvent {
      * @relation function clearData(): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func clearData(): Unit {
@@ -273,8 +263,7 @@ public class HiAppEvent {
      * @relation function addWatcher(watcher: Watcher): AppEventPackageHolder
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func addWatcher(watcher: Watcher): Option<AppEventPackageHolder> {
@@ -301,8 +290,7 @@ public class HiAppEvent {
      * @relation function removeWatcher(watcher: Watcher): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func removeWatcher(watcher: Watcher): Unit {
