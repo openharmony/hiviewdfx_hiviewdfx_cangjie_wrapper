@@ -25,7 +25,6 @@
         "ram": "420KB",
         "deps": {
             "components": [
-                "arkui_cangjie_wrapper",
                 "cangjie_ark_interop",
                 "hiappevent",
                 "hilog",

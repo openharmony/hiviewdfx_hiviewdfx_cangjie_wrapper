@@ -20,7 +20,6 @@ ohos_cangjie_shared_library("ohos.hi_trace_meter") {
   external_deps = [ "hitrace:cj_hitracemeter_ffi" ]
 
   cj_external_deps = [
-    "arkui_cangjie_wrapper:ohos.base",
     "cangjie_ark_interop:ohos.ffi",
     "cangjie_ark_interop:ohos.labels",
   ]
