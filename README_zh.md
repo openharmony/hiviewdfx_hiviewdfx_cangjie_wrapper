@@ -17,19 +17,20 @@ DFX仓颉接口是在OpenHarmony上基于DFX子系统能力之上封装的仓颉
     - HiAppEvent：本模块提供应用打点和事件订阅能力，包括事件存储、事件订阅、事件清理、打点配置等功能。
     - HiTraceMeter：本模块提供了跟踪进程轨迹，度量程序执行性能的打点能力。
 - 接口封装：使用仓颉实现DFX能力。
-- DFX仓颉FFI接口定义: 负责定义C互操作仓颉接口，用于实现仓颉DFX能力。
+- DFX仓颉FFI接口定义：负责定义C语言互操作仓颉接口，用于实现仓颉DFX能力。
 
 ## 目录
 
 ```
-base/hiviewdfx/hiviewdfx_cangjie_wrapper      
+base/hiviewdfx/hiviewdfx_cangjie_wrapper
 ├── figures                    # 存放readme中的架构图
 ├── kit                        # DFX仓颉kit化代码
 │   └── PerformanceAnalysisKit
 ├── ohos                       # DFX仓颉接口代码
 │   ├── hi_trace_meter         # HiTraceMeter仓颉接口代码目录
 │   ├── hilog                  # HiLog仓颉接口代码目录
-│   └── hiviewdfx              # HiAppEvent仓颉接口代码目录
+│   └── hiviewdfx
+│       └── hi_app_event       # HiAppEvent仓颉接口代码目录
 └── test                       # 测试用例代码
 ```
 
@@ -56,8 +57,10 @@ DFX仓颉相关API请参见[ohos.hiviewdfx.hi_app_event（应用事件打点）]
 
 ## 相关仓
 
-[hiviewdfx\_hilog](https://gitee.com/openharmony/hiviewdfx_hilog/blob/master/README_zh.md)
+[ark_compiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop)
 
-[hiviewdfx\_hiappevent](https://gitee.com/openharmony/hiviewdfx_hiappevent/blob/master/README_zh.md)
+[hiviewdfx_hiappevent](https://gitcode.com/openharmony/hiviewdfx_hiappevent)
 
-[hiviewdfx\_hitrace](https://gitee.com/openharmony/hiviewdfx_hitrace)
+[hiviewdfx_hilog](https://gitcode.com/openharmony/hiviewdfx_hilog)
+
+[hiviewdfx_hitrace](https://gitcode.com/openharmony/hiviewdfx_hitrace)
