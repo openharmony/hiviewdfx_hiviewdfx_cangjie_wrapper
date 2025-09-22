@@ -47,8 +47,7 @@
                     "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_trace_meter:ohos.hi_trace_meter"
                 }
             ],
-            "test": [
-            ]
+            "test": []
         }
     }
 }
