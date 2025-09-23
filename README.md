@@ -18,6 +18,7 @@ As shown in the diagram:
     - HiTraceMeter: This module provides the ability to track process trajectories and measure program execution performance.
 - Interface encapsulation: Implement DFX capability using Cangjie.
 - Cangjie DFX FFI interface definition: responsible for defining the C Language interoperability Cangjie interface, used to implement Cangjie DFX capabilities.
+- cangjie_ark_interop: Responsible for providing Cangjie APILevel class definitions, which are used to annotate APIs, as well as providing the definition of BusinessException class that is thrown to users.
 
 ## Directory Structure
 
@@ -32,10 +33,9 @@ base/hiviewdfx/hiviewdfx_cangjie_wrapper
 │   └── hiviewdfx
 │       └── hi_app_event        # Cangjie HiAppEvent code
 └── test                        # Test cases
-    └── APILevel22
-        └── hiappevent          # hiappevent test cases
-        └── hilog               # hilog test cases
-        └── hitracemeter        # hitracemeter test cases
+    ├── hiappevent              # hiappevent test cases
+    ├── hilog                   # hilog test cases
+    └── hitracemeter            # hitracemeter test cases
 ```
 
 ## Usage
