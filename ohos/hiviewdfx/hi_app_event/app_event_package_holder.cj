@@ -33,7 +33,7 @@ foreign func FfiOHOSHiAppEventTakeNext(id: Int64): ReTakeNext
 * @relation class AppEventPackageHolder
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class AppEventPackageHolder <: RemoteDataLite {
@@ -52,7 +52,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * @relation constructor(watcherName: string)
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(watcherName: String) {
@@ -75,7 +75,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * @relation setSize(size: number): void
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public func setSize(size: Int32): Unit {
@@ -96,7 +96,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * @relation takeNext(): AppEventPackage
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public func takeNext(): Option<AppEventPackage> {
