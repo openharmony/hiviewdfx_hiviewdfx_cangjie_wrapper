@@ -23,15 +23,19 @@ As shown in the diagram:
 
 ```
 base/hiviewdfx/hiviewdfx_cangjie_wrapper
-├── figures                    # architecture pictures
-├── kit                        # Cangjie kit code
+├── figures                     # architecture pictures
+├── kit                         # Cangjie kit code
 │   └── PerformanceAnalysisKit
-├── ohos                       # Cangjie DFX code
-│   ├── hi_trace_meter         # Cangjie HiTraceMeter code
-│   ├── hilog                  # Cangjie HiLog code
+├── ohos                        # Cangjie DFX code
+│   ├── hi_trace_meter          # Cangjie HiTraceMeter code
+│   ├── hilog                   # Cangjie HiLog code
 │   └── hiviewdfx
-│       └── hi_app_event       # Cangjie HiAppEvent code
-└── test                       # Test cases
+│       └── hi_app_event        # Cangjie HiAppEvent code
+└── test                        # Test cases
+    └── APILevel22
+        └── hiappevent          # hiappevent test cases
+        └── hilog               # hilog test cases
+        └── hitracemeter        # hitracemeter test cases
 ```
 
 ## Usage
@@ -42,7 +46,7 @@ As shown in the diagram, DFX Cangjie provides the following functions, and devel
 - HiAppEvent: Implements logging of application events.
 - HiTraceMeter: Implement call chain tracing throughout a service process.
 
-DFX Cangjie related APIs, please refer to[ohos.hiviewdfx.hi_app_event（Application Event Logging）](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/PerformanceAnalysisKit/cj-apis-hiappevent.md), [ohos.hilog（HiLog Logging）](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/PerformanceAnalysisKit/cj-apis-hilog.md), [ohos.hi_trace.meter（Performance Tracing）](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/PerformanceAnalysisKit/cj-apis-hi_tracemeter.md).
+DFX Cangjie related APIs, please refer to[Application Event Logging](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/PerformanceAnalysisKit/cj-apis-hiappevent.md), [HiLog Logging](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/PerformanceAnalysisKit/cj-apis-hilog.md), [Performance Tracing](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/PerformanceAnalysisKit/cj-apis-hi_tracemeter.md).
 
 For relevant guidance, please refer to[Introduction to Performance Analysis Kit](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_en/dfx/cj-performance-analysis-kit-overview.md).
 
