@@ -21,6 +21,7 @@ DFX仓颉接口是在OpenHarmony上基于DFX子系统能力之上封装的仓颉
 - 分布式跟踪部件：负责提供性能打点功能，封装C语言接口提供给仓颉进行互操作。
 - 流水日志部件：负责提供流水日志功能，封装C语言接口提供给仓颉进行互操作。
 - 应用事件打点部件：负责提供应用事件打点功能，封装C语言接口提供给仓颉进行互操作。
+- cangjie_ark_interop：负责提供仓颉注解类定义，用于对API进行标注，以及提供抛向用户的BusinessException异常类定义。
 
 ## 目录
 
@@ -35,10 +36,9 @@ base/hiviewdfx/hiviewdfx_cangjie_wrapper
 │   └── hiviewdfx
 │       └── hi_app_event        # HiAppEvent仓颉接口代码目录
 └── test                        # 测试用例代码
-    └── APILevel22
-        └── hiappevent          # hiappevent测试用例
-        └── hilog               # hilog测试用例
-        └── hitracemeter        # hitracemeter测试用例
+    ├── hiappevent              # hiappevent测试用例
+    ├── hilog                   # hilog测试用例
+    └── hitracemeter            # hitracemeter测试用例
 ```
 
 ## 使用说明
