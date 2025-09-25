@@ -1,8 +1,8 @@
-# DFX仓颉接口
+# DFX仓颉封装
 
 ## 简介
 
-DFX仓颉接口是在OpenHarmony上基于DFX子系统能力之上封装的仓颉API。在OpenHarmony中，DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)是为了提升质量属性软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。当前开发的DFX仓颉接口仅支持standard设备。
+DFX仓颉封装是在OpenHarmony上面向开发者提供使用仓颉语言进行应用开发时的DFX能力。在OpenHarmony中，DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)是为了提升质量属性软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。当前开发的DFX仓颉接口仅支持standard设备。
 
 ## 系统架构
 
@@ -12,15 +12,21 @@ DFX仓颉接口是在OpenHarmony上基于DFX子系统能力之上封装的仓颉
 
 如架构图所示：
 
-- DFX仓颉接口当前提供以下能力：
-    - HiLog：日志系统，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
-    - HiAppEvent：本模块提供应用打点和事件订阅能力，包括事件存储、事件订阅、事件清理、打点配置等功能。
-    - HiTraceMeter：本模块提供了跟踪进程轨迹，度量程序执行性能的打点能力。
-- 接口封装：使用仓颉实现DFX能力。
+接口层：
+
+- HiTraceMeter接口：本模块提供了跟踪进程轨迹，度量程序执行性能的打点能力。
+- HiLog接口：日志系统，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
+- HiAppEvent接口：本模块提供应用打点和事件订阅能力，包括事件存储、事件订阅、事件清理、打点配置等功能。
+
+框架层：
+
+- HiTraceMeter封装：仓颉HiTraceMeter的实现封装，提供HiTraceMeter能力。
+- HiLog封装：仓颉HiLog的实现封装，提供HiLog能力。
+- HiAppEvent封装：仓颉HiAppEvent的实现封装，提供HiAppEvent能力。
 - DFX仓颉FFI接口定义：负责定义C语言互操作仓颉接口，用于实现仓颉DFX能力。
-- 分布式跟踪部件：负责提供性能打点功能，封装C语言接口提供给仓颉进行互操作。
-- 流水日志部件：负责提供流水日志功能，封装C语言接口提供给仓颉进行互操作。
-- 应用事件打点部件：负责提供应用事件打点功能，封装C语言接口提供给仓颉进行互操作。
+- HiTrace组件：负责提供性能打点功能，封装C语言接口提供给仓颉进行互操作。
+- HiLog组件：负责提供流水日志功能，封装C语言接口提供给仓颉进行互操作。
+- HiAppEvent组件：负责提供应用事件打点功能，封装C语言接口提供给仓颉进行互操作。
 - cangjie_ark_interop：负责提供仓颉注解类定义，用于对API进行标注，以及提供抛向用户的BusinessException异常类定义。
 
 ## 目录
@@ -43,20 +49,22 @@ base/hiviewdfx/hiviewdfx_cangjie_wrapper
 
 ## 使用说明
 
-如架构图所示，DFX仓颉提供了以下功能：
+当前DFX仓颉提供了以下功能：
 
 - HiLog流水日志。
 - HiAppEvent应用事件记录接口及框架。
 - HiTraceMeter性能打点。
 
+DFX仓颉相关API请参见[应用事件打点](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/PerformanceAnalysisKit/cj-apis-hiappevent.md)，[HiLog日志打印](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/PerformanceAnalysisKit/cj-apis-hilog.md)，[性能打点](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/PerformanceAnalysisKit/cj-apis-hi_tracemeter.md)。
+
+相关指导请参见[Performance Analysis Kit简介](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/dfx/cj-performance-analysis-kit-overview.md)。
+
+## 约束
+
 与ArkTS提供的API能力相比，暂不支持以下功能：
 
 - HiView插件平台。
 - FaultLoggerd应用故障收集和订阅。
-
-DFX仓颉相关API请参见[应用事件打点](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/PerformanceAnalysisKit/cj-apis-hiappevent.md)，[HiLog日志打印](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/PerformanceAnalysisKit/cj-apis-hilog.md)，[性能打点](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/PerformanceAnalysisKit/cj-apis-hi_tracemeter.md)。
-
-相关指导请参见[Performance Analysis Kit简介](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/dfx/cj-performance-analysis-kit-overview.md)。
 
 ## 参与贡献
 
@@ -64,7 +72,7 @@ DFX仓颉相关API请参见[应用事件打点](https://gitcode.com/openharmony-
 
 ## 相关仓
 
-[ark_compiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop)
+[arkcompiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop)
 
 [hiviewdfx_hiappevent](https://gitcode.com/openharmony/hiviewdfx_hiappevent)
 
