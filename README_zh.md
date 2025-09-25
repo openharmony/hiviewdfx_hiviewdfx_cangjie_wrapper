@@ -2,7 +2,7 @@
 
 ## 简介
 
-DFX仓颉封装是在OpenHarmony上面向开发者提供使用仓颉语言进行应用开发时的DFX能力。在OpenHarmony中，DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)是为了提升质量属性软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。当前开发的DFX仓颉接口仅支持standard设备。
+DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)仓颉封装是在OpenHarmony上面向开发者提供使用仓颉语言进行应用开发时的DFX能力。在OpenHarmony中，DFX是为了提升质量属性软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。当前开发的DFX仓颉接口仅支持standard设备。
 
 ## 系统架构
 
@@ -24,6 +24,9 @@ DFX仓颉封装是在OpenHarmony上面向开发者提供使用仓颉语言进行
 - HiLog封装：仓颉HiLog的实现封装，提供HiLog能力。
 - HiAppEvent封装：仓颉HiAppEvent的实现封装，提供HiAppEvent能力。
 - DFX仓颉FFI接口定义：负责定义C语言互操作仓颉接口，用于实现仓颉DFX能力。
+
+架构图中的依赖部件引入说明：
+
 - HiTrace组件：负责提供性能打点功能，封装C语言接口提供给仓颉进行互操作。
 - HiLog组件：负责提供流水日志功能，封装C语言接口提供给仓颉进行互操作。
 - HiAppEvent组件：负责提供应用事件打点功能，封装C语言接口提供给仓颉进行互操作。

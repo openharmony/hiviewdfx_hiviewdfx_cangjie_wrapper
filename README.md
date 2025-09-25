@@ -24,6 +24,9 @@ Framework:
 - HiLog wrapper: Provides Implementation encapsulation of Cangjie HiLog, providing HiLog capabilities.
 - HiAppEvent wrapper: Provides Implementation encapsulation of Cangjie HiAppEvent, providing HiAppEvent capabilities.
 - Cangjie DFX FFI interface definition: responsible for defining the C Language interoperability Cangjie interface, used to implement Cangjie DFX capabilities.
+
+- Explanation of Dependencies in the Architecture Diagram:
+
 - HiTrace: Responsible for providing performance tracking capabilities, encapsulating C language interfaces for interoperation with Cangjie.
 - HiLog: Responsible for providing HiLog functionality, encapsulating C language interfaces for interoperation with Cangjie.
 - HiAppEvent: Responsible for providing application event tracking functionality, encapsulating C language interfaces for interoperation with Cangjie.
