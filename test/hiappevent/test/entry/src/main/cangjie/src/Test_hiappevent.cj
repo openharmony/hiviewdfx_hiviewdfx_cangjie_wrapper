@@ -15,9 +15,9 @@
 
 package ohos_app_cangjie_entry
 
-internal import AbilityKit.{BundleManager, BundleInfo}
-internal import PerformanceAnalysisKit.*
-internal import PerformanceAnalysisKit.{Watcher as hiWatcher, Event as HEvent}
+internal import kit.AbilityKit.{BundleManager, BundleInfo}
+internal import kit.PerformanceAnalysisKit.*
+internal import kit.PerformanceAnalysisKit.{Watcher as hiWatcher, Event as HEvent}
 import std.unittest.testmacro.*
 import std.runtime.*
 import std.sync.*
