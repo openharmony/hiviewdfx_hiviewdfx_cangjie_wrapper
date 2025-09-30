@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package PerformanceAnalysisKit
+package kit.PerformanceAnalysisKit
 
 public import ohos.hi_trace_meter.*
 public import ohos.hiviewdfx.hi_app_event.*
