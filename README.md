@@ -1,4 +1,4 @@
-# hiviewdfx_cangjie_wrapper
+# hiviewdfx_cangjie_wrapper(beta feature)
 
 ## Introduction
 
