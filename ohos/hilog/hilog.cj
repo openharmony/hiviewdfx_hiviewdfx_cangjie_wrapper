@@ -27,8 +27,6 @@ foreign func IsPrivateSwitchOn(): Bool
 
 /**
  * Log level define
- *
- * @relation enum LogLevel
  */
 @!APILevel[
     22,
@@ -37,8 +35,6 @@ foreign func IsPrivateSwitchOn(): Bool
 public enum LogLevel {
     /**
      * DEBUG Log level define
-     *
-     * @relation DEBUG = 3
      */
     @!APILevel[
         22,
@@ -47,8 +43,6 @@ public enum LogLevel {
     Debug
     /**
      * INFO Log level define
-     *
-     * @relation INFO = 4
      */
     | @!APILevel[
         22,
@@ -57,8 +51,6 @@ public enum LogLevel {
     Info
     /**
      * WARN Log level define
-     *
-     * @relation WARN = 5
      */
     | @!APILevel[
         22,
@@ -67,8 +59,6 @@ public enum LogLevel {
     Warning
     /**
      * ERROR Log level define
-     *
-     * @relation ERROR = 6
      */
     | @!APILevel[
         22,
@@ -77,8 +67,6 @@ public enum LogLevel {
     Error
     /**
      * FATAL Log level define
-     *
-     * @relation FATAL = 7
      */
     | @!APILevel[
         22,
@@ -103,8 +91,6 @@ let DEFAULT_LOG_TYPE: UInt32 = 0
 
 /**
  * Provides interfaces to generate system logs.
- *
- * @relation declare namespace hilog
  */
 @!APILevel[
     22,
@@ -127,8 +113,6 @@ public class Hilog {
 
     /**
      * Checks whether logs of the specified tag, and level can be printed.
-     *
-     * @relation function isLoggable(domain: number, tag: string, level: LogLevel): boolean
      */ 
     @!APILevel[
         22,
@@ -145,8 +129,6 @@ public class Hilog {
 
     /**
      * Outputs debug-level logs.
-     *
-     * @relation function debug(domain: number, tag: string, format: string, ...args: (Object | undefined | null)[]): void
      */ 
     @!APILevel[
         22,
@@ -167,8 +149,6 @@ public class Hilog {
 
     /**
      * Outputs info-level logs.
-     *
-     * @relation function info(domain: number, tag: string, format: string, ...args: (Object | undefined | null)[]): void
      */ 
     @!APILevel[
         22,
@@ -195,8 +175,6 @@ public class Hilog {
 
     /**
      * Outputs warning-level logs.
-     *
-     * @relation function warn(domain: number, tag: string, format: string, ...args: (Object | undefined | null)[]): void
      */ 
     @!APILevel[
         22,
@@ -223,8 +201,6 @@ public class Hilog {
 
     /**
      * Outputs error-level logs.
-     *
-     * @relation function error(domain: number, tag: string, format: string, ...args: (Object | undefined | null)[]): void
      */ 
     @!APILevel[
         22,
@@ -245,8 +221,6 @@ public class Hilog {
 
     /**
      * Outputs fatal-level logs.
-     *
-     * @relation function fatal(domain: number, tag: string, format: string, ...args: (Object | undefined | null)[]): void
      */
     @!APILevel[
         22,

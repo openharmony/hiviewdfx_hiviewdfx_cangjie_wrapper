@@ -47,8 +47,6 @@ foreign func FfiOHOSHiAppEventRemoveWatcher(watcher: RetWatcher): Int32
  * Provides the event logging function for applications to log the fault, statistical, security,
  * and user behavior events reported during running. Based on event information,
  * you will be able to analyze the running status of applications.
- *
- * @relation declare namespace hiAppEvent
  */
 @!APILevel[
     22,
@@ -60,8 +58,6 @@ public class HiAppEvent {
      * object written by calling this API is a custom object. To avoid conflicts with system events, you are not advised 
      * to write it to system events (system event name constants defined in Event). The events written by this API can be 
      * subscribed to through (addWatcher).
-     *
-     * @relation function write(info: AppEventInfo): Promise<void>
      */
     @!APILevel[
         22,
@@ -80,8 +76,6 @@ public class HiAppEvent {
 
     /**
      * Configures the application event logging function, such as setting the logging switch and directory storage quota.
-     *
-     * @relation function configure(config: ConfigOption): void
      */
     @!APILevel[
         22,
@@ -103,8 +97,6 @@ public class HiAppEvent {
      * the device and set its properties based on its constraints.
      * <br>The configuration information of Processor must be provided by the data processor. Yet, as no data processor 
      * is preset in the device for interaction for the moment, migrating events to the cloud is unavailable.
-     *
-     * @relation function addProcessor(processor: Processor): number
      */
     @!APILevel[
         22,
@@ -123,7 +115,6 @@ public class HiAppEvent {
 
     /**
      * Removes the data processor of a reported event.
-     * @relation function removeProcessor(id: number): void
      */
     @!APILevel[
         22,
@@ -140,8 +131,6 @@ public class HiAppEvent {
 
     /**
      * Sets a user ID, which is used for association when a Processor is configured.
-     *
-     * @relation function setUserId(name: string, value: string): void
      */
     @!APILevel[
         22,
@@ -165,8 +154,6 @@ public class HiAppEvent {
 
     /**
      * Obtains the value set through setUserId.
-     *
-     * @relation function getUserId(name: string): string
      */
     @!APILevel[
         22,
@@ -190,8 +177,6 @@ public class HiAppEvent {
 
     /**
      * Sets a user property, which is used for association when a Processor is configured.
-     *
-     * @relation function setUserProperty(name: string, value: string): void
      */
     @!APILevel[
         22,
@@ -215,8 +200,6 @@ public class HiAppEvent {
 
     /**
      * Obtains the value set through setUserProperty.
-     *
-     * @relation function getUserProperty(name: string): string
      */
     @!APILevel[
         22,
@@ -240,8 +223,6 @@ public class HiAppEvent {
 
     /**
      * Clears local logging data of the application.
-     *
-     * @relation function clearData(): void
      */
     @!APILevel[
         22,
@@ -262,7 +243,6 @@ public class HiAppEvent {
      * @throws { BusinessException } 11102003 - Invalid row value.
      * @throws { BusinessException } 11102004 - Invalid size value.
      * @throws { BusinessException } 11102005 - Invalid timeout value.
-     * @relation function addWatcher(watcher: Watcher): AppEventPackageHolder
      */
     @!APILevel[
         22,
@@ -289,7 +269,6 @@ public class HiAppEvent {
      * @param { Watcher } watcher Watcher object for monitoring events.
      * @throws { BusinessException } 401 - Parameter error.
      * @throws { BusinessException } 11102001 - Invalid watcher name.
-     * @relation function removeWatcher(watcher: Watcher): void
      */
     @!APILevel[
         22,
