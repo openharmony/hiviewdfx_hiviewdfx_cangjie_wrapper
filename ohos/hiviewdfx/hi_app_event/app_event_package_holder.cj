@@ -31,8 +31,6 @@ foreign func FfiOHOSHiAppEventTakeNext(id: Int64): ReTakeNext
 
 /**
 * Defines a subscription data holder for processing event information.
-*
-* @relation class AppEventPackageHolder
 */
 @!APILevel[
     22,
@@ -50,8 +48,6 @@ public class AppEventPackageHolder <: RemoteDataLite {
     /**
      * Constructs an AppEventPackageHolder instance. You can call addWatcher to add an event watcher, and then 
      * associate the AppEventPackageHolder instance with the watcher added in the application based on the watcher name.
-     *
-     * @relation constructor(watcherName: string)
      */
     @!APILevel[
         22,
@@ -74,7 +70,6 @@ public class AppEventPackageHolder <: RemoteDataLite {
      *
      * @throws { BusinessException } 401 - Parameter error.
      * @throws { BusinessException } 11104001 - Invalid size value.
-     * @relation setSize(size: number): void
      */
     @!APILevel[
         22,
@@ -94,8 +89,6 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * number of data records specified by setRow. By default, one subscription event data record is obtained. When all 
      * subscription event data is obtained, null is returned.
      * When setRow and setSize are called at the same time, only setRow takes effect.
-     *
-     * @relation takeNext(): AppEventPackage
      */
     @!APILevel[
         22,
