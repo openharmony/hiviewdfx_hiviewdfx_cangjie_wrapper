@@ -1,7 +1,7 @@
 {
     "name": "@ohos/hiviewdfx_cangjie_wrapper",
     "description": "Provide application event, log, and tracking analysis tools to help improve application quality.",
-    "version": "6.0",
+    "version": "6.1",
     "license": "Apache License 2.0",
     "publishAs": "code-segment",
     "segment": {
