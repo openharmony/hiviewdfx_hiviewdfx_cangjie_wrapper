@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.hiviewdfx.hi_app_event
 
 import ohos.labels.*
@@ -24,8 +26,6 @@ const SUCCESS_CODE: Int32 = 0
 
 /**
 * Enumerates event types.
-*
-* @relation enum EventType
 */
 @!APILevel[
     since: "22",
@@ -34,8 +34,6 @@ const SUCCESS_CODE: Int32 = 0
 public enum EventType {
     /**
      * Fault event.
-     *
-     * @relation FAULT = 1
      */
     @!APILevel[
         since: "22",
@@ -44,8 +42,6 @@ public enum EventType {
     Fault
     /**
      * Statistic event.
-     *
-     * @relation STATISTIC = 2
      */
     | @!APILevel[
         since: "22",
@@ -54,8 +50,6 @@ public enum EventType {
     Statistic
     /**
      * Security event.
-     *
-     * @relation SECURITY = 3
      */
     | @!APILevel[
         since: "22",
@@ -64,8 +58,6 @@ public enum EventType {
     Security
     /**
      * Behavior event.
-     *
-     * @relation BEHAVIOR = 4
      */
     | @!APILevel[
         since: "22",
@@ -218,8 +210,6 @@ public enum EventValueType <: ToString {
 
 /**
 * Provides domain name constants.
-*
-* @relation namespace domain
 */
 @!APILevel[
     since: "22",
@@ -228,8 +218,6 @@ public enum EventValueType <: ToString {
 public class Domain {
     /**
      * System domain.
-     *
-     * @relation const OS: string
      */
     @!APILevel[
         since: "22",
@@ -242,8 +230,6 @@ public class Domain {
 * Provides event name constants, including system event name constants and application event name constants. 
 * The application event name constants are optional custom event names reserved when you call Write for 
 * application event logging.
-*
-* @relation namespace event
 */
 @!APILevel[
     since: "22",
@@ -252,8 +238,6 @@ public class Domain {
 public class Event {
     /**
      * User login event. This is a reserved application event name constant.
-     *
-     * @relation const USER_LOGIN: string
      */
     @!APILevel[
         since: "22",
@@ -262,8 +246,6 @@ public class Event {
     public static const USER_LOGIN = "hiappevent.user_login"
     /**
      * User logout event. This is a reserved application event name constant.
-     *
-     * @relation const USER_LOGOUT: string
      */
     @!APILevel[
         since: "22",
@@ -272,8 +254,6 @@ public class Event {
     public static const USER_LOGOUT = "hiappevent.user_logout"
     /**
      * Distributed service startup event. This is a reserved application event name constant.
-     *
-     * @relation const DISTRIBUTED_SERVICE_START: string
      */
     @!APILevel[
         since: "22",
@@ -282,8 +262,6 @@ public class Event {
     public static const DISTRIBUTED_SERVICE_START = "hiappevent.distributed_service_start"
     /**
      * Application crash event. This is a system event name constant.
-     *
-     * @relation const APP_CRASH: string
      */
     @!APILevel[
         since: "22",
@@ -292,8 +270,6 @@ public class Event {
     public static const APP_CRASH = "APP_CRASH"
     /**
      * Application freeze event. This is a system event name constant.
-     *
-     * @relation const APP_FREEZE: string
      */
     @!APILevel[
         since: "22",
@@ -304,8 +280,6 @@ public class Event {
 
 /**
 * Provides parameter name constants.
-*
-* @relation namespace param
 */
 @!APILevel[
     since: "22",
@@ -314,8 +288,6 @@ public class Event {
 public class Param {
     /**
      * Custom user ID.
-     *
-     * @relation const USER_ID: string
      */
     @!APILevel[
         since: "22",
@@ -324,8 +296,6 @@ public class Param {
     public static const USER_ID = "user_id"
     /**
      * Distributed service name.
-     *
-     * @relation const DISTRIBUTED_SERVICE_NAME: string
      */
     @!APILevel[
         since: "22",
@@ -334,8 +304,6 @@ public class Param {
     public static const DISTRIBUTED_SERVICE_NAME = "ds_name"
     /**
      * Distributed service instance ID.
-     *
-     * @relation const DISTRIBUTED_SERVICE_INSTANCE_ID: string
      */
     @!APILevel[
         since: "22",
@@ -361,8 +329,6 @@ class Parameters {
 
 /**
 * Defines parameters of the event information.
-*
-* @relation interface AppEventInfo
 */
 @!APILevel[
     since: "22",
@@ -372,8 +338,6 @@ public class AppEventInfo {
     /**
      * Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and 
      * underscores (_). It must start with a letter and cannot end with an underscore (_).
-     *
-     * @relation domain: string
      */
     @!APILevel[
         since: "22",
@@ -384,8 +348,6 @@ public class AppEventInfo {
      * Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters 
      * (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a 
      * digit or letter.
-     *
-     * @relation name: string
      */
     @!APILevel[
         since: "22",
@@ -394,8 +356,6 @@ public class AppEventInfo {
     public var name: String
     /**
      * Event type.
-     *
-     * @relation eventType: EventType
      */
     @!APILevel[
         since: "22",
@@ -418,8 +378,6 @@ public class AppEventInfo {
      * 100. If this limit is exceeded, excess elements will be discarded.
      * <br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.
      *
-     *
-     * @relation params: object
      */
     @!APILevel[
         since: "22",
@@ -482,8 +440,6 @@ func toCArrParameters(params: Array<Parameters>): CArrParameters {
 
 /**
 * Provides configuration options for application event logging.
-*
-* @relation interface ConfigOption
 */
 @!APILevel[
     since: "22",
@@ -494,8 +450,6 @@ public class ConfigOption {
      * Whether to enable the event logging function. The default value is false. 
      * If this parameter is set to true, the logging function is disabled. Otherwise, the logging function is 
      * enabled.
-     *
-     * @relation disable?: boolean
      */
     @!APILevel[
         since: "22",
@@ -513,8 +467,6 @@ public class ConfigOption {
      * case insensitive.)
      * <br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left 
      * empty, b (that is, byte) is used by default.
-     *
-     * @relation maxStorage?: string
      */
     @!APILevel[
         since: "22",
@@ -537,8 +489,6 @@ public class ConfigOption {
 
 /**
 * Event description configuration that can be reported by the data processor.
-*
-* @relation interface AppEventReportConfig
 */
 @!APILevel[
     since: "22",
@@ -549,8 +499,6 @@ public class AppEventReportConfig {
      * Event domain. The value is a string that contains a maximum of 32 characters, including digits (0 to 9), letters 
      * (a to z), and underscore (_). It must start with a letter and cannot end with an underscore (_). The default 
      * value is an empty string.
-     *
-     * @relation domain?: string
      */
     @!APILevel[
         since: "22",
@@ -561,8 +509,6 @@ public class AppEventReportConfig {
      * Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters 
      * (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a 
      * digit or letter. The default value is an empty string.
-     *
-     * @relation name?: string
      */
     @!APILevel[
         since: "22",
@@ -572,8 +518,6 @@ public class AppEventReportConfig {
     /**
      * Whether to report events in real time. The value true indicates that events are reported in real time, and the 
      * value false indicates the opposite. The default value is false.
-     *
-     * @relation isRealTime?: boolean
      */
     @!APILevel[
         since: "22",
@@ -597,8 +541,6 @@ public class AppEventReportConfig {
 
 /**
 * Defines a data processor for reporting and managing events. You can customize processor configurations as required.
-*
-* @relation interface Processor
 */
 @!APILevel[
     since: "22",
@@ -608,8 +550,6 @@ public class Processor {
     /**
      * Name of a data processor. The value is string that contains a maximum of 256 characters, including digits (0 to 
      * 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.
-     *
-     * @relation name: string
      */
     @!APILevel[
         since: "22",
@@ -619,8 +559,6 @@ public class Processor {
     /**
      * Whether to enable the debug mode. The default value is false. The value true means to enable the debugging mode, 
      * and the value false means the opposite.
-     *
-     * @relation debugMode?: boolean
      */
     @!APILevel[
         since: "22",
@@ -630,8 +568,6 @@ public class Processor {
     /**
      * Server location information. It is left empty by default. The length of the input string cannot exceed 8 KB. If 
      * the length exceeds 8 KB, the default value is used.
-     *
-     * @relation routeInfo?: string
      */
     @!APILevel[
         since: "22",
@@ -641,8 +577,6 @@ public class Processor {
     /**
      * Application ID. It is left empty by default. The length of the input string cannot exceed 8 KB. If the length 
      * exceeds 8 KB, the default value is used.
-     *
-     * @relation appId?: string
      */
     @!APILevel[
         since: "22",
@@ -652,8 +586,6 @@ public class Processor {
     /**
      * Whether to report an event when the data processor starts. The default value is false. The value true means to 
      * report events, and the value false means the opposite.
-     *
-     * @relation onStartReport?: boolean
      */
     @!APILevel[
         since: "22",
@@ -663,8 +595,6 @@ public class Processor {
     /**
      * Whether to report an event when an application switches to the background. The default value is false. The value 
      * true means to report events, and the value false means the opposite.
-     *
-     * @relation onBackgroundReport?: boolean
      */
     @!APILevel[
         since: "22",
@@ -674,8 +604,6 @@ public class Processor {
     /**
      * Interval for event reporting, in seconds. The input value must be greater than or equal to 0. If the input value 
      * is less than 0, the default value 0 is used and periodic reporting is not performed.
-     *
-     * @relation periodReport?: number
      */
     @!APILevel[
         since: "22",
@@ -686,8 +614,6 @@ public class Processor {
      * Event reporting threshold. When the number of events reaches the threshold, an event is reported. The value must 
      * be greater than 0 and less than 1000. If the value is not within the range, the default value 0 is used and no 
      * events are reported.
-     *
-     * @relation batchReport?: number
      */
     @!APILevel[
         since: "22",
@@ -697,8 +623,6 @@ public class Processor {
     /**
      * Name array of user IDs that can be reported by the data processor. name corresponds to the name parameter of the 
      * setUserId API. The default value is an empty array.
-     *
-     * @relation userIds?: string[]
      */
     @!APILevel[
         since: "22",
@@ -708,8 +632,6 @@ public class Processor {
     /**
      * Name array of user properties that can be reported by the data processor. name corresponds to the name parameter 
      * of the setUserProperty API. The default value is an empty array.
-     *
-     * @relation userProperties?: string[]
      */
     @!APILevel[
         since: "22",
@@ -719,8 +641,6 @@ public class Processor {
     /**
      * Event description configuration array that can be reported by the data processor. The default value is an empty 
      * array.
-     *
-     * @relation eventConfigs?: AppEventReportConfig[]
      */
     @!APILevel[
         since: "22",
@@ -756,8 +676,6 @@ public class Processor {
 /**
 * Defines parameters of an AppEventPackage object. This API is used to obtain detail information about an event 
 * package, which is obtained using the takeNext API.
-*
-* @relation interface AppEventPackage
 */
 @!APILevel[
     since: "22",
@@ -766,8 +684,6 @@ public class Processor {
 public class AppEventPackage {
     /**
      * Event package ID, which is named from 0 in ascending order.
-     *
-     * @relation packageId: number
      */
     @!APILevel[
         since: "22",
@@ -776,8 +692,6 @@ public class AppEventPackage {
     public var packageId: Int32
     /**
      * Number of events in the event package.
-     *
-     * @relation row: number
      */
     @!APILevel[
         since: "22",
@@ -786,8 +700,6 @@ public class AppEventPackage {
     public var row: Int32
     /**
      * Event size of the event package, in bytes.
-     *
-     * @relation size: number
      */
     @!APILevel[
         since: "22",
@@ -796,8 +708,6 @@ public class AppEventPackage {
     public var size: Int32
     /**
      * Event data in the event package.
-     *
-     * @relation data: string[]
      */
     @!APILevel[
         since: "22",
@@ -815,8 +725,6 @@ public class AppEventPackage {
 
 /**
 * Defines the triggering condition parameters of the onTrigger callback of a Watcher.
-*
-* @relation interface TriggerCondition
 */
 @!APILevel[
     since: "22",
@@ -827,8 +735,6 @@ public class TriggerCondition {
      * Total number of events that trigger callback. The value is a positive integer. The default value is 0, 
      * indicating that no callback is triggered. If this parameter is set to a negative value, the default 
      * value is used.
-     *
-     * @relation row?: number
      */
     @!APILevel[
         since: "22",
@@ -839,8 +745,6 @@ public class TriggerCondition {
      * Total size of events that trigger callback. The value is a positive integer, in bytes. The default value is 0, 
      * indicating that no callback is triggered. If this parameter is set to a negative value, the default value is 
      * used.
-     *
-     * @relation size?: number
      */
     @!APILevel[
         since: "22",
@@ -851,8 +755,6 @@ public class TriggerCondition {
      * Timeout interval for triggering callback. The value is a positive integer, in unit of 30s. The default value is 
      * 0, indicating that no callback is triggered. If this parameter is set to a negative value, the default value is 
      * used.
-     *
-     * @relation timeOut?: number
      */
     @!APILevel[
         since: "22",
@@ -878,8 +780,6 @@ public class TriggerCondition {
 * Defines parameters of subscription filtering conditions of a Watcher. This API is used to set event filtering 
 * conditions in the event watcher to ensure that only the events that meet the filtering conditions are subscribed 
 * to.
-*
-* @relation interface AppEventFilter
 */
 @!APILevel[
     since: "22",
@@ -889,8 +789,6 @@ public class AppEventFilter {
     /**
      * Event domain, which can be the system event domain (hiAppEvent.domain.OS) or the event domain of the custom 
      * event information (AppEventInfo) passed through the Write API.
-     *
-     * @relation domain: string
      */
     @!APILevel[
         since: "22",
@@ -899,8 +797,6 @@ public class AppEventFilter {
     public var domain: String
     /**
      * Event types. If this parameter is not set, events are not filtered by default.
-     *
-     * @relation eventTypes?: EventType[]
      */
     @!APILevel[
         since: "22",
@@ -909,8 +805,6 @@ public class AppEventFilter {
     public var eventTypes: Array<EventType>
     /**
      * Names of the events to be subscribed. If this parameter is not set, events are not filtered by default.
-     *
-     * @relation names?: string[]
      */
     @!APILevel[
         since: "22",
@@ -935,8 +829,6 @@ public class AppEventFilter {
 /**
 * Defines parameters of the event group returned by a subscription. This API can be used to obtain detail 
 * information about an event group, which is often used in the onReceive callback of Watcher.
-*
-* @relation interface AppEventGroup
 */
 @!APILevel[
     since: "22",
@@ -945,8 +837,6 @@ public class AppEventFilter {
 public class AppEventGroup {
     /**
      * Event name.
-     *
-     * @relation name: string
      */
     @!APILevel[
         since: "22",
@@ -955,8 +845,6 @@ public class AppEventGroup {
     public var name: String
     /**
      * Event object group.
-     *
-     * @relation appEventInfos: Array<AppEventInfo>
      */
     @!APILevel[
         since: "22",
@@ -978,8 +866,6 @@ public class AppEventGroup {
 /**
  * Defines parameters for a Watcher object. This API is used to configure and manage event watchers to subscribe to 
  * and process specified events.
- *
- * @relation interface Watcher
  */
 @!APILevel[
     since: "22",
@@ -990,8 +876,6 @@ public class Watcher {
      * Unique name of a watcher. The value contains a maximum of 32 characters, including digits (0 to 9), letters 
      * (a to z), underscore (_). It must start with a letter and end with a digit or letter. For example, testName1 
      * and crash_Watcher.
-     *
-     * @relation name: string
      */
     @!APILevel[
         since: "22",
@@ -1001,8 +885,6 @@ public class Watcher {
     /**
      * Subscription callback triggering condition. This parameter takes effect only when it is passed together with 
      * onTrigger. If this parameter is not set, the onTrigger callback is not triggered by default.
-     *
-     * @relation triggerCondition?: TriggerCondition
      */
     @!APILevel[
         since: "22",
@@ -1012,8 +894,6 @@ public class Watcher {
     /**
      * Subscription filtering condition. This parameter is passed only when subscription events need to be filtered. 
      * If this parameter is not set, events are not filtered by default.
-     *
-     * @relation appEventFilters?: AppEventFilter[]
      */
     @!APILevel[
         since: "22",
@@ -1026,8 +906,6 @@ public class Watcher {
      * <br>curRow: total number of subscription events when the callback is triggered.
      * <br>curSize: total size of subscribed events when the callback is triggered, in bytes.
      * <br>holder: subscription data holder, which can be used to process subscribed events.
-     *
-     * @relation onTrigger?: (curRow: number, curSize: number, holder: AppEventPackageHolder) => void
      */
     @!APILevel[
         since: "22",
@@ -1039,8 +917,6 @@ public class Watcher {
      * onTrigger. The input arguments are described as follows: 
      * <br>domain: domain name.
      * <br>appEventGroups: event group.
-     *
-     * @relation onReceive?: (domain: string, appEventGroups: Array<AppEventGroup>) => void
      */
     @!APILevel[
         since: "22",

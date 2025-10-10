@@ -1,7 +1,7 @@
 {
     "name": "@ohos/hiviewdfx_cangjie_wrapper",
     "description": "Provide application event, log, and tracking analysis tools to help improve application quality.",
-    "version": "6.0",
+    "version": "6.1",
     "license": "Apache License 2.0",
     "publishAs": "code-segment",
     "segment": {
@@ -37,7 +37,7 @@
                 "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiviewdfx:ohos.hiviewdfx",
                 "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiviewdfx/hi_app_event:ohos.hiviewdfx.hi_app_event",
                 "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_trace_meter:ohos.hi_trace_meter",
-                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/kit/PerformanceAnalysisKit:PerformanceAnalysisKit"
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/kit/PerformanceAnalysisKit:kit.PerformanceAnalysisKit"
             ],
             "inner_kits": [
                 {
