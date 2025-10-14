@@ -47,6 +47,7 @@ foreign func FfiOHOSHiAppEventRemoveWatcher(watcher: RetWatcher): Int32
  * Provides the event logging function for applications to log the fault, statistical, security,
  * and user behavior events reported during running. Based on event information,
  * you will be able to analyze the running status of applications.
+ *
  */
 @!APILevel[
     since: "22",
@@ -55,9 +56,20 @@ foreign func FfiOHOSHiAppEventRemoveWatcher(watcher: RetWatcher): Int32
 public class HiAppEvent {
     /**
      * Writes events of the AppEventInfo type.The event 
-     * object written by calling this API is a custom object. To avoid conflicts with system events, you are not advised 
-     * to write it to system events (system event name constants defined in Event). The events written by this API can be 
+     * object written by calling this API is a custom object. To avoid conflicts with system events, you are not
+     * advised
+     * to write it to system events (system event name constants defined in Event). The events written by this API can
+     * be
      * subscribed to through (addWatcher).
+     *
+     * @param { AppEventInfo } info - Indicates the application event information to write.
+     * @throws { BusinessException } 11100001 - Function is disabled.
+     * @throws { BusinessException } 11101001 - Invalid event domain.
+     * @throws { BusinessException } 11101002 - Invalid event name.
+     * @throws { BusinessException } 11101003 - Invalid number of event parameters.
+     * @throws { BusinessException } 11101004 - Invalid string length of a event parameter.
+     * @throws { BusinessException } 11101005 - Invalid event parameter name.
+     * @throws { BusinessException } 11101006 - Invalid array length of a event parameter.
      */
     @!APILevel[
         since: "22",
@@ -75,7 +87,12 @@ public class HiAppEvent {
     }
 
     /**
-     * Configures the application event logging function, such as setting the logging switch and directory storage quota.
+     * Configures the application event logging function, such as setting the logging switch and directory storage
+     * quota.
+     *
+     * @param { ConfigOption } config - Indicates the configuration options for event logging.
+     * @throws { BusinessException } 401 - Parameter error.
+     * @throws { BusinessException } 11103001 - Invalid max storage quota value.
      */
     @!APILevel[
         since: "22",
@@ -97,6 +114,10 @@ public class HiAppEvent {
      * the device and set its properties based on its constraints.
      * <br>The configuration information of Processor must be provided by the data processor. Yet, as no data processor 
      * is preset in the device for interaction for the moment, migrating events to the cloud is unavailable.
+     *
+     * @param { Processor } processor - Indicates the data processor to add.
+     * @returns { Int64 } Returns the processor ID if successful.
+     * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -115,6 +136,9 @@ public class HiAppEvent {
 
     /**
      * Removes the data processor of a reported event.
+     *
+     * @param { Int64 } id - Indicates the ID of the processor to remove.
+     * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -131,6 +155,10 @@ public class HiAppEvent {
 
     /**
      * Sets a user ID, which is used for association when a Processor is configured.
+     *
+     * @param { String } name - Indicates the name of the user ID.
+     * @param { String } value - Indicates the value of the user ID.
+     * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -154,6 +182,10 @@ public class HiAppEvent {
 
     /**
      * Obtains the value set through setUserId.
+     *
+     * @param { String } name - Indicates the name of the user ID to obtain.
+     * @returns { String } Returns the user ID value.
+     * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -177,6 +209,10 @@ public class HiAppEvent {
 
     /**
      * Sets a user property, which is used for association when a Processor is configured.
+     *
+     * @param { String } name - Indicates the name of the user property.
+     * @param { String } value - Indicates the value of the user property.
+     * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -200,6 +236,10 @@ public class HiAppEvent {
 
     /**
      * Obtains the value set through setUserProperty.
+     *
+     * @param { String } name - Indicates the name of the user property to obtain.
+     * @returns { String } Returns the user property value.
+     * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -223,6 +263,7 @@ public class HiAppEvent {
 
     /**
      * Clears local logging data of the application.
+     *
      */
     @!APILevel[
         since: "22",

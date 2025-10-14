@@ -30,6 +30,7 @@ foreign {
  * bytrace cmdline available on the device.
  *
  * This interfaces trace the start, end, and value changes of key processes that last for at least 3 ms.
+ *
  */
 @!APILevel[
     since: "22",
@@ -43,6 +44,9 @@ public class HiTraceMeter {
      * This method is invoked at the start of a transaction to indicate that a task has started, whose name
      * is specified by name, and the taskId is used to distinguish the tasks. It must be followed by
      * finishTrace, the name and taskId need to be the same.
+     *
+     * @param { String } name - Indicates the name of the trace to start.
+     * @param { Int32 } taskId - Indicates the task ID to distinguish different tasks.
      */
     @!APILevel[
         since: "22",
@@ -61,6 +65,9 @@ public class HiTraceMeter {
      *
      * This method is invoked at the end of a transaction to indicate that a task has ended, whose name
      * is specified by name. This method must be invoked after startTrace.
+     *
+     * @param { String } name - Indicates the name of the trace to finish.
+     * @param { Int32 } taskId - Indicates the task ID corresponding to the task that was started.
      */
     @!APILevel[
         since: "22",

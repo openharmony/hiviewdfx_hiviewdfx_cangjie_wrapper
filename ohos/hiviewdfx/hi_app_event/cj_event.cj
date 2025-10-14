@@ -18,6 +18,7 @@
 package ohos.hiviewdfx.hi_app_event
 
 import ohos.labels.*
+import ohos.business_exception.BusinessException
 import ohos.ffi.*
 
 import std.collection.*
@@ -26,6 +27,7 @@ const SUCCESS_CODE: Int32 = 0
 
 /**
 * Enumerates event types.
+*
 */
 @!APILevel[
     since: "22",
@@ -34,6 +36,7 @@ const SUCCESS_CODE: Int32 = 0
 public enum EventType {
     /**
      * Fault event.
+     *
      */
     @!APILevel[
         since: "22",
@@ -42,6 +45,7 @@ public enum EventType {
     Fault
     /**
      * Statistic event.
+     *
      */
     | @!APILevel[
         since: "22",
@@ -50,6 +54,7 @@ public enum EventType {
     Statistic
     /**
      * Security event.
+     *
      */
     | @!APILevel[
         since: "22",
@@ -58,6 +63,7 @@ public enum EventType {
     Security
     /**
      * Behavior event.
+     *
      */
     | @!APILevel[
         since: "22",
@@ -68,6 +74,8 @@ public enum EventType {
 
     /**
      * get the corresponding mapping value.
+     *
+     * @throws { BusinessException } 11105001 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -79,7 +87,7 @@ public enum EventType {
             case Statistic => 2
             case Security => 3
             case Behavior => 4
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(11105001, "Parameter error.")
         }
     }
 
@@ -89,7 +97,7 @@ public enum EventType {
             case 2 => Statistic
             case 3 => Security
             case 4 => Behavior
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(11105001, "Parameter error.")
         }
     }
 }
@@ -186,6 +194,8 @@ public enum EventValueType <: ToString {
 
     /**
      * get the corresponding mapping value.
+     *
+     * @throws { BusinessException } 11105001 - Parameter error.
      */
     @!APILevel[
         since: "22",
@@ -203,13 +213,14 @@ public enum EventValueType <: ToString {
             case ArrF64(v) => v.toString()
             case Int64Value(v) => v.toString()
             case ArrInt64(v) => v.toString()
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(11105001, "Parameter error.")
         }
     }
 }
 
 /**
 * Provides domain name constants.
+*
 */
 @!APILevel[
     since: "22",
@@ -218,6 +229,7 @@ public enum EventValueType <: ToString {
 public class Domain {
     /**
      * System domain.
+     *
      */
     @!APILevel[
         since: "22",
@@ -230,6 +242,7 @@ public class Domain {
 * Provides event name constants, including system event name constants and application event name constants. 
 * The application event name constants are optional custom event names reserved when you call Write for 
 * application event logging.
+*
 */
 @!APILevel[
     since: "22",
@@ -238,6 +251,7 @@ public class Domain {
 public class Event {
     /**
      * User login event. This is a reserved application event name constant.
+     *
      */
     @!APILevel[
         since: "22",
@@ -246,6 +260,7 @@ public class Event {
     public static const USER_LOGIN = "hiappevent.user_login"
     /**
      * User logout event. This is a reserved application event name constant.
+     *
      */
     @!APILevel[
         since: "22",
@@ -254,6 +269,7 @@ public class Event {
     public static const USER_LOGOUT = "hiappevent.user_logout"
     /**
      * Distributed service startup event. This is a reserved application event name constant.
+     *
      */
     @!APILevel[
         since: "22",
@@ -262,6 +278,7 @@ public class Event {
     public static const DISTRIBUTED_SERVICE_START = "hiappevent.distributed_service_start"
     /**
      * Application crash event. This is a system event name constant.
+     *
      */
     @!APILevel[
         since: "22",
@@ -270,6 +287,7 @@ public class Event {
     public static const APP_CRASH = "APP_CRASH"
     /**
      * Application freeze event. This is a system event name constant.
+     *
      */
     @!APILevel[
         since: "22",
@@ -280,6 +298,7 @@ public class Event {
 
 /**
 * Provides parameter name constants.
+*
 */
 @!APILevel[
     since: "22",
@@ -288,6 +307,7 @@ public class Event {
 public class Param {
     /**
      * Custom user ID.
+     *
      */
     @!APILevel[
         since: "22",
@@ -296,6 +316,7 @@ public class Param {
     public static const USER_ID = "user_id"
     /**
      * Distributed service name.
+     *
      */
     @!APILevel[
         since: "22",
@@ -304,6 +325,7 @@ public class Param {
     public static const DISTRIBUTED_SERVICE_NAME = "ds_name"
     /**
      * Distributed service instance ID.
+     *
      */
     @!APILevel[
         since: "22",
@@ -329,6 +351,7 @@ class Parameters {
 
 /**
 * Defines parameters of the event information.
+*
 */
 @!APILevel[
     since: "22",
@@ -338,6 +361,7 @@ public class AppEventInfo {
     /**
      * Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and 
      * underscores (_). It must start with a letter and cannot end with an underscore (_).
+     *
      */
     @!APILevel[
         since: "22",
@@ -348,6 +372,7 @@ public class AppEventInfo {
      * Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters 
      * (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a 
      * digit or letter.
+     *
      */
     @!APILevel[
         since: "22",
@@ -356,6 +381,7 @@ public class AppEventInfo {
     public var name: String
     /**
      * Event type.
+     *
      */
     @!APILevel[
         since: "22",
@@ -378,6 +404,7 @@ public class AppEventInfo {
      * 100. If this limit is exceeded, excess elements will be discarded.
      * <br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.
      *
+     *
      */
     @!APILevel[
         since: "22",
@@ -387,6 +414,11 @@ public class AppEventInfo {
 
     /**
      * AppEventInfo constructor.
+     *
+     * @param { String } domain - Indicates the event domain.
+     * @param { String } name - Indicates the event name.
+     * @param { EventType } event - Indicates the event type.
+     * @param { HashMap<String, EventValueType> } params - Indicates the Event parameter object.
      */
     @!APILevel[
         since: "22",
@@ -440,6 +472,7 @@ func toCArrParameters(params: Array<Parameters>): CArrParameters {
 
 /**
 * Provides configuration options for application event logging.
+*
 */
 @!APILevel[
     since: "22",
@@ -450,6 +483,7 @@ public class ConfigOption {
      * Whether to enable the event logging function. The default value is false. 
      * If this parameter is set to true, the logging function is disabled. Otherwise, the logging function is 
      * enabled.
+     *
      */
     @!APILevel[
         since: "22",
@@ -467,6 +501,7 @@ public class ConfigOption {
      * case insensitive.)
      * <br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left 
      * empty, b (that is, byte) is used by default.
+     *
      */
     @!APILevel[
         since: "22",
@@ -476,6 +511,10 @@ public class ConfigOption {
 
     /**
      * ConfigOption constructor.
+     *
+     * @param { Bool } disable - Indicates whether to enable the event logging function. The default value is false.
+     * @param { String } name - Indicates the quota for the directory that stores event logging files. The default
+     * value is "10M".
      */
     @!APILevel[
         since: "22",
@@ -489,6 +528,7 @@ public class ConfigOption {
 
 /**
 * Event description configuration that can be reported by the data processor.
+*
 */
 @!APILevel[
     since: "22",
@@ -499,6 +539,7 @@ public class AppEventReportConfig {
      * Event domain. The value is a string that contains a maximum of 32 characters, including digits (0 to 9), letters 
      * (a to z), and underscore (_). It must start with a letter and cannot end with an underscore (_). The default 
      * value is an empty string.
+     *
      */
     @!APILevel[
         since: "22",
@@ -509,6 +550,7 @@ public class AppEventReportConfig {
      * Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters 
      * (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a 
      * digit or letter. The default value is an empty string.
+     *
      */
     @!APILevel[
         since: "22",
@@ -518,6 +560,7 @@ public class AppEventReportConfig {
     /**
      * Whether to report events in real time. The value true indicates that events are reported in real time, and the 
      * value false indicates the opposite. The default value is false.
+     *
      */
     @!APILevel[
         since: "22",
@@ -527,6 +570,10 @@ public class AppEventReportConfig {
 
     /**
      * AppEventReportConfig constructor.
+     *
+     * @param { String } domain - Indicates event domain. The default value is "".
+     * @param { String } name - Indicates the event name. The default value is "".
+     * @param { Bool } isRealTime - Indicates whether to report events in real time. The default value is false.
      */
     @!APILevel[
         since: "22",
@@ -541,6 +588,7 @@ public class AppEventReportConfig {
 
 /**
 * Defines a data processor for reporting and managing events. You can customize processor configurations as required.
+*
 */
 @!APILevel[
     since: "22",
@@ -550,6 +598,7 @@ public class Processor {
     /**
      * Name of a data processor. The value is string that contains a maximum of 256 characters, including digits (0 to 
      * 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.
+     *
      */
     @!APILevel[
         since: "22",
@@ -559,6 +608,7 @@ public class Processor {
     /**
      * Whether to enable the debug mode. The default value is false. The value true means to enable the debugging mode, 
      * and the value false means the opposite.
+     *
      */
     @!APILevel[
         since: "22",
@@ -568,6 +618,7 @@ public class Processor {
     /**
      * Server location information. It is left empty by default. The length of the input string cannot exceed 8 KB. If 
      * the length exceeds 8 KB, the default value is used.
+     *
      */
     @!APILevel[
         since: "22",
@@ -577,6 +628,7 @@ public class Processor {
     /**
      * Application ID. It is left empty by default. The length of the input string cannot exceed 8 KB. If the length 
      * exceeds 8 KB, the default value is used.
+     *
      */
     @!APILevel[
         since: "22",
@@ -586,6 +638,7 @@ public class Processor {
     /**
      * Whether to report an event when the data processor starts. The default value is false. The value true means to 
      * report events, and the value false means the opposite.
+     *
      */
     @!APILevel[
         since: "22",
@@ -595,6 +648,7 @@ public class Processor {
     /**
      * Whether to report an event when an application switches to the background. The default value is false. The value 
      * true means to report events, and the value false means the opposite.
+     *
      */
     @!APILevel[
         since: "22",
@@ -604,6 +658,7 @@ public class Processor {
     /**
      * Interval for event reporting, in seconds. The input value must be greater than or equal to 0. If the input value 
      * is less than 0, the default value 0 is used and periodic reporting is not performed.
+     *
      */
     @!APILevel[
         since: "22",
@@ -614,6 +669,7 @@ public class Processor {
      * Event reporting threshold. When the number of events reaches the threshold, an event is reported. The value must 
      * be greater than 0 and less than 1000. If the value is not within the range, the default value 0 is used and no 
      * events are reported.
+     *
      */
     @!APILevel[
         since: "22",
@@ -623,6 +679,7 @@ public class Processor {
     /**
      * Name array of user IDs that can be reported by the data processor. name corresponds to the name parameter of the 
      * setUserId API. The default value is an empty array.
+     *
      */
     @!APILevel[
         since: "22",
@@ -632,6 +689,7 @@ public class Processor {
     /**
      * Name array of user properties that can be reported by the data processor. name corresponds to the name parameter 
      * of the setUserProperty API. The default value is an empty array.
+     *
      */
     @!APILevel[
         since: "22",
@@ -641,6 +699,7 @@ public class Processor {
     /**
      * Event description configuration array that can be reported by the data processor. The default value is an empty 
      * array.
+     *
      */
     @!APILevel[
         since: "22",
@@ -650,6 +709,23 @@ public class Processor {
 
     /**
      * Processor constructor.
+     *
+     * @param { String } name - Indicates name of a data processor.
+     * @param { Bool } debugMode - Indicates whether to enable the debug mode. The default value is false.
+     * @param { String } routeInfo - Indicates server location information. The default value is "".
+     * @param { String } appId - Indicates Application ID. The default value is "".
+     * @param { Bool } onStartReport - Indicates whether to report an event when the data processor starts. The default
+     * value is false.
+     * @param { Bool } onBackgroundReport - Indicates whether to report an event when an application switches to the
+     * background. The default value is false.
+     * @param { Int32 } periodReport - Indicates interval for event reporting, in seconds. The default value is 0.
+     * @param { Int32 } batchReport - Indicates event reporting threshold. The default value is 0.
+     * @param { Array<String> } userIds - Indicates name array of user IDs that can be reported by the data processor.
+     * The default value is [].
+     * @param { Array<String> } userProperties - Indicates name array of user properties that can be reported by the
+     * data processor. The default value is [].
+     * @param { Array<AppEventReportConfig> } eventConfigs - Indicates event description configuration array that can
+     * be reported by the data processor. The default value is [].
      */
     @!APILevel[
         since: "22",
@@ -676,6 +752,7 @@ public class Processor {
 /**
 * Defines parameters of an AppEventPackage object. This API is used to obtain detail information about an event 
 * package, which is obtained using the takeNext API.
+*
 */
 @!APILevel[
     since: "22",
@@ -684,6 +761,7 @@ public class Processor {
 public class AppEventPackage {
     /**
      * Event package ID, which is named from 0 in ascending order.
+     *
      */
     @!APILevel[
         since: "22",
@@ -692,6 +770,7 @@ public class AppEventPackage {
     public var packageId: Int32
     /**
      * Number of events in the event package.
+     *
      */
     @!APILevel[
         since: "22",
@@ -700,6 +779,7 @@ public class AppEventPackage {
     public var row: Int32
     /**
      * Event size of the event package, in bytes.
+     *
      */
     @!APILevel[
         since: "22",
@@ -708,6 +788,7 @@ public class AppEventPackage {
     public var size: Int32
     /**
      * Event data in the event package.
+     *
      */
     @!APILevel[
         since: "22",
@@ -725,6 +806,7 @@ public class AppEventPackage {
 
 /**
 * Defines the triggering condition parameters of the onTrigger callback of a Watcher.
+*
 */
 @!APILevel[
     since: "22",
@@ -735,6 +817,7 @@ public class TriggerCondition {
      * Total number of events that trigger callback. The value is a positive integer. The default value is 0, 
      * indicating that no callback is triggered. If this parameter is set to a negative value, the default 
      * value is used.
+     *
      */
     @!APILevel[
         since: "22",
@@ -745,6 +828,7 @@ public class TriggerCondition {
      * Total size of events that trigger callback. The value is a positive integer, in bytes. The default value is 0, 
      * indicating that no callback is triggered. If this parameter is set to a negative value, the default value is 
      * used.
+     *
      */
     @!APILevel[
         since: "22",
@@ -755,6 +839,7 @@ public class TriggerCondition {
      * Timeout interval for triggering callback. The value is a positive integer, in unit of 30s. The default value is 
      * 0, indicating that no callback is triggered. If this parameter is set to a negative value, the default value is 
      * used.
+     *
      */
     @!APILevel[
         since: "22",
@@ -763,7 +848,11 @@ public class TriggerCondition {
     public var timeOut: Int32
 
     /**
-     * TriggerCondition constructor
+     * TriggerCondition constructor.
+     *
+     * @param { Int32 } row - Indicates total number of events that trigger callback. The default value is 0.
+     * @param { Int32 } size - Indicates total size of events that trigger callback. The default value is 0.
+     * @param { Int32 } timeOut - Indicates timeout interval for triggering callback. The default value is 0.
      */
     @!APILevel[
         since: "22",
@@ -780,6 +869,7 @@ public class TriggerCondition {
 * Defines parameters of subscription filtering conditions of a Watcher. This API is used to set event filtering 
 * conditions in the event watcher to ensure that only the events that meet the filtering conditions are subscribed 
 * to.
+*
 */
 @!APILevel[
     since: "22",
@@ -789,6 +879,7 @@ public class AppEventFilter {
     /**
      * Event domain, which can be the system event domain (hiAppEvent.domain.OS) or the event domain of the custom 
      * event information (AppEventInfo) passed through the Write API.
+     *
      */
     @!APILevel[
         since: "22",
@@ -797,6 +888,7 @@ public class AppEventFilter {
     public var domain: String
     /**
      * Event types. If this parameter is not set, events are not filtered by default.
+     *
      */
     @!APILevel[
         since: "22",
@@ -805,6 +897,7 @@ public class AppEventFilter {
     public var eventTypes: Array<EventType>
     /**
      * Names of the events to be subscribed. If this parameter is not set, events are not filtered by default.
+     *
      */
     @!APILevel[
         since: "22",
@@ -813,7 +906,11 @@ public class AppEventFilter {
     public var names: Array<String>
 
     /**
-     * AppEventFilter constructor
+     * AppEventFilter constructor.
+     *
+     * @param { String } domain - Indicates event domain.
+     * @param { Array<EventType> } eventTypes - Indicates event types. The default value is [].
+     * @param { Array<String> } names - Indicates names of the events to be subscribed. The default value is [].
      */
     @!APILevel[
         since: "22",
@@ -829,6 +926,7 @@ public class AppEventFilter {
 /**
 * Defines parameters of the event group returned by a subscription. This API can be used to obtain detail 
 * information about an event group, which is often used in the onReceive callback of Watcher.
+*
 */
 @!APILevel[
     since: "22",
@@ -837,6 +935,7 @@ public class AppEventFilter {
 public class AppEventGroup {
     /**
      * Event name.
+     *
      */
     @!APILevel[
         since: "22",
@@ -845,6 +944,7 @@ public class AppEventGroup {
     public var name: String
     /**
      * Event object group.
+     *
      */
     @!APILevel[
         since: "22",
@@ -866,6 +966,7 @@ public class AppEventGroup {
 /**
  * Defines parameters for a Watcher object. This API is used to configure and manage event watchers to subscribe to 
  * and process specified events.
+ *
  */
 @!APILevel[
     since: "22",
@@ -876,6 +977,7 @@ public class Watcher {
      * Unique name of a watcher. The value contains a maximum of 32 characters, including digits (0 to 9), letters 
      * (a to z), underscore (_). It must start with a letter and end with a digit or letter. For example, testName1 
      * and crash_Watcher.
+     *
      */
     @!APILevel[
         since: "22",
@@ -885,6 +987,7 @@ public class Watcher {
     /**
      * Subscription callback triggering condition. This parameter takes effect only when it is passed together with 
      * onTrigger. If this parameter is not set, the onTrigger callback is not triggered by default.
+     *
      */
     @!APILevel[
         since: "22",
@@ -894,6 +997,7 @@ public class Watcher {
     /**
      * Subscription filtering condition. This parameter is passed only when subscription events need to be filtered. 
      * If this parameter is not set, events are not filtered by default.
+     *
      */
     @!APILevel[
         since: "22",
@@ -906,6 +1010,7 @@ public class Watcher {
      * <br>curRow: total number of subscription events when the callback is triggered.
      * <br>curSize: total size of subscribed events when the callback is triggered, in bytes.
      * <br>holder: subscription data holder, which can be used to process subscribed events.
+     *
      */
     @!APILevel[
         since: "22",
@@ -917,6 +1022,7 @@ public class Watcher {
      * onTrigger. The input arguments are described as follows: 
      * <br>domain: domain name.
      * <br>appEventGroups: event group.
+     *
      */
     @!APILevel[
         since: "22",
@@ -925,7 +1031,16 @@ public class Watcher {
     public var onReceive: Option<(String, Array<AppEventGroup>) -> Unit>
 
     /**
-     * Watcher constructor
+     * Watcher constructor.
+     *
+     * @param { String } name - Indicates unique name of a watcher.
+     * @param { TriggerCondition } triggerCondition - Indicates subscription callback triggering condition.
+     * @param { Array<AppEventFilter> } appEventFilters - Indicates subscription filtering condition. The default value
+     * is [].
+     * @param { Option<(Int32, Int32, AppEventPackageHolder) -> Unit> } onTrigger - Indicates subscription callback.
+     * The default value is None.
+     * @param { Option<(String, Array<AppEventGroup>) -> Unit> } onReceive - Indicates Real-time subscription callback.
+     * The default value is None.
      */
     @!APILevel[
         since: "22",
@@ -1052,7 +1167,7 @@ func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventV
                     res.add(CPointer<Int64>(value).read(i))
                 }
                 return ArrInt64(res.toArray())
-            case _ => throw IllegalArgumentException("Unknown value.")
+            case _ => throw BusinessException(11105001, "Parameter error.")
         }
     }
 }

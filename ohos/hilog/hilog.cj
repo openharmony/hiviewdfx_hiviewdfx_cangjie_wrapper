@@ -18,6 +18,7 @@
 package ohos.hilog
 
 import ohos.labels.APILevel
+import ohos.business_exception.BusinessException
 
 foreign func HiLogIsLoggable(domain: UInt32, tag: CString, level: UInt32): Bool
 
@@ -31,6 +32,7 @@ const PROPERTY_POS:Int64 = 2
 
 /**
  * Log level define
+ *
  */
 @!APILevel[
     since: "22",
@@ -39,6 +41,7 @@ const PROPERTY_POS:Int64 = 2
 public enum LogLevel {
     /**
      * DEBUG Log level define
+     *
      */
     @!APILevel[
         since: "22",
@@ -47,6 +50,7 @@ public enum LogLevel {
     Debug
     /**
      * INFO Log level define
+     *
      */
     | @!APILevel[
         since: "22",
@@ -55,6 +59,7 @@ public enum LogLevel {
     Info
     /**
      * WARN Log level define
+     *
      */
     | @!APILevel[
         since: "22",
@@ -63,6 +68,7 @@ public enum LogLevel {
     Warning
     /**
      * ERROR Log level define
+     *
      */
     | @!APILevel[
         since: "22",
@@ -71,6 +77,7 @@ public enum LogLevel {
     Error
     /**
      * FATAL Log level define
+     *
      */
     | @!APILevel[
         since: "22",
@@ -86,7 +93,7 @@ public enum LogLevel {
             case Warning => 5
             case Error => 6
             case Fatal => 7
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(11105001, "Parameter error.")
         }
     }
 }
@@ -95,6 +102,7 @@ let DEFAULT_LOG_TYPE: UInt32 = 0
 
 /**
  * Provides interfaces to generate system logs.
+ *
  */
 @!APILevel[
     since: "22",
@@ -117,6 +125,11 @@ public class Hilog {
 
     /**
      * Checks whether logs of the specified tag, and level can be printed.
+     *
+     * @param { UInt32 } domain - Indicates the service domain of logs.
+     * @param { String } tag - Indicates the log tag.
+     * @param { LogLevel } level - Indicates the log level.
+     * @returns { Bool } Returns true if the log can be printed; false otherwise.
      */ 
     @!APILevel[
         since: "22",
@@ -133,6 +146,11 @@ public class Hilog {
 
     /**
      * Outputs debug-level logs.
+     *
+     * @param { UInt32 } domain - Indicates the service domain of logs.
+     * @param { String } tag - Indicates the log tag.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
         since: "22",
@@ -153,6 +171,11 @@ public class Hilog {
 
     /**
      * Outputs info-level logs.
+     *
+     * @param { UInt32 } domain - Indicates the service domain of logs.
+     * @param { String } tag - Indicates the log tag.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
         since: "22",
@@ -179,6 +202,11 @@ public class Hilog {
 
     /**
      * Outputs warning-level logs.
+     *
+     * @param { UInt32 } domain - Indicates the service domain of logs.
+     * @param { String } tag - Indicates the log tag.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
         since: "22",
@@ -205,6 +233,11 @@ public class Hilog {
 
     /**
      * Outputs error-level logs.
+     *
+     * @param { UInt32 } domain - Indicates the service domain of logs.
+     * @param { String } tag - Indicates the log tag.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
         since: "22",
@@ -225,6 +258,11 @@ public class Hilog {
 
     /**
      * Outputs fatal-level logs.
+     *
+     * @param { UInt32 } domain - Indicates the service domain of logs.
+     * @param { String } tag - Indicates the log tag.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log format parameters.
      */
     @!APILevel[
         since: "22",

@@ -18,6 +18,7 @@
 package ohos.hiviewdfx.hi_app_event
 
 import ohos.ffi.*
+import ohos.business_exception.BusinessException
 
 @C
 struct CConfigOption {
@@ -76,7 +77,7 @@ func getValue(value: EventValueType): (UInt8, CPointer<Unit>, Int64) {
                 let constructor = {p: Int64 => p}
                 let ptr = cjArr2CArr<Int64, Int64>(v, constructor)
                 return (9, CPointer<Unit>(ptr), v.size)
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(11105001, "Parameter error.")
         }
     }
 }
