@@ -65,7 +65,7 @@ class Test_hiappevent {
                 ("flo_data", FloatValue(123.45)),
                 ("bool_data", BoolValue(true)),
                 ("arri32_data", ArrI32([1, 2, 3])),
-                ("arrf64_data", ArrF64([1.2])),
+                ("arrf64_data", ArrFloat64([1.2])),
                 ("arrstr_data", ArrString(["123"])),
                 ("arrbool_data", ArrBool([true]))
             ])
@@ -120,7 +120,7 @@ class Test_hiappevent {
                 ("flo_data", FloatValue(123.45)),
                 ("bool_data", BoolValue(true)),
                 ("arri32_data", ArrI32([1, 2, 3])),
-                ("arrf64_data", ArrF64([1.2])),
+                ("arrf64_data", ArrFloat64([1.2])),
                 ("arrstr_data", ArrString(["123"])),
                 ("arrbool_data", ArrBool([true]))
             ])
@@ -215,7 +215,7 @@ class Test_hiappevent {
                 ("flo_data", FloatValue(123.45)),
                 ("bool_data", BoolValue(true)),
                 ("arri32_data", ArrI32([1, 2, 3])),
-                ("arrf64_data", ArrF64([1.2])),
+                ("arrf64_data", ArrFloat64([1.2])),
                 ("arrstr_data", ArrString(["123"])),
                 ("arrbool_data", ArrBool([true]))
             ])
@@ -420,7 +420,7 @@ class Test_hiappevent {
         let value_arrstring = EventValueType.ArrString(["123"]).toString()
         let value_arrayi32 = EventValueType.ArrI32([123]).toString()
         let value_arraybool = EventValueType.ArrBool([true]).toString()
-        let value_arrayf64 = EventValueType.ArrF64([123.45]).toString()
+        let value_arrayf64 = EventValueType.ArrFloat64([123.45]).toString()
         let value_int64 = EventValueType.Int64Value(123).toString()
         let value_arrayi64 = EventValueType.ArrInt64([123]).toString()
         @Expect(true)
