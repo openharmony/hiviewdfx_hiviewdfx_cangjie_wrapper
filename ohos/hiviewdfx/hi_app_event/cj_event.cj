@@ -151,13 +151,13 @@ public enum EventValueType <: ToString {
     ]
     ArrString(Array<String>)
     /**
-     * ArrI32 event.
+     * ArrInt32 event.
      */
     | @!APILevel[
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    ArrI32(Array<Int32>)
+    ArrInt32(Array<Int32>)
     /**
      * ArrBool event.
      */
@@ -167,13 +167,13 @@ public enum EventValueType <: ToString {
     ]
     ArrBool(Array<Bool>)
     /**
-     * ArrF64 event.
+     * ArrFloat64 event.
      */
     | @!APILevel[
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    ArrF64(Array<Float64>)
+    ArrFloat64(Array<Float64>)
     /**
      * Int64Value event.
      */
@@ -208,9 +208,9 @@ public enum EventValueType <: ToString {
             case StringValue(v) => v.toString()
             case BoolValue(v) => v.toString()
             case ArrString(v) => v.toString()
-            case ArrI32(v) => v.toString()
+            case ArrInt32(v) => v.toString()
             case ArrBool(v) => v.toString()
-            case ArrF64(v) => v.toString()
+            case ArrFloat64(v) => v.toString()
             case Int64Value(v) => v.toString()
             case ArrInt64(v) => v.toString()
             case _ => throw BusinessException(11105001, "Parameter error.")
@@ -1118,21 +1118,21 @@ func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventV
             case 4 =>
                 var res = ArrayList<Int32>()
                 if (value.isNull()) {
-                    return ArrI32(res.toArray())
+                    return ArrInt32(res.toArray())
                 }
                 for (i in 0..size) {
                     res.add(CPointer<Int32>(value).read(i))
                 }
-                return ArrI32(res.toArray())
+                return ArrInt32(res.toArray())
             case 5 =>
                 var res = ArrayList<Float64>()
                 if (value.isNull()) {
-                    return ArrF64(res.toArray())
+                    return ArrFloat64(res.toArray())
                 }
                 for (i in 0..size) {
                     res.add(CPointer<Float64>(value).read(i))
                 }
-                return ArrF64(res.toArray())
+                return ArrFloat64(res.toArray())
             case 6 =>
                 var res = ArrayList<String>()
                 if (value.isNull()) {
