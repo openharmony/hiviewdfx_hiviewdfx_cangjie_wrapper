@@ -54,11 +54,11 @@ func getValue(value: EventValueType): (UInt8, CPointer<Unit>, Int64) {
                 let ptr = safeMalloc<Bool>(count: 1)
                 ptr.write(v)
                 return (3, CPointer<Unit>(ptr), 1)
-            case ArrI32(v) =>
+            case ArrInt32(v) =>
                 let constructor = {p: Int32 => p}
                 let ptr = cjArr2CArr<Int32, Int32>(v, constructor)
                 return (4, CPointer<Unit>(ptr), v.size)
-            case ArrF64(v) =>
+            case ArrFloat64(v) =>
                 let constructor = {p: Float64 => p}
                 let ptr = cjArr2CArr<Float64, Float64>(v, constructor)
                 return (5, CPointer<Unit>(ptr), v.size)
