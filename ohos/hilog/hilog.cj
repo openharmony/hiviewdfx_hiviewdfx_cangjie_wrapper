@@ -26,6 +26,10 @@ foreign func HiLogPrint(ty: UInt32, level: UInt32, domain: UInt32, tag: CString,
 
 foreign func IsPrivateSwitchOn(): Bool
 
+const PUBLIC_LEN:Int64 = 6
+const PRIVATE_LEN:Int64 = 7
+const PROPERTY_POS:Int64 = 2
+
 /**
  * Log level define
  *
@@ -277,10 +281,6 @@ public class Hilog {
         }
     }
 }
-
-const PUBLIC_LEN:Int64 = 6
-const PRIVATE_LEN:Int64 = 7
-const PROPERTY_POS:Int64 = 2
 
 struct LogContentInfo {
     var count: Int64
