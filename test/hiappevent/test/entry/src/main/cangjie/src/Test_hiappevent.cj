@@ -64,7 +64,7 @@ class Test_hiappevent {
                 ("str_data", StringValue("strValue")),
                 ("flo_data", FloatValue(123.45)),
                 ("bool_data", BoolValue(true)),
-                ("arri32_data", ArrI32([1, 2, 3])),
+                ("arri32_data", ArrInt32([1, 2, 3])),
                 ("arrf64_data", ArrFloat64([1.2])),
                 ("arrstr_data", ArrString(["123"])),
                 ("arrbool_data", ArrBool([true]))
@@ -119,7 +119,7 @@ class Test_hiappevent {
                 ("str_data", StringValue("strValue")),
                 ("flo_data", FloatValue(123.45)),
                 ("bool_data", BoolValue(true)),
-                ("arri32_data", ArrI32([1, 2, 3])),
+                ("arri32_data", ArrInt32([1, 2, 3])),
                 ("arrf64_data", ArrFloat64([1.2])),
                 ("arrstr_data", ArrString(["123"])),
                 ("arrbool_data", ArrBool([true]))
@@ -214,7 +214,7 @@ class Test_hiappevent {
                 ("str_data", EventValueType.StringValue("strValue")),
                 ("flo_data", FloatValue(123.45)),
                 ("bool_data", BoolValue(true)),
-                ("arri32_data", ArrI32([1, 2, 3])),
+                ("arri32_data", ArrInt32([1, 2, 3])),
                 ("arrf64_data", ArrFloat64([1.2])),
                 ("arrstr_data", ArrString(["123"])),
                 ("arrbool_data", ArrBool([true]))
@@ -418,7 +418,7 @@ class Test_hiappevent {
         let value_string = EventValueType.StringValue("123").toString()
         let value_bool = EventValueType.BoolValue(true).toString()
         let value_arrstring = EventValueType.ArrString(["123"]).toString()
-        let value_arrayi32 = EventValueType.ArrI32([123]).toString()
+        let value_arrayi32 = EventValueType.ArrInt32([123]).toString()
         let value_arraybool = EventValueType.ArrBool([true]).toString()
         let value_arrayf64 = EventValueType.ArrFloat64([123.45]).toString()
         let value_int64 = EventValueType.Int64Value(123).toString()
@@ -429,7 +429,7 @@ class Test_hiappevent {
     @TestCase
     @Tag[APILevel21, TestLevel0]
     func test_hiAppEvent_AppEventPackageHolder() {
-        AppEventPackageHolde()
+        AppEventPackageHolder("test")
         try {
             var condition = TriggerCondition(row: 1, size: 120, timeOut: 0)
             var appEventFilter = [AppEventFilter("cangjie_watcher")]
