@@ -26,7 +26,7 @@ import ohos.base.*
 @Test
 class Test_hitracemeter {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func Test_HiTraceMeter() {
         let hiTraceMeter = HiTraceMeter() // for coverage
         HiTraceMeter.startTrace("myTestFunc", 1)
