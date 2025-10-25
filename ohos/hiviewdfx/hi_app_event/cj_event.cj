@@ -235,7 +235,7 @@ public class Domain {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const OS = "OS"
+    public static const OS: String = "OS"
 }
 
 /**
@@ -257,7 +257,7 @@ public class Event {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const USER_LOGIN = "hiappevent.user_login"
+    public static const USER_LOGIN: String = "hiappevent.user_login"
     /**
      * User logout event. This is a reserved application event name constant.
      *
@@ -266,7 +266,7 @@ public class Event {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const USER_LOGOUT = "hiappevent.user_logout"
+    public static const USER_LOGOUT: String = "hiappevent.user_logout"
     /**
      * Distributed service startup event. This is a reserved application event name constant.
      *
@@ -275,7 +275,7 @@ public class Event {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const DISTRIBUTED_SERVICE_START = "hiappevent.distributed_service_start"
+    public static const DISTRIBUTED_SERVICE_START: String = "hiappevent.distributed_service_start"
     /**
      * Application crash event. This is a system event name constant.
      *
@@ -284,7 +284,7 @@ public class Event {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const APP_CRASH = "APP_CRASH"
+    public static const APP_CRASH: String = "APP_CRASH"
     /**
      * Application freeze event. This is a system event name constant.
      *
@@ -293,7 +293,7 @@ public class Event {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const APP_FREEZE = "APP_FREEZE"
+    public static const APP_FREEZE: String = "APP_FREEZE"
 }
 
 /**
@@ -313,7 +313,7 @@ public class Param {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const USER_ID = "user_id"
+    public static const USER_ID: String = "user_id"
     /**
      * Distributed service name.
      *
@@ -322,7 +322,7 @@ public class Param {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const DISTRIBUTED_SERVICE_NAME = "ds_name"
+    public static const DISTRIBUTED_SERVICE_NAME: String = "ds_name"
     /**
      * Distributed service instance ID.
      *
@@ -331,7 +331,7 @@ public class Param {
         22,
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
-    public static const DISTRIBUTED_SERVICE_INSTANCE_ID = "ds_instance_id"
+    public static const DISTRIBUTED_SERVICE_INSTANCE_ID: String = "ds_instance_id"
 }
 
 class Parameters {
