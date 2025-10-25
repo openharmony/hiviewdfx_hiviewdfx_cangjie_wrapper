@@ -31,7 +31,7 @@ import std.collection.*
 @Test
 class Test_hiappevent {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addWatcher_01() {
         try {
             var condition = TriggerCondition(row: 1, size: 120, timeOut: 0)
@@ -82,7 +82,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addWatcher_02() {
         try {
             var condition = TriggerCondition(row: 1)
@@ -137,7 +137,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addProcessor() {
         try {
             var processor: Processor = Processor("test_processor")
@@ -150,7 +150,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addProcessor_error() {
         try {
             var processor: Processor = Processor("")
@@ -163,7 +163,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addProcessor_with_AppEventReportConfig() {
         try {
             let aerc = AppEventReportConfig()
@@ -177,7 +177,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_removeProcessor_error() {
         try {
             var processor: Processor = Processor("test_processor")
@@ -192,7 +192,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_write_01() {
         try {
             var params = HashMap<String, EventValueType>([("int_data", IntValue(100)),
@@ -206,7 +206,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_write_02() {
         try {
             var params = HashMap<String, EventValueType>([
@@ -228,7 +228,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_write_03() {
         try {
             var params = HashMap<String, EventValueType>([("int_data", IntValue(100)),
@@ -242,7 +242,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_write_04() {
         try {
             var params = HashMap<String, EventValueType>([("int_data", IntValue(100)),
@@ -256,7 +256,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_write_error() {
         try {
             var params = HashMap<String, EventValueType>([("", EventValueType.StringValue(""))])
@@ -270,7 +270,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_configure_01() {
         try {
             var config: ConfigOption = ConfigOption(disable: false, maxStorage: "100M")
@@ -282,7 +282,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_configure_02() {
         try {
             var config: ConfigOption = ConfigOption(disable: true, maxStorage: "100M")
@@ -294,7 +294,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_configure_error() {
         try {
             var config: ConfigOption = ConfigOption(disable: true)
@@ -307,7 +307,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_clearData() {
         try {
             HiAppEvent.clearData()
@@ -318,7 +318,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_setUserId() {
         try {
             HiAppEvent.setUserId("test_userID_name", "test_userID_value")
@@ -329,7 +329,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_setUserId_error() {
         try {
             HiAppEvent.setUserId("", "")
@@ -340,7 +340,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_getUserId() {
         try {
             HiAppEvent.setUserId("test_getUserId_name", "test_getUserId_value")
@@ -353,7 +353,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_getUserId_error() {
         try {
             let userIdName = HiAppEvent.getUserId("")
@@ -365,7 +365,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_setUserProperty_error() {
         try {
             let test_userID_name = ""
@@ -379,7 +379,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_getUserProperty() {
         try {
             let test_userID_name = "test_setUserProperty_01"
@@ -393,7 +393,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_getUserProperty_error() {
         try {
             let userIdName = HiAppEvent.getUserProperty("")
@@ -404,14 +404,14 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_AppEventReportConfig() {
         let appEventReportConfig: AppEventReportConfig = AppEventReportConfig()
         @Expect(true)
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_ValueType() {
         let value_int = EventValueType.IntValue(123).toString()
         let value_float = EventValueType.FloatValue(123.45).toString()
@@ -427,7 +427,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_AppEventPackageHolder() {
         AppEventPackageHolder("test")
         try {
@@ -465,14 +465,14 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_Domain() {
         Domain()
         @Expect(Domain.OS, "OS")
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_Param() {
         Param()
         @Expect(Param.USER_ID, "user_id")
@@ -481,7 +481,7 @@ class Test_hiappevent {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func Test_hiAppEvent_Event() {
         HEvent()
         @Expect(HEvent.USER_LOGIN, "hiappevent.user_login")
