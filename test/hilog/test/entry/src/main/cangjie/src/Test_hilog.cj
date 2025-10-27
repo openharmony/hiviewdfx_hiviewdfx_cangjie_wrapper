@@ -34,7 +34,7 @@ class Test_hilog {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func Test_Hilog() {
         let hilog = Hilog()
         @Expect(Hilog.isLoggable(0, "testTag", LogLevel.Info), true)
