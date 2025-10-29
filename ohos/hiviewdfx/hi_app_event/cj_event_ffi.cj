@@ -17,7 +17,8 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.ffi.*
+import ohos.ffi.{safeMalloc, CArrString, cjArr2CArr, FUNCTION_S2CS,
+    FUNCTION_CS_FREE, toArrayCString, freeArrCString, Callback3Param, Callback2Param}
 import ohos.business_exception.BusinessException
 
 @C

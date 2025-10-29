@@ -17,7 +17,7 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.hilog.*
+import ohos.hilog.HilogChannel
 
 const LOG_CORE: UInt32 = 3
 // 0xD002D07 is Log Domain, which is used to filter logs

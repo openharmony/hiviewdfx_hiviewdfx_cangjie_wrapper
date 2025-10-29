@@ -17,9 +17,9 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.business_exception.*
+import ohos.business_exception.getUniversalErrorMsg
 
-import std.collection.*
+import std.collection.HashMap
 
 let ERROR_CODE_MAP: HashMap<Int32, String> = HashMap<Int32, String>(
     (11100001, "Function is disabled."),

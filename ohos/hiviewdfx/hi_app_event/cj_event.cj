@@ -17,11 +17,11 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.labels.*
+import ohos.labels.APILevel
 import ohos.business_exception.BusinessException
-import ohos.ffi.*
+import ohos.ffi.cjArr2CArr
 
-import std.collection.*
+import std.collection.{ArrayList, HashMap}
 
 const SUCCESS_CODE: Int32 = 0
 
