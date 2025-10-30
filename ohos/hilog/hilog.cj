@@ -35,7 +35,7 @@ const PROPERTY_POS:Int64 = 2
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiLog"
 ]
 public enum LogLevel {
@@ -44,7 +44,7 @@ public enum LogLevel {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Debug
@@ -53,7 +53,7 @@ public enum LogLevel {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Info
@@ -62,7 +62,7 @@ public enum LogLevel {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Warning
@@ -71,7 +71,7 @@ public enum LogLevel {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Error
@@ -80,7 +80,7 @@ public enum LogLevel {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Fatal
@@ -105,7 +105,7 @@ let DEFAULT_LOG_TYPE: UInt32 = 0
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiLog"
 ]
 public class Hilog {
@@ -132,7 +132,7 @@ public class Hilog {
      * @returns { Bool } Returns true if the log can be printed; false otherwise.
      */ 
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func isLoggable(domain: UInt32, tag: String, level: LogLevel): Bool {
@@ -153,7 +153,7 @@ public class Hilog {
      * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func debug(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
@@ -178,7 +178,7 @@ public class Hilog {
      * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func info(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
@@ -209,7 +209,7 @@ public class Hilog {
      * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func warn(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
@@ -240,7 +240,7 @@ public class Hilog {
      * @param { Array<String> } args - Indicates the log format parameters.
      */ 
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func error(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
@@ -265,7 +265,7 @@ public class Hilog {
      * @param { Array<String> } args - Indicates the log format parameters.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func fatal(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {

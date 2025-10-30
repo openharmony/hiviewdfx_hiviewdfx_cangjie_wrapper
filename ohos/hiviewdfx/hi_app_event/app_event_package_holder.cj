@@ -34,7 +34,7 @@ foreign func FfiOHOSHiAppEventTakeNext(id: Int64): ReTakeNext
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class AppEventPackageHolder <: RemoteDataLite {
@@ -53,7 +53,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * @throws { BusinessException } 11105001 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(watcherName: String) {
@@ -75,7 +75,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * @throws { BusinessException } 11104001 - Invalid size value.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public func setSize(size: Int32): Unit {
@@ -95,7 +95,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public func takeNext(): Option<AppEventPackage> {
