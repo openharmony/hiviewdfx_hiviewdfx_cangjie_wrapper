@@ -17,7 +17,7 @@
 
 package ohos.hi_trace_meter
 
-import ohos.labels.*
+import ohos.labels.APILevel
 
 foreign {
     func FfiOHOSHiTraceStartAsyncTrace(name: CString, taskId: Int32): Unit

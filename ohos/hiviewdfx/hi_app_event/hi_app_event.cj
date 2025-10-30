@@ -17,9 +17,9 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.ffi.*
+import ohos.ffi.{RetDataBool, RetDataCString, RetDataI64, cjArr2CArr}
 import ohos.business_exception.BusinessException
-import ohos.labels.*
+import ohos.labels.APILevel
 
 foreign func FfiOHOSHiAppEventConfigure(config: CConfigOption): Int32
 
