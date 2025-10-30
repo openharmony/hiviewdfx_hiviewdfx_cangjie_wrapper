@@ -17,11 +17,11 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.ffi.*
-import ohos.labels.*
+import ohos.ffi.{RemoteDataLite, releaseFFIData, CArrString}
+import ohos.labels.APILevel
 import ohos.business_exception.BusinessException
 
-import std.collection.*
+import std.collection.ArrayList
 
 foreign func FfiOHOSHiAppEventConstructor(cWatcherName: CString): Int64
 
