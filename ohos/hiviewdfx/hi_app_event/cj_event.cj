@@ -91,6 +91,9 @@ public enum EventType {
         }
     }
 
+    /*
+     * @throws { BusinessException } 11105001 - Parameter error.
+     */
     static func parse(val: UInt32): EventType {
         match (val) {
             case 1 => Fault
@@ -1088,6 +1091,10 @@ func readCArrParams(ret: CArrParameters): HashMap<String, EventValueType> {
     return result  
 }
 
+/*
+ * @throws { IllegalMemoryException } - Out of memory!
+ * @throws { BusinessException } 11105001 - Parameter error.
+ */
 func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventValueType {
     unsafe {
         match (valueType) {
