@@ -26,10 +26,6 @@ foreign func HiLogPrint(ty: UInt32, level: UInt32, domain: UInt32, tag: CString,
 
 foreign func IsPrivateSwitchOn(): Bool
 
-const PUBLIC_LEN:Int64 = 6
-const PRIVATE_LEN:Int64 = 7
-const PROPERTY_POS:Int64 = 2
-
 /**
  * Log level define
  *
@@ -300,6 +296,9 @@ func parseLogContent(formatStr: String, args: Array<String>): String {
 
     let size = args.size
     let len = formatStr.size
+    const PUBLIC_LEN:Int64 = 6
+    const PRIVATE_LEN:Int64 = 7
+    const PROPERTY_POS:Int64 = 2
 
     var info: LogContentInfo = LogContentInfo()
     var pos: Int64 = 0
