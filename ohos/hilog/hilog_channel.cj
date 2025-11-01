@@ -20,15 +20,15 @@ package ohos.hilog
 import ohos.labels.APILevel
 
 protected class HilogChannel {
-    static let TYPE_APP: UInt32 = 0
-    static let TYPE_INIT: UInt32 = 1
-    static let TYPE_CORE: UInt32 = 3
-    static let TYPE_KMSG: UInt32 = 4
-    static let LEVEL_DEBUG: UInt32 = 3
-    static let LEVEL_INFO: UInt32 = 4
-    static let LEVEL_WARN: UInt32 = 5
-    static let LEVEL_ERROR: UInt32 = 6
-    static let LEVEL_FATAL: UInt32 = 7
+    static const TYPE_APP: UInt32 = 0
+    static const TYPE_INIT: UInt32 = 1
+    static const TYPE_CORE: UInt32 = 3
+    static const TYPE_KMSG: UInt32 = 4
+    static const LEVEL_DEBUG: UInt32 = 3
+    static const LEVEL_INFO: UInt32 = 4
+    static const LEVEL_WARN: UInt32 = 5
+    static const LEVEL_ERROR: UInt32 = 6
+    static const LEVEL_FATAL: UInt32 = 7
 
     private let type_: UInt32
     private let domain_: UInt32
