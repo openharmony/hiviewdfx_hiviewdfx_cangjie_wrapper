@@ -17,7 +17,7 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.labels.APILevel
+import ohos.labels.{APILevel, Hide}
 import ohos.business_exception.BusinessException
 import ohos.ffi.cjArr2CArr
 
