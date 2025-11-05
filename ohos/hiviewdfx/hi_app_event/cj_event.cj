@@ -1108,13 +1108,13 @@ func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventV
         match (valueType) {
             case 0 =>
                 if (value.isNull()) {
-                    throw IllegalMemoryException("Out of Memory!")
+                    throw BusinessException(11105001, "Parameter error.")
                 }
                 var res = CPointer<Int32>(value).read()
                 return IntValue(res)
             case 1 =>
                 if (value.isNull()) {
-                    throw IllegalMemoryException("Out of Memory!")
+                    throw BusinessException(11105001, "Parameter error.")
                 }
                 var res = CPointer<Float64>(value).read()
                 return FloatValue(res)
@@ -1126,7 +1126,7 @@ func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventV
                 return StringValue(res.toString())
             case 3 =>
                 if (value.isNull()) {
-                    throw IllegalMemoryException("Out of Memory!")
+                    throw BusinessException(11105001, "Parameter error.")
                 }
                 var res = CPointer<Bool>(value).read()
                 return BoolValue(res)
@@ -1169,14 +1169,14 @@ func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventV
                 return ArrBool(res.toArray())
             case 8 =>
                 if (value.isNull()) {
-                    throw IllegalMemoryException("Out of Memory!")
+                    throw BusinessException(11105001, "Parameter error.")
                 }
                 var res = CPointer<Int64>(value).read()
                 return Int64Value(res)
             case 9 =>
                 var res = ArrayList<Int64>()
                 if (value.isNull()) {
-                    throw IllegalMemoryException("Out of Memory!")
+                    throw BusinessException(11105001, "Parameter error.")
                 }
                 for (i in 0..size) {
                     res.add(CPointer<Int64>(value).read(i))
