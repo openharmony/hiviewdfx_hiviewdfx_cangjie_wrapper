@@ -17,11 +17,11 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.labels.*
+import ohos.labels.{APILevel, Hide}
 import ohos.business_exception.BusinessException
-import ohos.ffi.*
+import ohos.ffi.cjArr2CArr
 
-import std.collection.*
+import std.collection.{ArrayList, HashMap}
 
 const SUCCESS_CODE: Int32 = 0
 
@@ -30,7 +30,7 @@ const SUCCESS_CODE: Int32 = 0
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public enum EventType {
@@ -39,7 +39,7 @@ public enum EventType {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     Fault
@@ -48,7 +48,7 @@ public enum EventType {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     Statistic
@@ -57,7 +57,7 @@ public enum EventType {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     Security
@@ -66,7 +66,7 @@ public enum EventType {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     Behavior
@@ -78,7 +78,7 @@ public enum EventType {
      * @throws { BusinessException } 11105001 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public func getValue(): UInt32 {
@@ -91,6 +91,9 @@ public enum EventType {
         }
     }
 
+    /*
+     * @throws { BusinessException } 11105001 - Parameter error.
+     */
     static func parse(val: UInt32): EventType {
         match (val) {
             case 1 => Fault
@@ -106,7 +109,7 @@ public enum EventType {
 * Enumerates EventValueType types.
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public enum EventValueType <: ToString {
@@ -114,7 +117,7 @@ public enum EventValueType <: ToString {
      * IntValue event.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     IntValue(Int32)
@@ -122,7 +125,7 @@ public enum EventValueType <: ToString {
      * FloatValue event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     FloatValue(Float64)
@@ -130,7 +133,7 @@ public enum EventValueType <: ToString {
      * StringValue event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     StringValue(String)
@@ -138,7 +141,7 @@ public enum EventValueType <: ToString {
      * BoolValue event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     BoolValue(Bool)
@@ -146,7 +149,7 @@ public enum EventValueType <: ToString {
      * ArrString event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     ArrString(Array<String>)
@@ -154,7 +157,7 @@ public enum EventValueType <: ToString {
      * ArrInt32 event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     ArrInt32(Array<Int32>)
@@ -162,7 +165,7 @@ public enum EventValueType <: ToString {
      * ArrBool event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     ArrBool(Array<Bool>)
@@ -170,7 +173,7 @@ public enum EventValueType <: ToString {
      * ArrFloat64 event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     ArrFloat64(Array<Float64>)
@@ -178,7 +181,7 @@ public enum EventValueType <: ToString {
      * Int64Value event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     Int64Value(Int64)
@@ -186,7 +189,7 @@ public enum EventValueType <: ToString {
      * ArrInt64 event.
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     ArrInt64(Array<Int64>)
@@ -198,7 +201,7 @@ public enum EventValueType <: ToString {
      * @throws { BusinessException } 11105001 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public func toString(): String {
@@ -223,7 +226,7 @@ public enum EventValueType <: ToString {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class Domain {
@@ -232,7 +235,7 @@ public class Domain {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const OS: String = "OS"
@@ -245,7 +248,7 @@ public class Domain {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class Event {
@@ -254,7 +257,7 @@ public class Event {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const USER_LOGIN: String = "hiappevent.user_login"
@@ -263,7 +266,7 @@ public class Event {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const USER_LOGOUT: String = "hiappevent.user_logout"
@@ -272,7 +275,7 @@ public class Event {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const DISTRIBUTED_SERVICE_START: String = "hiappevent.distributed_service_start"
@@ -281,7 +284,7 @@ public class Event {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const APP_CRASH: String = "APP_CRASH"
@@ -290,7 +293,7 @@ public class Event {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const APP_FREEZE: String = "APP_FREEZE"
@@ -301,7 +304,7 @@ public class Event {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class Param {
@@ -310,7 +313,7 @@ public class Param {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const USER_ID: String = "user_id"
@@ -319,7 +322,7 @@ public class Param {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const DISTRIBUTED_SERVICE_NAME: String = "ds_name"
@@ -328,7 +331,7 @@ public class Param {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const DISTRIBUTED_SERVICE_INSTANCE_ID: String = "ds_instance_id"
@@ -354,7 +357,7 @@ class Parameters {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class AppEventInfo {
@@ -364,7 +367,7 @@ public class AppEventInfo {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var domain: String
@@ -375,7 +378,7 @@ public class AppEventInfo {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var name: String
@@ -384,7 +387,7 @@ public class AppEventInfo {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var eventType: EventType
@@ -407,7 +410,7 @@ public class AppEventInfo {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var params: HashMap<String, EventValueType>
@@ -421,7 +424,7 @@ public class AppEventInfo {
      * @param { HashMap<String, EventValueType> } params - Indicates the Event parameter object.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(domain: String, name: String, event: EventType, params: HashMap<String, EventValueType>) {
@@ -475,7 +478,7 @@ func toCArrParameters(params: Array<Parameters>): CArrParameters {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class ConfigOption {
@@ -486,7 +489,7 @@ public class ConfigOption {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var disable: Bool
@@ -504,7 +507,7 @@ public class ConfigOption {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var maxStorage: String
@@ -517,7 +520,7 @@ public class ConfigOption {
      * value is "10M".
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(disable!: Bool = false, maxStorage!: String = "10M") {
@@ -531,7 +534,7 @@ public class ConfigOption {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class AppEventReportConfig {
@@ -542,7 +545,7 @@ public class AppEventReportConfig {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var domain: String
@@ -553,7 +556,7 @@ public class AppEventReportConfig {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var name: String
@@ -563,7 +566,7 @@ public class AppEventReportConfig {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var isRealTime: Bool
@@ -576,7 +579,7 @@ public class AppEventReportConfig {
      * @param { Bool } isRealTime - Indicates whether to report events in real time. The default value is false.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(domain!: String = "", name!: String = "", isRealTime!: Bool = false) {
@@ -591,7 +594,7 @@ public class AppEventReportConfig {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class Processor {
@@ -601,7 +604,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var name: String
@@ -611,7 +614,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var debugMode: Bool
@@ -621,7 +624,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var routeInfo: String
@@ -631,7 +634,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var appId: String
@@ -641,7 +644,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var onStartReport: Bool
@@ -651,7 +654,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var onBackgroundReport: Bool
@@ -661,7 +664,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var periodReport: Int32
@@ -672,7 +675,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var batchReport: Int32
@@ -682,7 +685,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var userIds: Array<String>
@@ -692,7 +695,7 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var userProperties: Array<String>
@@ -702,10 +705,16 @@ public class Processor {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var eventConfigs: Array<AppEventReportConfig>
+    @!Hide
+    internal var configId: Int64 = 0
+    @!Hide
+    internal var customConfigs: HashMap<String, String> = HashMap<String, String>()
+    @!Hide
+    internal var configName: String = ""
 
     /**
      * Processor constructor.
@@ -728,7 +737,7 @@ public class Processor {
      * be reported by the data processor. The default value is [].
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(name: String, debugMode!: Bool = false, routeInfo!: String = "", appId!: String = "",
@@ -755,7 +764,7 @@ public class Processor {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class AppEventPackage {
@@ -764,7 +773,7 @@ public class AppEventPackage {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var packageId: Int32
@@ -773,7 +782,7 @@ public class AppEventPackage {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var row: Int32
@@ -782,7 +791,7 @@ public class AppEventPackage {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var size: Int32
@@ -791,10 +800,12 @@ public class AppEventPackage {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var data: Array<String>
+    @!Hide
+    internal var appEventInfos: Array<AppEventInfo> = Array<AppEventInfo>()
 
     init(packageId: Int32, row: Int32, size: Int32, data: Array<String>) {
         this.packageId = packageId
@@ -809,7 +820,7 @@ public class AppEventPackage {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class TriggerCondition {
@@ -820,7 +831,7 @@ public class TriggerCondition {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var row: Int32
@@ -831,7 +842,7 @@ public class TriggerCondition {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var size: Int32
@@ -842,7 +853,7 @@ public class TriggerCondition {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var timeOut: Int32
@@ -855,7 +866,7 @@ public class TriggerCondition {
      * @param { Int32 } timeOut - Indicates timeout interval for triggering callback. The default value is 0.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(row!: Int32 = 0, size!: Int32 = 0, timeOut!: Int32 = 0) {
@@ -872,7 +883,7 @@ public class TriggerCondition {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class AppEventFilter {
@@ -882,7 +893,7 @@ public class AppEventFilter {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var domain: String
@@ -891,7 +902,7 @@ public class AppEventFilter {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var eventTypes: Array<EventType>
@@ -900,7 +911,7 @@ public class AppEventFilter {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var names: Array<String>
@@ -913,7 +924,7 @@ public class AppEventFilter {
      * @param { Array<String> } names - Indicates names of the events to be subscribed. The default value is [].
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(domain: String, eventTypes!: Array<EventType> = [], names!: Array<String> = []) {
@@ -929,7 +940,7 @@ public class AppEventFilter {
 *
 */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class AppEventGroup {
@@ -938,7 +949,7 @@ public class AppEventGroup {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var name: String
@@ -947,7 +958,7 @@ public class AppEventGroup {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var appEventInfos: Array<AppEventInfo>
@@ -969,7 +980,7 @@ public class AppEventGroup {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class Watcher {
@@ -980,7 +991,7 @@ public class Watcher {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var name: String
@@ -990,7 +1001,7 @@ public class Watcher {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var triggerCondition: TriggerCondition
@@ -1000,7 +1011,7 @@ public class Watcher {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var appEventFilters: Array<AppEventFilter>
@@ -1013,7 +1024,7 @@ public class Watcher {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var onTrigger: Option<(Int32, Int32, AppEventPackageHolder) -> Unit>
@@ -1025,7 +1036,7 @@ public class Watcher {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var onReceive: Option<(String, Array<AppEventGroup>) -> Unit>
@@ -1043,7 +1054,7 @@ public class Watcher {
      * The default value is None.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public init(name: String, triggerCondition!: TriggerCondition = TriggerCondition(),
@@ -1088,6 +1099,10 @@ func readCArrParams(ret: CArrParameters): HashMap<String, EventValueType> {
     return result  
 }
 
+/*
+ * @throws { IllegalMemoryException } - Out of memory!
+ * @throws { BusinessException } 11105001 - Parameter error.
+ */
 func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventValueType {
     unsafe {
         match (valueType) {

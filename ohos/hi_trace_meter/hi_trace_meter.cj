@@ -17,7 +17,7 @@
 
 package ohos.hi_trace_meter
 
-import ohos.labels.*
+import ohos.labels.APILevel
 
 foreign {
     func FfiOHOSHiTraceStartAsyncTrace(name: CString, taskId: Int32): Unit
@@ -33,7 +33,7 @@ foreign {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiTrace"
 ]
 public class HiTraceMeter {
@@ -49,7 +49,7 @@ public class HiTraceMeter {
      * @param { Int32 } taskId - Indicates the task ID to distinguish different tasks.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiTrace"
     ]
     public static func startTrace(name: String, taskId: Int32): Unit {
@@ -70,7 +70,7 @@ public class HiTraceMeter {
      * @param { Int32 } taskId - Indicates the task ID corresponding to the task that was started.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiTrace"
     ]
     public static func finishTrace(name: String, taskId: Int32): Unit {

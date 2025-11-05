@@ -17,9 +17,9 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.ffi.*
+import ohos.ffi.{RetDataBool, RetDataCString, RetDataI64, cjArr2CArr}
 import ohos.business_exception.BusinessException
-import ohos.labels.*
+import ohos.labels.APILevel
 
 foreign func FfiOHOSHiAppEventConfigure(config: CConfigOption): Int32
 
@@ -50,7 +50,7 @@ foreign func FfiOHOSHiAppEventRemoveWatcher(watcher: RetWatcher): Int32
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.HiviewDFX.HiAppEvent"
 ]
 public class HiAppEvent {
@@ -72,7 +72,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 11101006 - Invalid array length of a event parameter.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func write(info: AppEventInfo): Unit {
@@ -95,7 +95,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 11103001 - Invalid max storage quota value.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func configure(config: ConfigOption): Unit {
@@ -120,7 +120,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func addProcessor(processor: Processor): Int64 {
@@ -141,7 +141,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func removeProcessor(id: Int64): Unit {
@@ -161,7 +161,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func setUserId(name: String, value: String): Unit {
@@ -188,7 +188,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func getUserId(name: String): String {
@@ -215,7 +215,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func setUserProperty(name: String, value: String): Unit {
@@ -242,7 +242,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 401 - Parameter error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func getUserProperty(name: String): String {
@@ -266,7 +266,7 @@ public class HiAppEvent {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func clearData(): Unit {
@@ -286,7 +286,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 11102005 - Invalid timeout value.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func addWatcher(watcher: Watcher): Option<AppEventPackageHolder> {
@@ -312,7 +312,7 @@ public class HiAppEvent {
      * @throws { BusinessException } 11102001 - Invalid watcher name.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static func removeWatcher(watcher: Watcher): Unit {
