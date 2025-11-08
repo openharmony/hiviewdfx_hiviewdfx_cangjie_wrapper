@@ -1123,7 +1123,7 @@ func readIntValue(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
     }
-    var res = unsafe { CPointer<Int32>(value).read() }
+    let res = unsafe { CPointer<Int32>(value).read() }
     return IntValue(res)
 }
 
@@ -1132,7 +1132,7 @@ func readFloatValue(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
     }
-    var res = unsafe { CPointer<Float64>(value).read() }
+    let res = unsafe { CPointer<Float64>(value).read() }
     return FloatValue(res)
 }
 
@@ -1140,7 +1140,7 @@ func readStringValue(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         return StringValue("")
     }
-    var res = unsafe { CString(CPointer<UInt8>(value)) }
+    let res = unsafe { CString(CPointer<UInt8>(value)) }
     return StringValue(res.toString())
 }
 
@@ -1148,7 +1148,7 @@ func readBoolValue(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
     }
-    var res = unsafe { CPointer<Bool>(value).read() }
+    let res = unsafe { CPointer<Bool>(value).read() }
     return BoolValue(res)
 }
 
@@ -1209,7 +1209,7 @@ func readInt64Value(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
     }
-    var res = unsafe { CPointer<Int64>(value).read() }
+    let res = unsafe { CPointer<Int64>(value).read() }
     return Int64Value(res)
 }
 
