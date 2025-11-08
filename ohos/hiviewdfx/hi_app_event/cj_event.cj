@@ -77,11 +77,7 @@ public enum EventType {
      *
      * @throws { BusinessException } 11105001 - Parameter error.
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
-    ]
-    public func getValue(): UInt32 {
+    func getValue(): UInt32 {
         match (this) {
             case Fault => 1
             case Statistic => 2
