@@ -1156,11 +1156,9 @@ func readArrInt32(value: CPointer<Unit>, size: Int64): EventValueType {
     var res = ArrayList<Int32>()
     if (value.isNull()) {
         return ArrInt32(res.toArray())
-    }
-    unsafe {
-        for (i in 0..size) {
-            res.add(CPointer<Int32>(value).read(i))
-        }
+    }   
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Int32>(value).read(i)) }
     }
     return ArrInt32(res.toArray())
 }
@@ -1170,10 +1168,8 @@ func readArrFloat64(value: CPointer<Unit>, size: Int64): EventValueType {
     if (value.isNull()) {
         return ArrFloat64(res.toArray())
     }
-    unsafe {
-        for (i in 0..size) {
-            res.add(CPointer<Float64>(value).read(i))
-        }
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Float64>(value).read(i)) }
     }
     return ArrFloat64(res.toArray())
 }
@@ -1183,11 +1179,9 @@ func readArrString(value: CPointer<Unit>, size: Int64): EventValueType {
     if (value.isNull()) {
         return ArrString(res.toArray())
     }
-    unsafe {
-        let data = (CPointer<CString>(value))
-        for (i in 0..size) {
-            res.add(data.read(i).toString())
-        }
+    let data = unsafe { (CPointer<CString>(value)) }
+    for (i in 0..size) {
+        unsafe { res.add(data.read(i).toString()) }
     }
     return ArrString(res.toArray())
 }
@@ -1197,10 +1191,8 @@ func readArrBool(value: CPointer<Unit>, size: Int64): EventValueType {
     if (value.isNull()) {
         return ArrBool(res.toArray())
     }
-    unsafe {
-        for (i in 0..size) {
-            res.add(CPointer<Bool>(value).read(i))
-        }
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Bool>(value).read(i)) }
     }
     return ArrBool(res.toArray())
 }
@@ -1218,10 +1210,8 @@ func readArrInt64(value: CPointer<Unit>, size: Int64): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
     }
-    unsafe {
-        for (i in 0..size) {
-            res.add(CPointer<Int64>(value).read(i))
-        }
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Int64>(value).read(i)) }
     }
     return ArrInt64(res.toArray())
 }
