@@ -1100,85 +1100,114 @@ func readCArrParams(ret: CArrParameters): HashMap<String, EventValueType> {
  * @throws { BusinessException } 11105001 - Parameter error.
  */
 func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventValueType {
-    unsafe {
-        match (valueType) {
-            case 0 =>
-                if (value.isNull()) {
-                    throw BusinessException(11105001, "Parameter error.")
-                }
-                var res = CPointer<Int32>(value).read()
-                return IntValue(res)
-            case 1 =>
-                if (value.isNull()) {
-                    throw BusinessException(11105001, "Parameter error.")
-                }
-                var res = CPointer<Float64>(value).read()
-                return FloatValue(res)
-            case 2 =>
-                if (value.isNull()) {
-                    return StringValue("")
-                }
-                var res = CString(CPointer<UInt8>(value))
-                return StringValue(res.toString())
-            case 3 =>
-                if (value.isNull()) {
-                    throw BusinessException(11105001, "Parameter error.")
-                }
-                var res = CPointer<Bool>(value).read()
-                return BoolValue(res)
-            case 4 =>
-                var res = ArrayList<Int32>()
-                if (value.isNull()) {
-                    return ArrInt32(res.toArray())
-                }
-                for (i in 0..size) {
-                    res.add(CPointer<Int32>(value).read(i))
-                }
-                return ArrInt32(res.toArray())
-            case 5 =>
-                var res = ArrayList<Float64>()
-                if (value.isNull()) {
-                    return ArrFloat64(res.toArray())
-                }
-                for (i in 0..size) {
-                    res.add(CPointer<Float64>(value).read(i))
-                }
-                return ArrFloat64(res.toArray())
-            case 6 =>
-                var res = ArrayList<String>()
-                if (value.isNull()) {
-                    return ArrString(res.toArray())
-                }
-                let data = (CPointer<CString>(value))
-                for (i in 0..size) {
-                    res.add(data.read(i).toString())
-                }
-                return ArrString(res.toArray())
-            case 7 =>
-                var res = ArrayList<Bool>()
-                if (value.isNull()) {
-                    return ArrBool(res.toArray())
-                }
-                for (i in 0..size) {
-                    res.add(CPointer<Bool>(value).read(i))
-                }
-                return ArrBool(res.toArray())
-            case 8 =>
-                if (value.isNull()) {
-                    throw BusinessException(11105001, "Parameter error.")
-                }
-                var res = CPointer<Int64>(value).read()
-                return Int64Value(res)
-            case 9 =>
-                var res = ArrayList<Int64>()
-                if (value.isNull()) {
-                    throw BusinessException(11105001, "Parameter error.")
-                }
-                for (i in 0..size) {
-                    res.add(CPointer<Int64>(value).read(i))
-                }
-                return ArrInt64(res.toArray())
-            case _ => throw BusinessException(11105001, "Parameter error.")
-        }
+    match (valueType) {
+        case 0 => return readIntValue(value)
+        case 1 => return readFloatValue(value)
+        case 2 => return readStringValue(value)
+        case 3 => return readBoolValue(value)
+        case 4 => return readArrInt32(value, size)
+        case 5 => return readArrFloat64(value, size)
+        case 6 => return readArrString(value, size)
+        case 7 => return readArrBool(value, size)
+        case 8 => return readInt64Value(value)
+        case 9 => return readArrInt64(value, size)
+        case _ => throw BusinessException(11105001, "Parameter error.")
     }
+}
+
+func readIntValue(value: CPointer<Unit>): EventValueType {
+    if (value.isNull()) {
+        throw BusinessException(11105001, "Parameter error.")
+    }
+    let res = unsafe { CPointer<Int32>(value).read() }
+    return IntValue(res)
+}
+
+
+func readFloatValue(value: CPointer<Unit>): EventValueType {
+    if (value.isNull()) {
+        throw BusinessException(11105001, "Parameter error.")
+    }
+    let res = unsafe { CPointer<Float64>(value).read() }
+    return FloatValue(res)
+}
+
+func readStringValue(value: CPointer<Unit>): EventValueType {  
+    if (value.isNull()) {
+        return StringValue("")
+    }
+    let res = unsafe { CString(CPointer<UInt8>(value)) }
+    return StringValue(res.toString())
+}
+
+func readBoolValue(value: CPointer<Unit>): EventValueType { 
+    if (value.isNull()) {
+        throw BusinessException(11105001, "Parameter error.")
+    }
+    let res = unsafe { CPointer<Bool>(value).read() }
+    return BoolValue(res)
+}
+
+func readArrInt32(value: CPointer<Unit>, size: Int64): EventValueType {
+    var res = ArrayList<Int32>()
+    if (value.isNull()) {
+        return ArrInt32(res.toArray())
+    }   
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Int32>(value).read(i)) }
+    }
+    return ArrInt32(res.toArray())
+}
+
+func readArrFloat64(value: CPointer<Unit>, size: Int64): EventValueType {
+    var res = ArrayList<Float64>()
+    if (value.isNull()) {
+        return ArrFloat64(res.toArray())
+    }
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Float64>(value).read(i)) }
+    }
+    return ArrFloat64(res.toArray())
+}
+
+func readArrString(value: CPointer<Unit>, size: Int64): EventValueType {
+    var res = ArrayList<String>()
+    if (value.isNull()) {
+        return ArrString(res.toArray())
+    }
+    let data = unsafe { (CPointer<CString>(value)) }
+    for (i in 0..size) {
+        unsafe { res.add(data.read(i).toString()) }
+    }
+    return ArrString(res.toArray())
+}
+
+func readArrBool(value: CPointer<Unit>, size: Int64): EventValueType {
+    var res = ArrayList<Bool>()
+    if (value.isNull()) {
+        return ArrBool(res.toArray())
+    }
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Bool>(value).read(i)) }
+    }
+    return ArrBool(res.toArray())
+}
+
+func readInt64Value(value: CPointer<Unit>): EventValueType {
+    if (value.isNull()) {
+        throw BusinessException(11105001, "Parameter error.")
+    }
+    let res = unsafe { CPointer<Int64>(value).read() }
+    return Int64Value(res)
+}
+
+func readArrInt64(value: CPointer<Unit>, size: Int64): EventValueType {
+    var res = ArrayList<Int64>()
+    if (value.isNull()) {
+        throw BusinessException(11105001, "Parameter error.")
+    }
+    for (i in 0..size) {
+        unsafe { res.add(CPointer<Int64>(value).read(i)) }
+    }
+    return ArrInt64(res.toArray())
 }
