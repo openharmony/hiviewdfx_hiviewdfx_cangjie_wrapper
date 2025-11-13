@@ -45,6 +45,12 @@
                 },
                 {
                     "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_trace_meter:ohos.hi_trace_meter"
+                },
+                {
+                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper:copy_sdk_hiviewdfx_cangjie_libs"
+                },
+                {
+                    "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper:copy_sdk_hiviewdfx_cangjie_libs_kit"
                 }
             ],
             "test": []
