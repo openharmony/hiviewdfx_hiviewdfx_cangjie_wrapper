@@ -437,6 +437,9 @@ public class AppEventInfo {
         this.params = readCArrParams(ret.params)
     }
 
+    /**
+    * @throws { BusinessException } 11105001 - Invalid parameter error.
+    */
     func toCAppEventInfo(): CAppEventInfo {
         var info = CAppEventInfo(
             CString(CPointer<UInt8>()),
@@ -457,7 +460,7 @@ public class AppEventInfo {
             }
         } catch (e: Exception) {
             info.free()
-            throw e
+            throw BusinessException(11105001, "Invalid parameter error.")
         }
         return info
     }
