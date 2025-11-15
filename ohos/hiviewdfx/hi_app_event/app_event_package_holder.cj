@@ -50,11 +50,14 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * Constructs an AppEventPackageHolder instance. You can call addWatcher to add an event watcher, and then 
      * associate the AppEventPackageHolder instance with the watcher added in the application based on the watcher name.
      *
+     * @param { String } watcherName - Name of the event watcher added through addWatcher. If no watcher is added, no 
+     * data is displayed by default.
      * @throws { BusinessException } 11105001 - Parameter error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent",
+        throwexception: true
     ]
     public init(watcherName: String) {
         super(unsafe {
@@ -71,12 +74,14 @@ public class AppEventPackageHolder <: RemoteDataLite {
     /**
      * Sets the threshold for the data size of the event package obtained each time.
      *
-     * @throws { BusinessException } 401 - Parameter error.
+     * @param { Int32 } size - Data size threshold, in bytes. The value range is [0, $2^{31}$-1]. If the value is out of 
+     * the range, an exception is thrown.
      * @throws { BusinessException } 11104001 - Invalid size value.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent",
+        throwexception: true
     ]
     public func setSize(size: Int32): Unit {
         let ret = unsafe { FfiOHOSHiAppEventSetSize(getID(), size) }
@@ -93,6 +98,8 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * subscription event data is obtained, null is returned.
      * When setRow and setSize are called at the same time, only setRow takes effect.
      *
+     * @returns { Option<AppEventPackage> } Event package object. If all subscription event data has been retrieved, None is 
+     * returned.
      */
     @!APILevel[
         since: "22",

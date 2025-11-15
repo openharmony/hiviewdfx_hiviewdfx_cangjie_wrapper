@@ -28,7 +28,6 @@ foreign func IsPrivateSwitchOn(): Bool
 
 /**
  * Log level define
- *
  */
 @!APILevel[
     since: "22",
@@ -37,45 +36,44 @@ foreign func IsPrivateSwitchOn(): Bool
 public enum LogLevel {
     /**
      * DEBUG Log level define
-     *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Debug
+    |
     /**
      * INFO Log level define
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Info
+    |
     /**
      * WARN Log level define
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Warning
+    |
     /**
      * ERROR Log level define
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     Error
+    |
     /**
      * FATAL Log level define
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
@@ -98,7 +96,6 @@ let DEFAULT_LOG_TYPE: UInt32 = 0
 
 /**
  * Provides interfaces to generate system logs.
- *
  */
 @!APILevel[
     since: "22",
@@ -121,12 +118,12 @@ public class Hilog {
 
     /**
      * Checks whether logs of the specified tag, and level can be printed.
-     *
-     * @param { UInt32 } domain - Indicates the service domain of logs.
-     * @param { String } tag - Indicates the log tag.
-     * @param { LogLevel } level - Indicates the log level.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
+     * @param { LogLevel } level - log level
      * @returns { Bool } Returns true if the log can be printed; false otherwise.
-     */ 
+     */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
@@ -142,12 +139,12 @@ public class Hilog {
 
     /**
      * Outputs debug-level logs.
-     *
-     * @param { UInt32 } domain - Indicates the service domain of logs.
-     * @param { String } tag - Indicates the log tag.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                         if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
      * @param { String } format - Indicates the log format string.
-     * @param { Array<String> } args - Indicates the log format parameters.
-     */ 
+     * @param { Array<String> } args - Indicates the log parameters.
+     */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
@@ -167,12 +164,12 @@ public class Hilog {
 
     /**
      * Outputs info-level logs.
-     *
-     * @param { UInt32 } domain - Indicates the service domain of logs.
-     * @param { String } tag - Indicates the log tag.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
      * @param { String } format - Indicates the log format string.
      * @param { Array<String> } args - Indicates the log format parameters.
-     */ 
+     */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
@@ -198,12 +195,12 @@ public class Hilog {
 
     /**
      * Outputs warning-level logs.
-     *
-     * @param { UInt32 } domain - Indicates the service domain of logs.
-     * @param { String } tag - Indicates the log tag.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
      * @param { String } format - Indicates the log format string.
-     * @param { Array<String> } args - Indicates the log format parameters.
-     */ 
+     * @param { Array<String> } args - Indicates the log parameters.
+     */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
@@ -229,12 +226,12 @@ public class Hilog {
 
     /**
      * Outputs error-level logs.
-     *
-     * @param { UInt32 } domain - Indicates the service domain of logs.
-     * @param { String } tag - Indicates the log tag.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
      * @param { String } format - Indicates the log format string.
      * @param { Array<String> } args - Indicates the log format parameters.
-     */ 
+     */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.HiviewDFX.HiLog"
@@ -254,11 +251,11 @@ public class Hilog {
 
     /**
      * Outputs fatal-level logs.
-     *
-     * @param { UInt32 } domain - Indicates the service domain of logs.
-     * @param { String } tag - Indicates the log tag.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
      * @param { String } format - Indicates the log format string.
-     * @param { Array<String> } args - Indicates the log format parameters.
+     * @param { Array<String> } args - Indicates the log parameters.
      */
     @!APILevel[
         since: "22",
