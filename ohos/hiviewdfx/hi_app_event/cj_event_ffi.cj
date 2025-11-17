@@ -37,6 +37,9 @@ struct CConfigOption {
     }
 }
 
+/**
+* @throws { BusinessException } 11105001 - Invalid parameter error.
+*/
 func getValue(value: EventValueType): (UInt8, CPointer<Unit>, Int64) {
     unsafe {
         match (value) {
@@ -78,7 +81,7 @@ func getValue(value: EventValueType): (UInt8, CPointer<Unit>, Int64) {
                 let constructor = {p: Int64 => p}
                 let ptr = cjArr2CArr<Int64, Int64>(v, constructor)
                 return (9, CPointer<Unit>(ptr), v.size)
-            case _ => throw BusinessException(11105001, "Parameter error.")
+            case _ => throw BusinessException(11105001, "Invalid parameter error.")
         }
     }
 }
@@ -90,13 +93,16 @@ struct CParameters {
     let value: CPointer<Unit>
     let size: Int64
 
+    /**
+    * @throws { BusinessException } 11105001 - Invalid parameter error.
+    */
     init(p: Parameters) {
         this.keyName = unsafe { LibC.mallocCString(p.key) }
         try {
             (valueType, this.value, this.size) = getValue(p.value)
         } catch (e: Exception) {
             unsafe { LibC.free(this.keyName) }
-            throw e
+            throw BusinessException(11105001, "Invalid parameter error.")
         }
     }
 
@@ -153,13 +159,16 @@ struct CAppEventReportConfig {
     let name: CString
     let isRealTime: Bool
 
+    /**
+    * @throws { BusinessException } 11105001 - Invalid parameter error.
+    */
     CAppEventReportConfig(config: AppEventReportConfig) {
         this.domain = unsafe { LibC.mallocCString(config.domain) }
         try {
             this.name = unsafe { LibC.mallocCString(config.name) }
         } catch (e: Exception) {
             unsafe { LibC.free(this.domain) }
-            throw e
+            throw BusinessException(11105001, "Invalid parameter error.")
         }
         this.isRealTime = config.isRealTime
     }
@@ -208,6 +217,9 @@ struct CProcessor {
     var userProperties: CArrString
     var eventConfigs: CArrAppEventReportConfig
 
+    /**
+    * @throws { BusinessException } 11105001 - Invalid parameter error.
+    */
     CProcessor(processor: Processor) {
         name = CString(CPointer())
         routeInfo = CString(CPointer())
@@ -234,7 +246,7 @@ struct CProcessor {
                 eventConfigs = CArrAppEventReportConfig(ptr, processor.eventConfigs.size)
             } catch (e: Exception) {
                 free()
-                throw e
+                throw BusinessException(11105001, "Invalid parameter error.")
             }
         }
     }
@@ -285,6 +297,9 @@ struct RetAppEventFilter {
     var eventTypes: CArrUInt32
     var names: CArrString
 
+    /**
+    * @throws { BusinessException } 11105001 - Invalid parameter error.
+    */
     init(appEventFilter: AppEventFilter) {
         domain = unsafe { LibC.mallocCString(appEventFilter.domain) }
 
@@ -299,7 +314,7 @@ struct RetAppEventFilter {
             this.eventTypes = CArrUInt32(typeArr, typeSize)
         } catch (e: Exception) {
             unsafe { LibC.free(this.domain) }
-            throw e
+            throw BusinessException(11105001, "Invalid parameter error.")
         }
 
         try {
@@ -314,7 +329,7 @@ struct RetAppEventFilter {
                             LibC.free(arr.read(j))
                         }
                         LibC.free<CString>(arr)
-                        throw e
+                        throw BusinessException(11105001, "Invalid parameter error.")
                     }
                 }
             }
@@ -322,7 +337,7 @@ struct RetAppEventFilter {
         } catch (e: Exception) {
             unsafe { LibC.free(this.domain) }
             this.eventTypes.free()
-            throw e
+            throw BusinessException(11105001, "Invalid parameter error.")
         }
     }
 
@@ -405,6 +420,9 @@ struct RetWatcher {
     var onTrigger: Int64
     var onReceive: Int64
 
+    /**
+    * @throws { BusinessException } 11105001 - Invalid parameter error.
+    */
     init(watcher: Watcher) {
         this.name = unsafe { LibC.mallocCString(watcher.name) }
         this.triggerCondition = RetTriggerCondition(watcher.triggerCondition)
@@ -420,13 +438,13 @@ struct RetWatcher {
                         unsafe { arr.read(j).free() }
                     }
                     unsafe { LibC.free<RetAppEventFilter>(arr) }
-                    throw e
+                    throw BusinessException(11105001, "Invalid parameter error.")
                 }
             }
             this.appEventFilters = CArrAppEventFilter(arr, arrSize)
         } catch (e: Exception) {
             unsafe { LibC.free(this.name) }
-            throw e
+            throw BusinessException(11105001, "Invalid parameter error.")
         }
 
         if (let Some(v) <- watcher.onTrigger) {

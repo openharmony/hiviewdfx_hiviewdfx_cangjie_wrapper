@@ -97,6 +97,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * number of data records specified by setRow. By default, one subscription event data record is obtained. When all 
      * subscription event data is obtained, null is returned.
      * When setRow and setSize are called at the same time, only setRow takes effect.
+     * @throws { BusinessException } 11105001 - Invalid parameter error.
      *
      * @returns { Option<AppEventPackage> } Event package object. If all subscription event data has been retrieved, None is 
      * returned.
@@ -122,11 +123,14 @@ public class AppEventPackageHolder <: RemoteDataLite {
                     return Some(eventPackage)
                 } catch (e: Exception) {
                     ret.event.free()
-                    throw e
+                    throw BusinessException(11105001, "Invalid parameter error.")
                 }
         }
     }
 
+    /**
+    * @throws { BusinessException } 11105001 - Invalid parameter error.
+    */
     func readArrStr(cArr: CArrString): Array<String> {
         var result = ArrayList<String>()
         if (cArr.head.isNotNull()) {
@@ -134,7 +138,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
                 unsafe { result.add(cArr.head.read(i).toString()) }
             }
         } else {
-            throw BusinessException(11105001, "Parameter error.")
+            throw BusinessException(11105001, "Invalid parameter error.")
         }
         return result.toArray()
     }
