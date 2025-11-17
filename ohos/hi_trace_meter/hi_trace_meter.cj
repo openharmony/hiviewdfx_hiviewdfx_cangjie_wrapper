@@ -45,8 +45,8 @@ public class HiTraceMeter {
      * is specified by name, and the taskId is used to distinguish the tasks. It must be followed by
      * finishTrace, the name and taskId need to be the same.
      *
-     * @param { String } name - Indicates the name of the trace to start.
-     * @param { Int32 } taskId - Indicates the task ID to distinguish different tasks.
+     * @param { String } name - Indicates the task name.
+     * @param { Int32 } taskId - The unique id used to distinguish the tasks and match with the id in follow finishTrace.
      */
     @!APILevel[
         since: "22",
@@ -66,8 +66,9 @@ public class HiTraceMeter {
      * This method is invoked at the end of a transaction to indicate that a task has ended, whose name
      * is specified by name. This method must be invoked after startTrace.
      *
-     * @param { String } name - Indicates the name of the trace to finish.
-     * @param { Int32 } taskId - Indicates the task ID corresponding to the task that was started.
+     * @param { String } name - Indicates the task name. It must be the same with the name of startTrace.
+     * @param { Int32 } taskId - The unique id used to distinguish the tasks and must be the same with the
+     * taskId of startTrace.
      */
     @!APILevel[
         since: "22",
