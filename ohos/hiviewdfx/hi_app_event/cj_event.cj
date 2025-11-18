@@ -1059,7 +1059,6 @@ func readCArrParams(ret: CArrParameters): HashMap<String, EventValueType> {
 }
 
 /*
- * @throws { IllegalMemoryException } - Out of memory!
  * @throws { BusinessException } 11105001 - Parameter error.
  */
 func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventValueType {
@@ -1078,6 +1077,9 @@ func readValueType(valueType: UInt8, value: CPointer<Unit>, size: Int64): EventV
     }
 }
 
+/*
+ * @throws { BusinessException } 11105001 - Parameter error.
+ */
 func readIntValue(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
@@ -1086,7 +1088,9 @@ func readIntValue(value: CPointer<Unit>): EventValueType {
     return IntValue(res)
 }
 
-
+/*
+ * @throws { BusinessException } 11105001 - Parameter error.
+ */
 func readFloatValue(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
@@ -1103,6 +1107,9 @@ func readStringValue(value: CPointer<Unit>): EventValueType {
     return StringValue(res.toString())
 }
 
+/*
+ * @throws { BusinessException } 11105001 - Parameter error.
+ */
 func readBoolValue(value: CPointer<Unit>): EventValueType { 
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
@@ -1156,6 +1163,9 @@ func readArrBool(value: CPointer<Unit>, size: Int64): EventValueType {
     return ArrBool(res.toArray())
 }
 
+/*
+ * @throws { BusinessException } 11105001 - Parameter error.
+ */
 func readInt64Value(value: CPointer<Unit>): EventValueType {
     if (value.isNull()) {
         throw BusinessException(11105001, "Parameter error.")
@@ -1164,6 +1174,9 @@ func readInt64Value(value: CPointer<Unit>): EventValueType {
     return Int64Value(res)
 }
 
+/*
+ * @throws { BusinessException } 11105001 - Parameter error.
+ */
 func readArrInt64(value: CPointer<Unit>, size: Int64): EventValueType {
     var res = ArrayList<Int64>()
     if (value.isNull()) {
