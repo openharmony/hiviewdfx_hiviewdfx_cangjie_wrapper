@@ -101,8 +101,6 @@ class Test_hiappevent {
                                 "appEventInfo name=${AppEventGroups[i].appEventInfos[j].name}")
                             Hilog.info(0x0000, "test_hiAppEvent_addWatcher_02",
                                 "appEventInfo domain=${AppEventGroups[i].appEventInfos[j].domain}")
-                            Hilog.info(0x0000, "test_hiAppEvent_addWatcher_02",
-                                "appEventInfo event=${AppEventGroups[i].appEventInfos[j].eventType.getValue()}")
 
                             for ((k, v) in AppEventGroups[i].appEventInfos[j].params) {
                                 Hilog.info(0x0000, "test_hiAppEvent_addWatcher_02",
