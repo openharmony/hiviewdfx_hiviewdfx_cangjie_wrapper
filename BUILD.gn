@@ -1,0 +1,29 @@
+# Copyright (c) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/templates/cangjie/cjc.gni")
+
+hiviewdfx_cangjie_wrapper_packages_ohos = [
+  "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hilog:ohos.hilog",
+  "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiviewdfx:ohos.hiviewdfx",
+  "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hiviewdfx/hi_app_event:ohos.hiviewdfx.hi_app_event",
+  "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/ohos/hi_trace_meter:ohos.hi_trace_meter",
+]
+hiviewdfx_cangjie_wrapper_packages_kit = [
+  "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/kit/PerformanceAnalysisKit:kit.PerformanceAnalysisKit",
+]
+
+copy_ohos_cangjie_sdk_api_lib("copy_sdk_hiviewdfx_cangjie_libs") {
+  ohos_inputs = hiviewdfx_cangjie_wrapper_packages_ohos
+  kit_inputs = hiviewdfx_cangjie_wrapper_packages_kit
+}
