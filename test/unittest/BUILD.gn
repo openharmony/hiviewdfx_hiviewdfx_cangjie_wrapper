@@ -11,23 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
-
-import("//build/ohos.gni")
-import("//build/templates/cangjie/cjc.gni")
-
-ohos_cangjie_shared_library("ohos.hi_trace_meter") {
-  sources = [ "hi_trace_meter.cj" ]
-
-  external_deps = [ "hitrace:cj_hitracemeter_ffi" ]
-
-  cj_external_deps = [
-    "cangjie_ark_interop:ohos.ffi",
-    "cangjie_ark_interop:ohos.labels",
-  ]
-
-  cj_deps = [ "../hilog:ohos.hilog" ]
-
-  subsystem_name = "hiviewdfx"
-  part_name = "hiviewdfx_cangjie_wrapper"
+group("unittest") {
+  testonly = true
+  deps = [ "ohos/hilog/test:ohos.hilog.test" ]
 }
