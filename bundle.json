@@ -49,7 +49,9 @@
                     "name": "//base/hiviewdfx/hiviewdfx_cangjie_wrapper:copy_sdk_hiviewdfx_cangjie_libs_kit"
                 }
             ],
-            "test": []
+            "test": [
+                "//base/hiviewdfx/hiviewdfx_cangjie_wrapper/test/unittest:unittest"
+            ]
         }
     }
 }
