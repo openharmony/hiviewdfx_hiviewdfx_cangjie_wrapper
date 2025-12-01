@@ -37,6 +37,7 @@ let ERROR_CODE_MAP: HashMap<Int32, String> = HashMap<Int32, String>(
     (11102005, "Invalid timeout value."),
     (11103001, "Invalid max storage quota value."),
     (11104001, "Invalid size value."),
+    (11105001, "Parameter error."),
     (16000003, "Id does not exist.")
 )
 
