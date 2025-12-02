@@ -77,6 +77,7 @@ public class AppEventPackageHolder <: RemoteDataLite {
      * @param { Int32 } size - Data size threshold, in bytes. The value range is [0, $2^{31}$-1]. If the value is out of 
      * the range, an exception is thrown.
      * @throws { BusinessException } 11104001 - Invalid size value.
+     * @throws { BusinessException } 11105001 - Invalid parameter error.
      */
     @!APILevel[
         since: "22",
