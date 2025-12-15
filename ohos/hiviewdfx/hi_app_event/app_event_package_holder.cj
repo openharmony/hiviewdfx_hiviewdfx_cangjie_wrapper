@@ -86,9 +86,9 @@ public class AppEventPackageHolder <: RemoteDataLite {
     ]
     public func setSize(size: Int32): Unit {
         let ret = unsafe { FfiOHOSHiAppEventSetSize(getID(), size) }
-        match (ret) {
-            case SUCCESS_CODE => return
-            case -1i32 => throw BusinessException(11105001, getErrorInfo(11105001))
+        match {
+            case ret == SUCCESS_CODE => return
+            case ret == -1i32 => throw BusinessException(11105001, getErrorInfo(11105001))
             case _ => throw BusinessException(ret, getErrorInfo(ret))
         }
     }
