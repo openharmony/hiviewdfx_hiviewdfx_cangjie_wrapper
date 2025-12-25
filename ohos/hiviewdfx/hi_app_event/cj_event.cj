@@ -685,11 +685,11 @@ public class Processor {
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var eventConfigs: Array<AppEventReportConfig>
-    @!Hide
+    @!Hide[isChecked: true]
     internal var configId: Int64 = 0
-    @!Hide
+    @!Hide[isChecked: true]
     internal var customConfigs: HashMap<String, String> = HashMap<String, String>()
-    @!Hide
+    @!Hide[isChecked: true]
     internal var configName: String = ""
 
     /**
@@ -778,7 +778,7 @@ public class AppEventPackage {
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public var data: Array<String>
-    @!Hide
+    @!Hide[isChecked: true]
     internal var appEventInfos: Array<AppEventInfo> = Array<AppEventInfo>()
 
     init(packageId: Int32, row: Int32, size: Int32, data: Array<String>) {
