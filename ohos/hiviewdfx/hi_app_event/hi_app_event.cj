@@ -17,7 +17,7 @@
 
 package ohos.hiviewdfx.hi_app_event
 
-import ohos.ffi.{RetDataBool, RetDataCString, RetDataI64, cjArr2CArr}
+import ohos.ffi.{RetDataBool, RetDataCString, RetDataI64}
 import ohos.business_exception.BusinessException
 import ohos.labels.APILevel
 
