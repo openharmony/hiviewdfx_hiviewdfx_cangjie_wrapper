@@ -17,8 +17,6 @@
 
 package ohos.hilog
 
-import ohos.labels.APILevel
-
 protected class HilogChannel {
     static const TYPE_APP: UInt32 = 0
     static const TYPE_INIT: UInt32 = 1
