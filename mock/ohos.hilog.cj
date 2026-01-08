@@ -16,52 +16,381 @@
 package ohos.hilog
 
 import ohos.labels.APILevel
+import ohos.business_exception.BusinessException
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
-public enum LogLevel {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
-    Debug
-    | @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
-    Info
-    | @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
-    Warning
-    | @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
-    Error
-    | @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
-    Fatal
-    | ...
+foreign func HiLogIsLoggable(domain: UInt32, tag: CString, level: UInt32): Bool
+
+foreign func HiLogPrint(ty: UInt32, level: UInt32, domain: UInt32, tag: CString, format: CString, content: CString): Unit
+
+protected class HilogChannel {
+    static const TYPE_APP: UInt32 = 0
+    static const TYPE_INIT: UInt32 = 1
+    static const TYPE_CORE: UInt32 = 3
+    static const TYPE_KMSG: UInt32 = 4
+    static const LEVEL_DEBUG: UInt32 = 3
+    static const LEVEL_INFO: UInt32 = 4
+    static const LEVEL_WARN: UInt32 = 5
+    static const LEVEL_ERROR: UInt32 = 6
+    static const LEVEL_FATAL: UInt32 = 7
+
+    private let type_: UInt32
+    private let domain_: UInt32
+    private let tag_: CString
+
+    protected init(ty: UInt32, domain: UInt32, tag: String) {
+        type_ = ty
+        domain_ = domain
+        unsafe { tag_ = LibC.mallocCString(tag) }
+    }
+
+    ~init() {
+        unsafe { LibC.free(tag_) }
+    }
+
+    protected func isLoggable(level: UInt32): Bool {
+        unsafe { HiLogIsLoggable(domain_, tag_, level) }
+    }
+
+    protected func debug<T>(message: T): Unit where T <: ToString {
+        dolog(message.toString(), LEVEL_DEBUG)
+    }
+
+    protected func info<T>(message: T): Unit where T <: ToString {
+        dolog(message.toString(), LEVEL_INFO)
+    }
+
+    protected func warn<T>(message: T): Unit where T <: ToString {
+        dolog(message.toString(), LEVEL_WARN)
+    }
+
+    protected func error<T>(message: T): Unit where T <: ToString {
+        dolog(message.toString(), LEVEL_ERROR)
+    }
+
+    protected func fatal<T>(message: T): Unit where T <: ToString {
+        dolog(message.toString(), LEVEL_FATAL)
+    }
+
+    private func dolog(message: String, level: UInt32) {
+        if (isLoggable(level)) {
+            unsafe {
+                let cstr = LibC.mallocCString(message)
+                HiLogPrint(type_, level, domain_, tag_, Hilog.STANDARD_FORMAT, cstr)
+                LibC.free(cstr)
+            }
+        }
+    }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
+/**
+ * Log level define
+ */
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiLog"
+]
+public enum LogLevel {
+    /**
+     * DEBUG Log level define
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
+    Debug
+    |
+    /**
+     * INFO Log level define
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
+    Info
+    |
+    /**
+     * WARN Log level define
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
+    Warning
+    |
+    /**
+     * ERROR Log level define
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
+    Error
+    |
+    /**
+     * FATAL Log level define
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
+    Fatal
+    | ...
+
+    func getValue(): UInt32 {
+        match (this) {
+            case Debug => 3
+            case Info => 4
+            case Warning => 5
+            case Error => 6
+            case Fatal => 7
+            case _ => throw BusinessException(11105001, "Parameter error.")
+        }
+    }
+}
+
+let DEFAULT_LOG_TYPE: UInt32 = 0
+
+/**
+ * Provides interfaces to generate system logs.
+ */
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiLog"
+]
 public class Hilog {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
+    static let STANDARD_FORMAT = unsafe { LibC.mallocCString("%{public}s") }
+    static init() {
+        Thread.handleUncaughtExceptionBy {
+            _: Thread, exception: Exception =>
+            Hilog.error(0, "exception", "An exception has occurred:")
+            Hilog.error(0, "exception", exception.toString())
+            var traceElementArray = exception.getStackTrace()
+            for (element in traceElementArray) {
+                Hilog.error(0, "exception",
+                    "\t at ${element.declaringClass}.${element.methodName}(${element.fileName}:${element.lineNumber})")
+            }
+        }
+    }
+
+    /**
+     * Checks whether logs of the specified tag, and level can be printed.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
+     * @param { LogLevel } level - log level
+     * @returns { Bool } Returns true if the log can be printed; false otherwise.
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
     public static func isLoggable(domain: UInt32, tag: String, level: LogLevel): Bool {
-        return true
+        unsafe {
+            let cstr = LibC.mallocCString(tag)
+            let result = HiLogIsLoggable(domain, cstr, level.getValue())
+            LibC.free(cstr)
+            return result
+        }
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
+    /**
+     * Outputs debug-level logs.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                         if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log parameters.
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
     public static func debug(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        return ()
+        let logContent = parseLogContent(format, args)
+        unsafe {
+            try (
+                cTag = LibC.mallocCString(tag).asResource(),
+                cFormat = LibC.mallocCString(logContent).asResource()
+            ) {
+                HiLogPrint(DEFAULT_LOG_TYPE, LogLevel.Debug.getValue(), domain, cTag.value, STANDARD_FORMAT,
+                    cFormat.value)
+            }
+        }
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
+    /**
+     * Outputs info-level logs.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log format parameters.
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
     public static func info(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        return ()
+        let logContent = parseLogContent(format, args)
+        unsafe {
+            try (
+                cTag = LibC.mallocCString(tag).asResource(),
+                cFormat = LibC.mallocCString(logContent).asResource()
+            ) {
+                HiLogPrint(
+                    DEFAULT_LOG_TYPE,
+                    LogLevel.Info.getValue(),
+                    domain,
+                    cTag.value,
+                    STANDARD_FORMAT,
+                    cFormat.value
+                )
+            }
+        }
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
+    /**
+     * Outputs warning-level logs.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log parameters.
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
     public static func warn(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        return ()
+        let logContent = parseLogContent(format, args)
+        unsafe {
+            try (
+                cTag = LibC.mallocCString(tag).asResource(),
+                cFormat = LibC.mallocCString(logContent).asResource()
+            ) {
+                HiLogPrint(
+                    DEFAULT_LOG_TYPE,
+                    LogLevel.Warning.getValue(),
+                    domain,
+                    cTag.value,
+                    STANDARD_FORMAT,
+                    cFormat.value
+                )
+            }
+        }
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
+    /**
+     * Outputs error-level logs.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log format parameters.
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
     public static func error(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        return ()
+        let logContent = parseLogContent(format, args)
+        unsafe {
+            try (
+                cTag = LibC.mallocCString(tag).asResource(),
+                cFormat = LibC.mallocCString(logContent).asResource()
+            ) {
+                HiLogPrint(DEFAULT_LOG_TYPE, LogLevel.Error.getValue(), domain, cTag.value, STANDARD_FORMAT,
+                    cFormat.value)
+            }
+        }
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiLog"]
+    /**
+     * Outputs fatal-level logs.
+     * @param { UInt32 } domain - Indicates the service domain, which is a hexadecimal integer ranging from 0x0 to 0xFFFF
+     *                          if the value exceeds the range, logs cannot be printed.
+     * @param { String } tag - Identifies the log tag, length cannot exceed 32 bytes, the excess part will be truncated.
+     * @param { String } format - Indicates the log format string.
+     * @param { Array<String> } args - Indicates the log parameters.
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiLog"
+    ]
     public static func fatal(domain: UInt32, tag: String, format: String, args: Array<String>): Unit {
-        return ()
+        let logContent = parseLogContent(format, args)
+        unsafe {
+            try (
+                cTag = LibC.mallocCString(tag).asResource(),
+                cFormat = LibC.mallocCString(logContent).asResource()
+            ) {
+                HiLogPrint(DEFAULT_LOG_TYPE, LogLevel.Fatal.getValue(), domain, cTag.value, STANDARD_FORMAT,
+                    cFormat.value)
+            }
+        }
     }
-    
+}
+
+struct LogContentInfo {
+    var count: Int64
+    var isPriv: Bool
+
+    init(count!: Int64 = 0, isPriv!: Bool = true) {
+        this.count = count
+        this.isPriv = isPriv
+    }
+}
+
+func parseLogContent(formatStr: String, args: Array<String>): String {
+    var logContent: String = ""
+    if (args.isEmpty()) {
+        return formatStr
+    }
+
+    let size = args.size
+    let len = formatStr.size
+    const PUBLIC_LEN:Int64 = 6
+    const PRIVATE_LEN:Int64 = 7
+    const PROPERTY_POS:Int64 = 2
+
+    var info: LogContentInfo = LogContentInfo()
+    var pos: Int64 = 0
+    while (pos < len) {
+        var showPriv = true
+
+        if (String.fromUtf8([formatStr[pos]]) != "%") {
+            logContent += String.fromUtf8([formatStr[pos]])
+            pos += 1
+            continue
+        }
+
+        if (info.count >= size) {
+            break
+        }
+
+        if ((pos + PUBLIC_LEN + PROPERTY_POS) < formatStr.size &&
+            formatStr[(pos + PROPERTY_POS)..(pos + PROPERTY_POS + PUBLIC_LEN)] == "public") {
+            pos += (PUBLIC_LEN + PROPERTY_POS)
+            showPriv = false
+        } else if ((pos + PRIVATE_LEN + PROPERTY_POS) < formatStr.size &&
+            formatStr[(pos + PROPERTY_POS)..(pos + PROPERTY_POS + PRIVATE_LEN)] == "private") {
+            pos += (PRIVATE_LEN + PROPERTY_POS)
+        }
+
+        info.isPriv = showPriv
+
+        if (info.isPriv) {
+            logContent += "<private>"
+        } else {
+            logContent += args[info.count]
+        }
+        info.count += 1
+        pos += 1
+    }
+
+    if (pos < len) {
+        logContent += formatStr[pos..]
+    }
+
+    return logContent
 }
