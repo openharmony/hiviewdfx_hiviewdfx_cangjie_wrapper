@@ -188,15 +188,27 @@ public enum EventType {
 
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class Param {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static const USER_ID = "user_id"
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static const DISTRIBUTED_SERVICE_NAME = "ds_name"
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static const DISTRIBUTED_SERVICE_INSTANCE_ID = "ds_instance_id"
     
     public init() {
@@ -204,21 +216,39 @@ public class Param {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class AppEventInfo {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var domain: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var name: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var eventType: EventType
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var params: HashMap<String, EventValueType>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public init(domain: String, name: String, event: EventType, params: HashMap<String, EventValueType>) {
         super()
         this.domain = String()
@@ -228,15 +258,27 @@ public class AppEventInfo {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class ConfigOption {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var disable: Bool
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var maxStorage: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public init(disable!: Bool = false, maxStorage!: String = "10M") {
         super()
         this.disable = true
@@ -244,18 +286,33 @@ public class ConfigOption {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class AppEventReportConfig {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var domain: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var name: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var isRealTime: Bool
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public init(domain!: String = "", name!: String = "", isRealTime!: Bool = false) {
         super()
         this.domain = String()
@@ -264,42 +321,81 @@ public class AppEventReportConfig {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class Processor {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var name: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var debugMode: Bool
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var routeInfo: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var appId: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var onStartReport: Bool
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var onBackgroundReport: Bool
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var periodReport: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var batchReport: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var userIds: Array<String>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var userProperties: Array<String>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var eventConfigs: Array<AppEventReportConfig>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public init(name: String, debugMode!: Bool = false, routeInfo!: String = "", appId!: String = "",
         onStartReport!: Bool = false, onBackgroundReport!: Bool = false, periodReport!: Int32 = 0,
         batchReport!: Int32 = 0, userIds!: Array<String> = [], userProperties!: Array<String> = [],
@@ -319,18 +415,33 @@ public class Processor {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class AppEventPackage {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var packageId: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var row: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var size: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var data: Array<String>
     
     public init() {
@@ -404,18 +515,33 @@ public class AppEventPackageHolder <: RemoteDataLite {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class TriggerCondition {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var row: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var size: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var timeOut: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public init(row!: Int32 = 0, size!: Int32 = 0, timeOut!: Int32 = 0) {
         super()
         this.row = 0
@@ -424,18 +550,33 @@ public class TriggerCondition {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class AppEventFilter {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var domain: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var eventTypes: Array<EventType>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var names: Array<String>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public init(domain: String, eventTypes!: Array<EventType> = [], names!: Array<String> = []) {
         super()
         this.domain = String()
@@ -444,12 +585,21 @@ public class AppEventFilter {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class AppEventGroup {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var name: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var appEventInfos: Array<AppEventInfo>
     
     public init() {
@@ -459,24 +609,45 @@ public class AppEventGroup {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class Watcher {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var name: String
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var triggerCondition: TriggerCondition
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var appEventFilters: Array<AppEventFilter>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var onTrigger: Option<(Int32, Int32, AppEventPackageHolder) -> Unit>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public var onReceive: Option<(String, Array<AppEventGroup>) -> Unit>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public init(name: String, triggerCondition!: TriggerCondition = TriggerCondition(),
         appEventFilters!: Array<AppEventFilter> = [],
         onTrigger!: Option<(Int32, Int32, AppEventPackageHolder) -> Unit> = None,
@@ -494,59 +665,100 @@ public class Watcher {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+]
 public class HiAppEvent {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent", throwexception: true, workerthread: true]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent",
+        throwexception: true,
+        workerthread: true
+    ]
     public static func write(info: AppEventInfo): Unit {
         return ()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent", throwexception: true]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent",
+        throwexception: true
+    ]
     public static func configure(config: ConfigOption): Unit {
         return ()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static func addProcessor(processor: Processor): Int64 {
         return 0
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static func removeProcessor(id: Int64): Unit {
         return ()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static func setUserId(name: String, value: String): Unit {
         return ()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static func getUserId(name: String): String {
         return String()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static func setUserProperty(name: String, value: String): Unit {
         return ()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static func getUserProperty(name: String): String {
         return String()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent"
+    ]
     public static func clearData(): Unit {
         return ()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent", throwexception: true]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent",
+        throwexception: true
+    ]
     public static func addWatcher(watcher: Watcher): Option<AppEventPackageHolder> {
         return None
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiAppEvent", throwexception: true]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiAppEvent",
+        throwexception: true
+    ]
     public static func removeWatcher(watcher: Watcher): Unit {
         return ()
     }
