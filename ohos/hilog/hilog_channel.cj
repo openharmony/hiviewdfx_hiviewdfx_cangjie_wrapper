@@ -45,7 +45,7 @@ protected class HilogChannel {
     }
 
     protected func isLoggable(level: UInt32): Bool {
-        unsafe { HiLogIsLoggable(domain_, tag_, level) }
+        unsafe { FfiOHOSHiLogIsLoggable(domain_, tag_, level) }
     }
 
     protected func debug<T>(message: T): Unit where T <: ToString {
