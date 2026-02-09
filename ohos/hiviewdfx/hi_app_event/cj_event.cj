@@ -243,6 +243,8 @@ public class Domain {
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const OS: String = "OS"
+
+    init() {}
 }
 
 /**
@@ -296,6 +298,8 @@ public class Event {
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const APP_FREEZE: String = "APP_FREEZE"
+
+    init() {}
 }
 
 /**
@@ -330,6 +334,8 @@ public class Param {
         syscap: "SystemCapability.HiviewDFX.HiAppEvent"
     ]
     public static const DISTRIBUTED_SERVICE_INSTANCE_ID: String = "ds_instance_id"
+
+    init() {}
 }
 
 class Parameters {
