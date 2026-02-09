@@ -211,7 +211,7 @@ public class Param {
     ]
     public static const DISTRIBUTED_SERVICE_INSTANCE_ID = "ds_instance_id"
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -763,7 +763,7 @@ public class HiAppEvent {
         return ()
     }
     
-    public init() {
+    init() {
         super()
     }
 }

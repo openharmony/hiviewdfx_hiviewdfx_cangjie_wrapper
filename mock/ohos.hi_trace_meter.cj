@@ -38,7 +38,7 @@ public class HiTraceMeter {
         return ()
     }
     
-    public init() {
+    init() {
         super()
     }
 }
