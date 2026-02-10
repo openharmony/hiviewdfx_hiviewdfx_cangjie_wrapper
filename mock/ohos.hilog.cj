@@ -329,6 +329,8 @@ public class Hilog {
             }
         }
     }
+
+    init() {}
 }
 
 struct LogContentInfo {

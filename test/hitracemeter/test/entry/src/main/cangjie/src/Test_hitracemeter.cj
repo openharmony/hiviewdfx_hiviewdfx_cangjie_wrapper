@@ -28,7 +28,6 @@ class Test_hitracemeter {
     @TestCase
     @Tag[APILevel22, TestLevel0]
     func Test_HiTraceMeter() {
-        let hiTraceMeter = HiTraceMeter() // for coverage
         HiTraceMeter.startTrace("myTestFunc", 1)
         HiTraceMeter.finishTrace("myTestFunc", 1)
     }
