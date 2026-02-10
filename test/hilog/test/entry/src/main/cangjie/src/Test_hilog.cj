@@ -36,7 +36,6 @@ class Test_hilog {
     @TestCase
     @Tag[APILevel22, TestLevel0]
     func Test_Hilog() {
-        let hilog = Hilog()
         @Expect(Hilog.isLoggable(0, "testTag", LogLevel.Info), true)
         Hilog.debug(0x0001, "testTag", "Hello World!")
         Hilog.info(0x0001, "testTag", "Hello World!")
