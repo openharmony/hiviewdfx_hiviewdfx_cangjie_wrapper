@@ -31,7 +31,9 @@ ohos_cangjie_shared_library("ohos.hi_trace_meter") {
     "cangjie_ark_interop:ohos.labels",
   ]
 
-  cj_deps = [ "../hilog:ohos.hilog" ]
+  cj_deps = [
+    "../hilog:ohos.hilog",
+  ]
 
   subsystem_name = "hiviewdfx"
   part_name = "hiviewdfx_cangjie_wrapper"
