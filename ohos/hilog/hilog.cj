@@ -20,11 +20,11 @@ package ohos.hilog
 import ohos.labels.APILevel
 import ohos.business_exception.BusinessException
 
-foreign func HiLogIsLoggable(domain: UInt32, tag: CString, level: UInt32): Bool
+foreign func FfiOHOSHiLogIsLoggable(domain: UInt32, tag: CString, level: UInt32): Bool
 
 foreign func HiLogPrint(ty: UInt32, level: UInt32, domain: UInt32, tag: CString, format: CString, content: CString): Unit
 
-foreign func IsPrivateSwitchOn(): Bool
+foreign func FfiOHOSIsPrivateSwitchOn(): Bool
 
 /**
  * Log level define
@@ -93,6 +93,8 @@ public enum LogLevel {
 }
 
 let DEFAULT_LOG_TYPE: UInt32 = 0
+let DOMAIN_APP_MIN: UInt32 = 0x01
+let DOMAIN_APP_MAX: UInt32 = 0xffff
 
 /**
  * Provides interfaces to generate system logs.
@@ -129,9 +131,12 @@ public class Hilog {
         syscap: "SystemCapability.HiviewDFX.HiLog"
     ]
     public static func isLoggable(domain: UInt32, tag: String, level: LogLevel): Bool {
+        if ((domain < DOMAIN_APP_MIN) || (domain > DOMAIN_APP_MAX)) {
+            return false
+        }
         unsafe {
             let cstr = LibC.mallocCString(tag)
-            let result = HiLogIsLoggable(domain, cstr, level.getValue())
+            let result = FfiOHOSHiLogIsLoggable(domain, cstr, level.getValue())
             LibC.free(cstr)
             return result
         }
@@ -323,7 +328,7 @@ func parseLogContent(formatStr: String, args: Array<String>): String {
             pos += (PRIVATE_LEN + PROPERTY_POS)
         }
 
-        info.isPriv = showPriv && unsafe { IsPrivateSwitchOn() }
+        info.isPriv = showPriv && unsafe { FfiOHOSIsPrivateSwitchOn() }
 
         if (info.isPriv) {
             logContent += "<private>"
