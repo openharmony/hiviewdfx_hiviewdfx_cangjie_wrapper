@@ -93,7 +93,7 @@ public enum LogLevel {
 }
 
 let DEFAULT_LOG_TYPE: UInt32 = 0
-let DOMAIN_APP_MIN: UInt32 = 0x01
+let DOMAIN_APP_MIN: UInt32 = 0x0
 let DOMAIN_APP_MAX: UInt32 = 0xffff
 
 /**
