@@ -21,8 +21,8 @@ ohos_cangjie_shared_library("kit.PerformanceAnalysisKit") {
 
   cj_deps = [
     "../../ohos/hi_trace_meter:ohos.hi_trace_meter",
-    "../../ohos/hilog:ohos.hilog",
     "../../ohos/hiviewdfx/hi_app_event:ohos.hiviewdfx.hi_app_event",
+    "../../ohos/hilog:ohos.hilog",
   ]
 
   subsystem_name = "hiviewdfx"

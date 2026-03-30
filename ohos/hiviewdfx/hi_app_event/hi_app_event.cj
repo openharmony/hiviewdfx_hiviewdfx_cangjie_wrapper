@@ -336,4 +336,6 @@ public class HiAppEvent {
                 throw BusinessException(code, getErrorInfo(code))
         }
     }
+
+    init() {}
 }

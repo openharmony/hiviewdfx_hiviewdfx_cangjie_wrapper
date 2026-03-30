@@ -17,19 +17,28 @@ package ohos.hi_trace_meter
 
 import ohos.labels.APILevel
 
-@!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiTrace"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.HiviewDFX.HiTrace"
+]
 public class HiTraceMeter {
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiTrace"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiTrace"
+    ]
     public static func startTrace(name: String, taskId: Int32): Unit {
         return ()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.HiviewDFX.HiTrace"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.HiviewDFX.HiTrace"
+    ]
     public static func finishTrace(name: String, taskId: Int32): Unit {
         return ()
     }
     
-    public init() {
+    init() {
         super()
     }
 }

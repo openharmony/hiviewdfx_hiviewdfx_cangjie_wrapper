@@ -37,7 +37,9 @@ ohos_cangjie_shared_library("ohos.hiviewdfx.hi_app_event") {
     "cangjie_ark_interop:ohos.labels",
   ]
 
-  cj_deps = [ "../../hilog:ohos.hilog" ]
+  cj_deps = [
+    "../../hilog:ohos.hilog",
+  ]
 
   external_deps = [ "hiappevent:cj_hiappevent_ffi" ]
 

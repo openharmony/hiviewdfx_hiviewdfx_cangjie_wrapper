@@ -75,7 +75,6 @@ class Test_hiappevent {
             sleepFor(1.second)
             HiAppEvent.removeWatcher(watcher)
             @Expect(true)
-            HiAppEvent()
         } catch (e: Exception) {
             @Expect(false)
         }
@@ -465,14 +464,12 @@ class Test_hiappevent {
     @TestCase
     @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_Domain() {
-        Domain()
         @Expect(Domain.OS, "OS")
     }
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_Param() {
-        Param()
         @Expect(Param.USER_ID, "user_id")
         @Expect(Param.DISTRIBUTED_SERVICE_NAME, "ds_name")
         @Expect(Param.DISTRIBUTED_SERVICE_INSTANCE_ID, "ds_instance_id")
@@ -481,7 +478,6 @@ class Test_hiappevent {
     @TestCase
     @Tag[APILevel22, TestLevel0]
     func Test_hiAppEvent_Event() {
-        HEvent()
         @Expect(HEvent.USER_LOGIN, "hiappevent.user_login")
         @Expect(HEvent.USER_LOGOUT, "hiappevent.user_logout")
         @Expect(HEvent.DISTRIBUTED_SERVICE_START, "hiappevent.distributed_service_start")
