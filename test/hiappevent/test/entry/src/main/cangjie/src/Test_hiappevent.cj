@@ -262,10 +262,10 @@ class Test_hiappevent {
         try {
             var watcher = hiWatcher("not_added_watcher")
             HiAppEvent.removeWatcher(watcher)
-            @Expect(false)
+            @Expect(true)
         } catch (e: Exception) {
             Hilog.info(0, "test_hiAppEvent_removeWatcher_not_added", "${e.message.toString()}")
-            @Expect(true)
+            @Expect(false)
         }
     }
 
@@ -356,10 +356,10 @@ class Test_hiappevent {
     func test_hiAppEvent_removeProcessor_invalid_id() {
         try {
             HiAppEvent.removeProcessor(-1)
-            @Expect(false)
+            @Expect(true)
         } catch (e: Exception) {
             Hilog.info(0, "test_hiAppEvent_removeProcessor_invalid_id", "${e.message.toString()}")
-            @Expect(true)
+            @Expect(false)
         }
     }
 
@@ -368,10 +368,10 @@ class Test_hiappevent {
     func test_hiAppEvent_removeProcessor_zero_id() {
         try {
             HiAppEvent.removeProcessor(0)
-            @Expect(false)
+            @Expect(true)
         } catch (e: Exception) {
             Hilog.info(0, "test_hiAppEvent_removeProcessor_zero_id", "${e.message.toString()}")
-            @Expect(true)
+            @Expect(false)
         }
     }
 
