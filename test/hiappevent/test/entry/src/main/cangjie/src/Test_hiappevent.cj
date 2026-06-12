@@ -219,6 +219,58 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_invalid_name() {
+        try {
+            var watcher = hiWatcher("")
+            HiAppEvent.addWatcher(watcher)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_addWatcher_invalid_name", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_invalid_name_format() {
+        try {
+            var watcher = hiWatcher("123_invalid_name")
+            HiAppEvent.addWatcher(watcher)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_addWatcher_invalid_name_format", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeWatcher_invalid_name() {
+        try {
+            var watcher = hiWatcher("")
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeWatcher_invalid_name", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeWatcher_not_added() {
+        try {
+            var watcher = hiWatcher("not_added_watcher")
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeWatcher_not_added", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addProcessor() {
         try {
             var processor: Processor = Processor("test_processor")
@@ -296,6 +348,30 @@ class Test_hiappevent {
             @Expect(true)
         } catch (e: Exception) {
             @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeProcessor_invalid_id() {
+        try {
+            HiAppEvent.removeProcessor(-1)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeProcessor_invalid_id", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeProcessor_zero_id() {
+        try {
+            HiAppEvent.removeProcessor(0)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeProcessor_zero_id", "${e.message.toString()}")
+            @Expect(true)
         }
     }
 
@@ -446,6 +522,32 @@ class Test_hiappevent {
         } catch (e: Exception) {
             @Expect(e.message.toString(), "Invalid max storage quota value.")
             Hilog.info(0, "test_hiAppEvent_configure_error", "${e.message.toString()}")
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_configure_invalid_maxStorage() {
+        try {
+            var config: ConfigOption = ConfigOption(disable: false, maxStorage: "")
+            HiAppEvent.configure(config)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_configure_invalid_maxStorage", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_configure_negative_maxStorage() {
+        try {
+            var config: ConfigOption = ConfigOption(disable: false, maxStorage: "-100M")
+            HiAppEvent.configure(config)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_configure_negative_maxStorage", "${e.message.toString()}")
+            @Expect(true)
         }
     }
 
