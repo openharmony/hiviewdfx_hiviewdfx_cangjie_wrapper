@@ -254,6 +254,22 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_write_05() {
+        try {
+            var params = HashMap<String, EventValueType>([
+                ("int64_data", Int64Value(9223372036854775807)),
+                ("arrint64_data", ArrInt64([1234567890123, 9876543210987, 1111111111111]))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain", "test_event_int64", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_write_error() {
         try {
             var params = HashMap<String, EventValueType>([("", EventValueType.StringValue(""))])
