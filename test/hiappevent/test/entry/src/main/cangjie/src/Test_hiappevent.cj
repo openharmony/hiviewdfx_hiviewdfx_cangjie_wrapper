@@ -82,6 +82,90 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_takeNext_with_data() {
+        try {
+            var condition = TriggerCondition(row: 1, size: 120, timeOut: 0)
+            var appEventFilter = [AppEventFilter("test_domain_takeNext", eventTypes: [EventType.Fault], names: ["test_event_takeNext"]
+            )]
+            var watcher = hiWatcher(
+                "watcher_takeNext",
+                triggerCondition: condition,
+                appEventFilters: appEventFilter,
+                onTrigger: Some(
+                    {
+                        row, size, holder =>
+                        Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data",
+                            "HiAppEvent onTrigger: curRow=${row},curSize=${size}")
+                        while (let Some(v) <- holder.takeNext()) {
+                            let eventPkg = v
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent packageId=${eventPkg.packageId}")
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent row=${eventPkg.row}")
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent size=${eventPkg.size}")
+                            for (i in 0..eventPkg.data.size) {
+                                Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent info=${eventPkg.data[i]}")
+                            }
+                        }
+                    }
+                )
+            )
+            HiAppEvent.addWatcher(watcher)
+            var params = HashMap<String, EventValueType>([
+                ("int64_data", Int64Value(9223372036854775807)),
+                ("arrint64_data", ArrInt64([1234567890123, 9876543210987]))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain_takeNext", "test_event_takeNext", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            sleepFor(2.second)
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_with_multiple_names() {
+        try {
+            var condition = TriggerCondition(row: 1, size: 120, timeOut: 0)
+            var appEventFilter = [AppEventFilter(
+                "test_domain_multiple",
+                eventTypes: [EventType.Fault, EventType.Statistic],
+                names: ["event_1", "event_2", "event_3", "event_4", "event_5"]
+            )]
+            var watcher = hiWatcher(
+                "watcher_multiple_names",
+                triggerCondition: condition,
+                appEventFilters: appEventFilter,
+                onTrigger: Some(
+                    {
+                        row, size, holder =>
+                        Hilog.info(0, "test_hiAppEvent_addWatcher_with_multiple_names",
+                            "HiAppEvent onTrigger: curRow=${row},curSize=${size}")
+                        while (let Some(v) <- holder.takeNext()) {
+                            let eventPkg = v
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_with_multiple_names", "HiAppEvent packageId=${eventPkg.packageId}")
+                        }
+                    }
+                )
+            )
+            HiAppEvent.addWatcher(watcher)
+            var params = HashMap<String, EventValueType>([
+                ("int_data", IntValue(100)),
+                ("str_data", StringValue("test"))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain_multiple", "event_1", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            sleepFor(2.second)
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addWatcher_02() {
         try {
             var condition = TriggerCondition(row: 1)
@@ -170,6 +254,33 @@ class Test_hiappevent {
         } catch (e: Exception) {
             Hilog.info(0, "test_hiAppEvent_addProcessor_with_AppEventReportConfig", "${e.message.toString()}")
             @Expect(e.message.toString(), "Parameter error. Parameter verification failed.")
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addProcessor_with_large_arrays() {
+        try {
+            let userIds = ["user_id_1", "user_id_2", "user_id_3", "user_id_4", "user_id_5"]
+            let userProperties = ["prop_1", "prop_2", "prop_3", "prop_4", "prop_5"]
+            let eventConfigs = [
+                AppEventReportConfig(domain: "domain_1", name: "event_1"),
+                AppEventReportConfig(domain: "domain_2", name: "event_2"),
+                AppEventReportConfig(domain: "domain_3", name: "event_3")
+            ]
+            var processor: Processor = Processor(
+                "test_processor_large",
+                routeInfo: "test_route_info",
+                appId: "test_app_id",
+                userIds: userIds,
+                userProperties: userProperties,
+                eventConfigs: eventConfigs
+            )
+            let processorId = HiAppEvent.addProcessor(processor)
+            HiAppEvent.removeProcessor(processorId)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
         }
     }
 
