@@ -284,6 +284,25 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_write_empty_array() {
+        try {
+            var params = HashMap<String, EventValueType>([
+                ("empty_arr_int32", ArrInt32([])),
+                ("empty_arr_int64", ArrInt64([])),
+                ("empty_arr_string", ArrString([])),
+                ("empty_arr_bool", ArrBool([])),
+                ("empty_arr_float64", ArrFloat64([]))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain", "test_empty_array", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_configure_01() {
         try {
             var config: ConfigOption = ConfigOption(disable: false, maxStorage: "100M")
