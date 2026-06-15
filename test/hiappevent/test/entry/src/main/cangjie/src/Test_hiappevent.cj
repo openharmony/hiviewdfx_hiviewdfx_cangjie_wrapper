@@ -82,6 +82,90 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_takeNext_with_data() {
+        try {
+            var condition = TriggerCondition(row: 1, size: 120, timeOut: 0)
+            var appEventFilter = [AppEventFilter("test_domain_takeNext", eventTypes: [EventType.Fault], names: ["test_event_takeNext"]
+            )]
+            var watcher = hiWatcher(
+                "watcher_takeNext",
+                triggerCondition: condition,
+                appEventFilters: appEventFilter,
+                onTrigger: Some(
+                    {
+                        row, size, holder =>
+                        Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data",
+                            "HiAppEvent onTrigger: curRow=${row},curSize=${size}")
+                        while (let Some(v) <- holder.takeNext()) {
+                            let eventPkg = v
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent packageId=${eventPkg.packageId}")
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent row=${eventPkg.row}")
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent size=${eventPkg.size}")
+                            for (i in 0..eventPkg.data.size) {
+                                Hilog.info(0, "test_hiAppEvent_addWatcher_takeNext_with_data", "HiAppEvent info=${eventPkg.data[i]}")
+                            }
+                        }
+                    }
+                )
+            )
+            HiAppEvent.addWatcher(watcher)
+            var params = HashMap<String, EventValueType>([
+                ("int64_data", Int64Value(9223372036854775807)),
+                ("arrint64_data", ArrInt64([1234567890123, 9876543210987]))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain_takeNext", "test_event_takeNext", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            sleepFor(2.second)
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_with_multiple_names() {
+        try {
+            var condition = TriggerCondition(row: 1, size: 120, timeOut: 0)
+            var appEventFilter = [AppEventFilter(
+                "test_domain_multiple",
+                eventTypes: [EventType.Fault, EventType.Statistic],
+                names: ["event_1", "event_2", "event_3", "event_4", "event_5"]
+            )]
+            var watcher = hiWatcher(
+                "watcher_multiple_names",
+                triggerCondition: condition,
+                appEventFilters: appEventFilter,
+                onTrigger: Some(
+                    {
+                        row, size, holder =>
+                        Hilog.info(0, "test_hiAppEvent_addWatcher_with_multiple_names",
+                            "HiAppEvent onTrigger: curRow=${row},curSize=${size}")
+                        while (let Some(v) <- holder.takeNext()) {
+                            let eventPkg = v
+                            Hilog.info(0, "test_hiAppEvent_addWatcher_with_multiple_names", "HiAppEvent packageId=${eventPkg.packageId}")
+                        }
+                    }
+                )
+            )
+            HiAppEvent.addWatcher(watcher)
+            var params = HashMap<String, EventValueType>([
+                ("int_data", IntValue(100)),
+                ("str_data", StringValue("test"))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain_multiple", "event_1", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            sleepFor(2.second)
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addWatcher_02() {
         try {
             var condition = TriggerCondition(row: 1)
@@ -135,6 +219,58 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_invalid_name() {
+        try {
+            var watcher = hiWatcher("")
+            HiAppEvent.addWatcher(watcher)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_addWatcher_invalid_name", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addWatcher_invalid_name_format() {
+        try {
+            var watcher = hiWatcher("123_invalid_name")
+            HiAppEvent.addWatcher(watcher)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_addWatcher_invalid_name_format", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeWatcher_invalid_name() {
+        try {
+            var watcher = hiWatcher("")
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeWatcher_invalid_name", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeWatcher_not_added() {
+        try {
+            var watcher = hiWatcher("not_added_watcher")
+            HiAppEvent.removeWatcher(watcher)
+            @Expect(true)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeWatcher_not_added", "${e.message.toString()}")
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_addProcessor() {
         try {
             var processor: Processor = Processor("test_processor")
@@ -175,6 +311,33 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_addProcessor_with_large_arrays() {
+        try {
+            let userIds = ["user_id_1", "user_id_2", "user_id_3", "user_id_4", "user_id_5"]
+            let userProperties = ["prop_1", "prop_2", "prop_3", "prop_4", "prop_5"]
+            let eventConfigs = [
+                AppEventReportConfig(domain: "domain_1", name: "event_1"),
+                AppEventReportConfig(domain: "domain_2", name: "event_2"),
+                AppEventReportConfig(domain: "domain_3", name: "event_3")
+            ]
+            var processor: Processor = Processor(
+                "test_processor_large",
+                routeInfo: "test_route_info",
+                appId: "test_app_id",
+                userIds: userIds,
+                userProperties: userProperties,
+                eventConfigs: eventConfigs
+            )
+            let processorId = HiAppEvent.addProcessor(processor)
+            HiAppEvent.removeProcessor(processorId)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_removeProcessor_error() {
         try {
             var processor: Processor = Processor("test_processor")
@@ -184,6 +347,30 @@ class Test_hiappevent {
             HiAppEvent.removeProcessor(processorId)
             @Expect(true)
         } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeProcessor_invalid_id() {
+        try {
+            HiAppEvent.removeProcessor(-1)
+            @Expect(true)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeProcessor_invalid_id", "${e.message.toString()}")
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_removeProcessor_zero_id() {
+        try {
+            HiAppEvent.removeProcessor(0)
+            @Expect(true)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_removeProcessor_zero_id", "${e.message.toString()}")
             @Expect(false)
         }
     }
@@ -254,6 +441,22 @@ class Test_hiappevent {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_write_05() {
+        try {
+            var params = HashMap<String, EventValueType>([
+                ("int64_data", Int64Value(9223372036854775807)),
+                ("arrint64_data", ArrInt64([1234567890123, 9876543210987, 1111111111111]))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain", "test_event_int64", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_hiAppEvent_write_error() {
         try {
             var params = HashMap<String, EventValueType>([("", EventValueType.StringValue(""))])
@@ -263,6 +466,25 @@ class Test_hiappevent {
         } catch (e: Exception) {
             @Expect(e.message.toString(), "Invalid event domain.")
             Hilog.info(0, "test_hiAppEvent_write_error", "${e.message.toString()}")
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_write_empty_array() {
+        try {
+            var params = HashMap<String, EventValueType>([
+                ("empty_arr_int32", ArrInt32([])),
+                ("empty_arr_int64", ArrInt64([])),
+                ("empty_arr_string", ArrString([])),
+                ("empty_arr_bool", ArrBool([])),
+                ("empty_arr_float64", ArrFloat64([]))
+            ])
+            var appInfo: AppEventInfo = AppEventInfo("test_domain", "test_empty_array", EventType.Fault, params)
+            HiAppEvent.write(appInfo)
+            @Expect(true)
+        } catch (e: Exception) {
+            @Expect(false)
         }
     }
 
@@ -300,6 +522,32 @@ class Test_hiappevent {
         } catch (e: Exception) {
             @Expect(e.message.toString(), "Invalid max storage quota value.")
             Hilog.info(0, "test_hiAppEvent_configure_error", "${e.message.toString()}")
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_configure_invalid_maxStorage() {
+        try {
+            var config: ConfigOption = ConfigOption(disable: false, maxStorage: "")
+            HiAppEvent.configure(config)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_configure_invalid_maxStorage", "${e.message.toString()}")
+            @Expect(true)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hiAppEvent_configure_negative_maxStorage() {
+        try {
+            var config: ConfigOption = ConfigOption(disable: false, maxStorage: "-100M")
+            HiAppEvent.configure(config)
+            @Expect(false)
+        } catch (e: Exception) {
+            Hilog.info(0, "test_hiAppEvent_configure_negative_maxStorage", "${e.message.toString()}")
+            @Expect(true)
         }
     }
 
