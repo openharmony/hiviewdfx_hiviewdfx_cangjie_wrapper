@@ -934,11 +934,6 @@ public class AppEventGroup {
     ]
     public var appEventInfos: Array<AppEventInfo>
 
-    init(name: String, appEventInfos: Array<AppEventInfo>) {
-        this.name = name
-        this.appEventInfos = appEventInfos
-    }
-
     init(ret: CAppEventGroup) {
         this.name = ret.name.toString()
         this.appEventInfos = readCArrAppEventInfos(ret.appEventInfos)
