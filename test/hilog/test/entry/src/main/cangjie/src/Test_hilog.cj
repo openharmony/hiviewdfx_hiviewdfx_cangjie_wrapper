@@ -44,5 +44,27 @@ class Test_hilog {
         Hilog.fatal(0x0001, "testTag", "Hello World!")
     }
 
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func Test_Hilog_isLoggable_domain_out_of_range() {
+        @Expect(Hilog.isLoggable(0x10000, "testTag", LogLevel.Info), false)
+    }
 
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func Test_Hilog_public_format() {
+        Hilog.debug(0x0001, "testTag", "%{public}s", ["Hello"])
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func Test_Hilog_private_format() {
+        Hilog.info(0x0001, "testTag", "%{private}s", ["Secret"])
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func Test_Hilog_more_placeholders_than_args() {
+        Hilog.warn(0x0001, "testTag", "%{public}s%{public}s trailing", ["only_one"])
+    }
 }
