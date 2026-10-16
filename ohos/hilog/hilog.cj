@@ -306,17 +306,21 @@ func parseLogContent(formatStr: String, args: Array<String>): String {
 
     var info: LogContentInfo = LogContentInfo()
     var pos: Int64 = 0
+    var lastPos: Int64 = 0
     while (pos < len) {
         var showPriv = true
 
-        if (String.fromUtf8([formatStr[pos]]) != "%") {
-            logContent += String.fromUtf8([formatStr[pos]])
+        if (formatStr[pos] != b'%') {
             pos += 1
             continue
         }
 
         if (info.count >= size) {
             break
+        }
+
+        if (pos > lastPos) {
+            logContent += formatStr[lastPos..pos]
         }
 
         if ((pos + PUBLIC_LEN + PROPERTY_POS) < formatStr.size &&
@@ -337,10 +341,11 @@ func parseLogContent(formatStr: String, args: Array<String>): String {
         }
         info.count += 1
         pos += 1
+        lastPos = pos
     }
 
-    if (pos < len) {
-        logContent += formatStr[pos..]
+    if (lastPos < len) {
+        logContent += formatStr[lastPos..]
     }
 
     return logContent
